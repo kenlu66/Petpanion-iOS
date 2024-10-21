@@ -21,5 +21,11 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>LuckiestGuy-Regular.ttf</string>
+		<string>Poppins-Bold.ttf</string>
+		<string>Poppins-Regular.ttf</string>
+	</array>
 </dict>
 </plist>
