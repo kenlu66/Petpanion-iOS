@@ -9,21 +9,26 @@ import UIKit
 
 class PetInfoViewController: UIViewController {
 
+    @IBOutlet weak var petImage: UIImageView!
+    @IBOutlet weak var genderImage: UIImageView!
+    @IBOutlet weak var petName: UILabel!
+    @IBOutlet weak var breedType: UILabel!
+    @IBOutlet weak var aboutPet: UILabel!
+    @IBOutlet weak var descriptionField: UILabel!
+    @IBOutlet weak var statusTitle: UILabel!
+    @IBOutlet weak var height: UILabel!
+    @IBOutlet weak var weight: UILabel!
+    @IBOutlet weak var age: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        petImage.layer.masksToBounds = true
+        petImage.layer.cornerRadius = petImage.frame.height / 2
+        
+        genderImage.layer.cornerRadius = 10
+        genderImage.layer.masksToBounds = true
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

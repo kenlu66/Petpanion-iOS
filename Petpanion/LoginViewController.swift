@@ -35,13 +35,13 @@ class LoginViewController: UIViewController {
         guard let userEmail = emailField.text else { return }
         guard let password = passswordField.text else { return }
                 
-        Auth.auth().signIn(withEmail: userEmail, password: password) { (authResult, error) in
-            if let error = error as NSError? {
-                self.errorMessage.text =  "\(error.localizedDescription)"
-            } else {
+//        Auth.auth().signIn(withEmail: userEmail, password: password) { (authResult, error) in
+//            if let error = error as NSError? {
+//                self.errorMessage.text =  "\(error.localizedDescription)"
+//            } else {
                 self.performSegue(withIdentifier: self.toHomeSegue, sender: self)
-            }
-        }
+//            }
+//        }
     }
     
     @IBAction func signUpPressed(_ sender: Any) {

@@ -28,13 +28,11 @@
 		B2294E6D2CC23F5600F0005B /* TreatmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E6C2CC23F5600F0005B /* TreatmentsViewController.swift */; };
 		B2294E6F2CC23F6200F0005B /* CalendarEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E6E2CC23F6200F0005B /* CalendarEditViewController.swift */; };
 		B2294E712CC23F6900F0005B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E702CC23F6900F0005B /* CalendarViewController.swift */; };
-		B2294E732CC23F7400F0005B /* NotificationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E722CC23F7400F0005B /* NotificationSettingsViewController.swift */; };
 		B2294E752CC23F8200F0005B /* ChangeCredentialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E742CC23F8200F0005B /* ChangeCredentialViewController.swift */; };
 		B2294E772CC23F8700F0005B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E762CC23F8700F0005B /* SettingViewController.swift */; };
 		B2294E792CC23F8E00F0005B /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E782CC23F8E00F0005B /* UserInfoViewController.swift */; };
 		B2294E7B2CC23F9400F0005B /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E7A2CC23F9400F0005B /* JournalViewController.swift */; };
 		B2294E7D2CC23F9B00F0005B /* JournalEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E7C2CC23F9B00F0005B /* JournalEditViewController.swift */; };
-		B2294E7F2CC23FA900F0005B /* DisplayModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E7E2CC23FA900F0005B /* DisplayModeViewController.swift */; };
 		B28CDBB02CC2350700D36E70 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B28CDBAF2CC2350700D36E70 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -61,13 +59,11 @@
 		B2294E6C2CC23F5600F0005B /* TreatmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatmentsViewController.swift; sourceTree = "<group>"; };
 		B2294E6E2CC23F6200F0005B /* CalendarEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEditViewController.swift; sourceTree = "<group>"; };
 		B2294E702CC23F6900F0005B /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		B2294E722CC23F7400F0005B /* NotificationSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewController.swift; sourceTree = "<group>"; };
 		B2294E742CC23F8200F0005B /* ChangeCredentialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCredentialViewController.swift; sourceTree = "<group>"; };
 		B2294E762CC23F8700F0005B /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		B2294E782CC23F8E00F0005B /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		B2294E7A2CC23F9400F0005B /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		B2294E7C2CC23F9B00F0005B /* JournalEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEditViewController.swift; sourceTree = "<group>"; };
-		B2294E7E2CC23FA900F0005B /* DisplayModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayModeViewController.swift; sourceTree = "<group>"; };
 		B28CDBAF2CC2350700D36E70 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,13 +120,11 @@
 				B2294E6C2CC23F5600F0005B /* TreatmentsViewController.swift */,
 				B2294E6E2CC23F6200F0005B /* CalendarEditViewController.swift */,
 				B2294E702CC23F6900F0005B /* CalendarViewController.swift */,
-				B2294E722CC23F7400F0005B /* NotificationSettingsViewController.swift */,
 				B2294E742CC23F8200F0005B /* ChangeCredentialViewController.swift */,
 				B2294E762CC23F8700F0005B /* SettingViewController.swift */,
 				B2294E782CC23F8E00F0005B /* UserInfoViewController.swift */,
 				B2294E7A2CC23F9400F0005B /* JournalViewController.swift */,
 				B2294E7C2CC23F9B00F0005B /* JournalEditViewController.swift */,
-				B2294E7E2CC23FA900F0005B /* DisplayModeViewController.swift */,
 				B28CDBAF2CC2350700D36E70 /* Launch Screen.storyboard */,
 				8A0684DF2CA734BB00730264 /* Assets.xcassets */,
 				8A0684E12CA734BB00730264 /* LaunchScreen.storyboard */,
@@ -234,11 +228,9 @@
 				B2294E5B2CC23E8200F0005B /* RegisterViewController.swift in Sources */,
 				B2294E5F2CC23EE800F0005B /* MedicalHistoryViewController.swift in Sources */,
 				B2294E652CC23F1B00F0005B /* ProfileCreationViewController.swift in Sources */,
-				B2294E732CC23F7400F0005B /* NotificationSettingsViewController.swift in Sources */,
 				B2294E612CC23EF600F0005B /* PetInfoViewController.swift in Sources */,
 				B2294E6F2CC23F6200F0005B /* CalendarEditViewController.swift in Sources */,
 				B2294E6D2CC23F5600F0005B /* TreatmentsViewController.swift in Sources */,
-				B2294E7F2CC23FA900F0005B /* DisplayModeViewController.swift in Sources */,
 				B2294E6B2CC23F4100F0005B /* NotificationHistoryViewController.swift in Sources */,
 				B2294E632CC23F0B00F0005B /* PetProfileSettingViewController.swift in Sources */,
 				B2294E792CC23F8E00F0005B /* UserInfoViewController.swift in Sources */,
