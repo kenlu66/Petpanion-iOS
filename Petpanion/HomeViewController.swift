@@ -7,23 +7,58 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+protocol updatePetList {
+    func updatePet(pet: Pet)
+}
 
+
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, updatePetList {
+    
+    
+    var petList: [Pet] = []
+    @IBOutlet weak var tableView: UITableView!
+    let textCellIdentifier = "PetCell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return petList.count
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // create cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath)
+        let row = indexPath.row
+          
+        // Put pizza detail into cell
+        cell.textLabel?.numberOfLines = 5 // Five lines for all information to show
+        cell.textLabel?.text = petList[row].petName
+        
+        return cell
+    }
+    
+    // Set up segues to pizza creation view controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "HomeToProfileCreation",
+           let petCreationVC = segue.destination as? ProfileCreationViewController {
+            petCreationVC.delegate = self // pointer back to main VC
+        }
+        
+        if segue.identifier == "HomeToPetInfo",
+           let destination = segue.destination as? PetInfoViewController,
+           // Pass the operator type selected into next VC
+           let petIndex = tableView.indexPathForSelectedRow?.row {
+            destination.selectedPet = petList[petIndex]
+        }
+    }
+    
+    func updatePet(pet: Pet) {
+        self.petList.append(pet)
+        self.tableView.reloadData()
+    }
 }

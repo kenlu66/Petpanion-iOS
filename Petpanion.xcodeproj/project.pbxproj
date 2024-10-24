@@ -10,6 +10,9 @@
 		7852F5972CC700B6002843FA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7852F5962CC700B6002843FA /* LoginViewController.swift */; };
 		7852F59F2CC70884002843FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7852F59E2CC70884002843FA /* GoogleService-Info.plist */; };
 		7852F5A22CC70929002843FA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7852F5A12CC70929002843FA /* FirebaseAuth */; };
+		78A433FD2CC9C77300F9A56A /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 78A433FC2CC9C77300F9A56A /* FirebaseCore */; };
+		78A433FF2CC9C77300F9A56A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 78A433FE2CC9C77300F9A56A /* FirebaseFirestore */; };
+		78A434032CC9CB6C00F9A56A /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A434022CC9CB6C00F9A56A /* Pet.swift */; };
 		8A0684D72CA734B700730264 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0684D62CA734B700730264 /* AppDelegate.swift */; };
 		8A0684D92CA734B700730264 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0684D82CA734B700730264 /* SceneDelegate.swift */; };
 		8A0684DB2CA734B700730264 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0684DA2CA734B700730264 /* ViewController.swift */; };
@@ -39,6 +42,7 @@
 /* Begin PBXFileReference section */
 		7852F5962CC700B6002843FA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7852F59E2CC70884002843FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		78A434022CC9CB6C00F9A56A /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
 		8A0684D32CA734B700730264 /* Petpanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petpanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0684D62CA734B700730264 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A0684D82CA734B700730264 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,17 +80,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78A433FD2CC9C77300F9A56A /* FirebaseCore in Frameworks */,
 				7852F5A22CC70929002843FA /* FirebaseAuth in Frameworks */,
+				78A433FF2CC9C77300F9A56A /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		78A433FB2CC9C77300F9A56A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8A0684CA2CA734B700730264 = {
 			isa = PBXGroup;
 			children = (
 				8A0684D52CA734B700730264 /* Petpanion */,
+				78A433FB2CC9C77300F9A56A /* Frameworks */,
 				8A0684D42CA734B700730264 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -110,6 +124,7 @@
 				7852F5962CC700B6002843FA /* LoginViewController.swift */,
 				B2294E5A2CC23E8200F0005B /* RegisterViewController.swift */,
 				B2294E5C2CC23EB500F0005B /* HomeViewController.swift */,
+				78A434022CC9CB6C00F9A56A /* Pet.swift */,
 				B2294E5E2CC23EE800F0005B /* MedicalHistoryViewController.swift */,
 				B2294E602CC23EF600F0005B /* PetInfoViewController.swift */,
 				B2294E622CC23F0B00F0005B /* PetProfileSettingViewController.swift */,
@@ -234,6 +249,7 @@
 				B2294E6B2CC23F4100F0005B /* NotificationHistoryViewController.swift in Sources */,
 				B2294E632CC23F0B00F0005B /* PetProfileSettingViewController.swift in Sources */,
 				B2294E792CC23F8E00F0005B /* UserInfoViewController.swift in Sources */,
+				78A434032CC9CB6C00F9A56A /* Pet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +486,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7852F5A02CC70929002843FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		78A433FC2CC9C77300F9A56A /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7852F5A02CC70929002843FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		78A433FE2CC9C77300F9A56A /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7852F5A02CC70929002843FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

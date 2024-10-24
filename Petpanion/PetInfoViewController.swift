@@ -20,6 +20,8 @@ class PetInfoViewController: UIViewController {
     @IBOutlet weak var weight: UILabel!
     @IBOutlet weak var age: UILabel!
     
+    var selectedPet: Pet!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +30,12 @@ class PetInfoViewController: UIViewController {
         
         genderImage.layer.cornerRadius = 10
         genderImage.layer.masksToBounds = true
+        
+        petName.text = selectedPet.petName
+        breedType.text = selectedPet.breedName
+        age.text = "\(selectedPet.age)"
+        weight.text = "\(selectedPet.weight)"
+        descriptionField.text = selectedPet.petDescription
     }
     
 
