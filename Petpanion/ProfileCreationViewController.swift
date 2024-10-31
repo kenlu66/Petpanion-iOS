@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseAuth
 
 class ProfileCreationViewController: UIViewController {
 
@@ -24,6 +25,7 @@ class ProfileCreationViewController: UIViewController {
     
     var datePicker: UIDatePicker!
     var delegate: UIViewController!
+    let userManager = UserManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,13 +83,26 @@ class ProfileCreationViewController: UIViewController {
            gender: genderText,
            petDescription: petDescriptionText
        )
+        
+        // Ensure the user is authenticated
+        guard let userId = Auth.auth().currentUser?.uid else {
+            submissionStatus.text = "User not authenticated."
+            return
+        }
 
-       // Ensure delegate conforms to the updatePetList protocol
-       if let mainVC = delegate as? updatePetList {
-           mainVC.updatePet(pet: newPet)
-       } else {
-           print("Delegate does not conform to updatePetList protocol.")
-       }
-        submissionStatus.text = "Profile submitted"
+        // Add the pet to Firestore
+        Task {
+            do {
+                try await userManager.addPet(for: userId, pet: newPet)
+                submissionStatus.text = "Pet profile submitted successfully!"
+                
+                // Notify delegate if needed
+                if let mainVC = delegate as? updatePetList {
+                    mainVC.updatePet(pet: newPet)
+                }
+            } catch {
+                submissionStatus.text = "Error adding pet: \(error.localizedDescription)"
+            }
+        }
     }
 }

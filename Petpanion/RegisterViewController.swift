@@ -17,6 +17,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var errorMessage: UILabel!
     
     let toLoginSegue = "RegisterToLogin"
+    let userManager = UserManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +34,16 @@ class RegisterViewController: UIViewController {
         guard let userEmail = emailField.text else { return }
         guard let password = passwordField.text else { return }
                 
-        Auth.auth().createUser(withEmail: userEmail, password: password) { (authResult, error) in
-            if let error = error as NSError? {
-                self.errorMessage.text =  "\(error.localizedDescription)"
-            } else {
+        // Call the UserManager's signUpUser method
+        Task {
+            do {
+                let authResult = try await Auth.auth().createUser(withEmail: userEmail, password: password)
+                try await userManager.createNewUser(user: authResult.user) // Create user in Firestore
                 self.performSegue(withIdentifier: self.toLoginSegue, sender: self)
+            } catch {
+                DispatchQueue.main.async {
+                    self.errorMessage.text = "Error signing up: \(error.localizedDescription)"
+                }
             }
         }
     }
