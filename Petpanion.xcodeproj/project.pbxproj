@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		781CDDB92CD319C900A84315 /* UserManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781CDDB82CD319C900A84315 /* UserManger.swift */; };
 		7852F5972CC700B6002843FA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7852F5962CC700B6002843FA /* LoginViewController.swift */; };
 		7852F59F2CC70884002843FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7852F59E2CC70884002843FA /* GoogleService-Info.plist */; };
 		7852F5A22CC70929002843FA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7852F5A12CC70929002843FA /* FirebaseAuth */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		781CDDB82CD319C900A84315 /* UserManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManger.swift; sourceTree = "<group>"; };
 		7852F5962CC700B6002843FA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7852F59E2CC70884002843FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		78A434022CC9CB6C00F9A56A /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				B2294E5A2CC23E8200F0005B /* RegisterViewController.swift */,
 				B2294E5C2CC23EB500F0005B /* HomeViewController.swift */,
 				78A434022CC9CB6C00F9A56A /* Pet.swift */,
+				781CDDB82CD319C900A84315 /* UserManger.swift */,
 				B2294E5E2CC23EE800F0005B /* MedicalHistoryViewController.swift */,
 				B2294E602CC23EF600F0005B /* PetInfoViewController.swift */,
 				B2294E622CC23F0B00F0005B /* PetProfileSettingViewController.swift */,
@@ -241,6 +244,7 @@
 				B2294E692CC23F3900F0005B /* AllergiesViewController.swift in Sources */,
 				B2294E7B2CC23F9400F0005B /* JournalViewController.swift in Sources */,
 				B2294E7D2CC23F9B00F0005B /* JournalEditViewController.swift in Sources */,
+				781CDDB92CD319C900A84315 /* UserManger.swift in Sources */,
 				8A9A7F602CC9E2D500EE606D /* CalendarHelper.swift in Sources */,
 				B2294E672CC23F3100F0005B /* VaccinationsViewController.swift in Sources */,
 				B2294E772CC23F8700F0005B /* SettingViewController.swift in Sources */,

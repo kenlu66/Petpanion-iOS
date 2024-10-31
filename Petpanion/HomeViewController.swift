@@ -6,14 +6,16 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 protocol updatePetList {
     func updatePet(pet: Pet)
 }
 
-
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, updatePetList {
     
+    let db = Firestore.firestore()
     
     var petList: [Pet] = []
     @IBOutlet weak var tableView: UITableView!
@@ -24,6 +26,53 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        fetchPets()
+    }
+    
+    func fetchPets() {
+        // Ensure the user is authenticated
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("User not authenticated.")
+            return
+        }
+        
+        // Reference to the pets subcollection for the authenticated user
+        let petsRef = db.collection("users").document(userId).collection("pets")
+        
+        // Retrieve pets associated with the user
+        petsRef.getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error retrieving pets: \(error.localizedDescription)")
+                return
+            }
+            
+            // Process the retrieved documents
+            self.petList = [] // Clear existing pet list
+            for document in snapshot?.documents ?? [] {
+                let petData = document.data()
+                if let petName = petData["petName"] as? String,
+                   let breedName = petData["breedName"] as? String,
+                   let neutered = petData["neutered"] as? String,
+                   let age = petData["age"] as? Int,
+                   let weight = petData["weight"] as? Float,
+                   let gender = petData["gender"] as? String,
+                   let petDescription = petData["petDescription"] as? String {
+                    
+                    let pet = Pet(petName: petName,
+                                  breedName: breedName,
+                                  neutered: neutered,
+                                  age: age,
+                                  weight: weight,
+                                  gender: gender,
+                                  petDescription: petDescription)
+                    self.petList.append(pet)
+                }
+            }
+
+            // Update the table view with the new data
+            self.tableView.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
