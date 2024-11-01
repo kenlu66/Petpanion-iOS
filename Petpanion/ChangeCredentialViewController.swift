@@ -61,6 +61,11 @@ class ChangeCredentialViewController: UIViewController {
                 self?.showAlert(message: "Password updated successfully!")
             }
         }
+        
+        if let signInVC = storyboard?.instantiateViewController(withIdentifier: "SignInViewController") {
+            signInVC.modalPresentationStyle = .fullScreen
+            present(signInVC, animated: true, completion: nil)
+        }
     }
 
     private func showAlert(message: String) {

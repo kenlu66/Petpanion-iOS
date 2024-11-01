@@ -20,6 +20,7 @@
 		8A0684DE2CA734B700730264 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A0684DC2CA734B700730264 /* Main.storyboard */; };
 		8A0684E02CA734BB00730264 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A0684DF2CA734BB00730264 /* Assets.xcassets */; };
 		8A0684E32CA734BB00730264 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A0684E12CA734BB00730264 /* LaunchScreen.storyboard */; };
+		8A5709FC2CD56AE400BC8BB6 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5709FB2CD56AE400BC8BB6 /* LaunchViewController.swift */; };
 		8A9A7F5E2CC9DF6B00EE606D /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A7F5D2CC9DF6B00EE606D /* CalendarCell.swift */; };
 		8A9A7F602CC9E2D500EE606D /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A7F5F2CC9E2D500EE606D /* CalendarHelper.swift */; };
 		8A9A7F622CC9E9CE00EE606D /* WeeklyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A7F612CC9E9CE00EE606D /* WeeklyViewController.swift */; };
@@ -58,6 +59,7 @@
 		8A0684DF2CA734BB00730264 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A0684E22CA734BB00730264 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A0684E42CA734BB00730264 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A5709FB2CD56AE400BC8BB6 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		8A9A7F5D2CC9DF6B00EE606D /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		8A9A7F5F2CC9E2D500EE606D /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		8A9A7F612CC9E9CE00EE606D /* WeeklyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				7802FD632CC6F782001B469C /* Fonts */,
 				8A0684DC2CA734B700730264 /* Main.storyboard */,
+				8A5709FB2CD56AE400BC8BB6 /* LaunchViewController.swift */,
 				B29A64982CD31EAB006102E5 /* Event.swift */,
 				B29A64942CD31D89006102E5 /* EventEditViewController.swift */,
 				B29A64962CD31D98006102E5 /* EventCell.swift */,
@@ -257,6 +260,7 @@
 				8A9A7F602CC9E2D500EE606D /* CalendarHelper.swift in Sources */,
 				B2294E672CC23F3100F0005B /* VaccinationsViewController.swift in Sources */,
 				B2294E772CC23F8700F0005B /* SettingViewController.swift in Sources */,
+				8A5709FC2CD56AE400BC8BB6 /* LaunchViewController.swift in Sources */,
 				B29A64992CD31EAB006102E5 /* Event.swift in Sources */,
 				B2294E752CC23F8200F0005B /* ChangeCredentialViewController.swift in Sources */,
 				8A9A7F622CC9E9CE00EE606D /* WeeklyViewController.swift in Sources */,
