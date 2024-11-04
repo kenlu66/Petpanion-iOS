@@ -59,9 +59,9 @@ class WeeklyViewController: UIViewController, UICollectionViewDelegate, UICollec
         cell.dayOfMonth.text = String(CalendarHelper().dayOfMonth(date: date))
         
         if (date == selectedDate){
-            cell.backgroundColor = UIColor.systemYellow
+            cell.backgroundColor = UIColor(named: "PetpanionBase")
         } else {
-            cell.backgroundColor = UIColor.white
+            cell.backgroundColor = UIColor.systemBackground
         }
         return cell
     }

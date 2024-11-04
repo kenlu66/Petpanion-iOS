@@ -1484,7 +1484,7 @@
                                     <action selector="nextWeek:" destination="l0v-Uj-lZL" eventType="touchUpInside" id="2RN-b2-Xwg"/>
                                 </connections>
                             </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="H3N-OP-Unk">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="H3N-OP-Unk">
                                 <rect key="frame" x="0.0" y="204" width="393" height="149.66666666666663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="K3S-77-Ya5">
