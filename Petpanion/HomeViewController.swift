@@ -13,19 +13,19 @@ protocol updatePetList {
     func updatePet(pet: Pet)
 }
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, updatePetList {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, updatePetList {
     
     let db = Firestore.firestore()
     
     var petList: [Pet] = []
-    @IBOutlet weak var tableView: UITableView!
     let textCellIdentifier = "PetCell"
     
+    @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
         
         fetchPets()
     }
@@ -71,23 +71,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
 
             // Update the table view with the new data
-            self.tableView.reloadData()
+            self.collectionView.reloadData()
         }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return petList.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // create cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: textCellIdentifier, for: indexPath)
         let row = indexPath.row
-          
-        // Put pizza detail into cell
-        cell.textLabel?.numberOfLines = 5 // Five lines for all information to show
-        cell.textLabel?.text = petList[row].petName
-        
+        cell.contentView.backgroundColor = .systemRed
         return cell
     }
     
@@ -100,14 +95,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if segue.identifier == "HomeToPetInfo",
            let destination = segue.destination as? PetInfoViewController,
-           // Pass the operator type selected into next VC
-           let petIndex = tableView.indexPathForSelectedRow?.row {
-            destination.selectedPet = petList[petIndex]
+        // Pass the operator type selected into next VC
+            let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
+            let selectedPet = petList[selectedIndexPath.row]
+            destination.selectedPet = selectedPet
         }
+        
     }
     
     func updatePet(pet: Pet) {
         self.petList.append(pet)
-        self.tableView.reloadData()
+        self.collectionView.reloadData()
     }
 }
