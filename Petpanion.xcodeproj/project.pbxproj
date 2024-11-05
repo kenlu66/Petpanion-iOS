@@ -11,6 +11,8 @@
 		7852F5972CC700B6002843FA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7852F5962CC700B6002843FA /* LoginViewController.swift */; };
 		7852F59F2CC70884002843FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7852F59E2CC70884002843FA /* GoogleService-Info.plist */; };
 		7852F5A22CC70929002843FA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7852F5A12CC70929002843FA /* FirebaseAuth */; };
+		786A23282CD9CE0600FBFF5A /* PetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786A23272CD9CE0600FBFF5A /* PetCollectionViewCell.xib */; };
+		786A23292CD9CE0600FBFF5A /* PetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786A23262CD9CE0600FBFF5A /* PetCollectionViewCell.swift */; };
 		78A433FD2CC9C77300F9A56A /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 78A433FC2CC9C77300F9A56A /* FirebaseCore */; };
 		78A433FF2CC9C77300F9A56A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 78A433FE2CC9C77300F9A56A /* FirebaseFirestore */; };
 		78A434032CC9CB6C00F9A56A /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A434022CC9CB6C00F9A56A /* Pet.swift */; };
@@ -50,6 +52,8 @@
 		781CDDB82CD319C900A84315 /* UserManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManger.swift; sourceTree = "<group>"; };
 		7852F5962CC700B6002843FA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7852F59E2CC70884002843FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		786A23262CD9CE0600FBFF5A /* PetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetCollectionViewCell.swift; sourceTree = "<group>"; };
+		786A23272CD9CE0600FBFF5A /* PetCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PetCollectionViewCell.xib; sourceTree = "<group>"; };
 		78A434022CC9CB6C00F9A56A /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
 		8A0684D32CA734B700730264 /* Petpanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petpanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0684D62CA734B700730264 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 			children = (
 				7802FD632CC6F782001B469C /* Fonts */,
 				8A0684DC2CA734B700730264 /* Main.storyboard */,
+				786A23262CD9CE0600FBFF5A /* PetCollectionViewCell.swift */,
+				786A23272CD9CE0600FBFF5A /* PetCollectionViewCell.xib */,
 				8A5709FB2CD56AE400BC8BB6 /* LaunchViewController.swift */,
 				B29A64982CD31EAB006102E5 /* Event.swift */,
 				B29A64942CD31D89006102E5 /* EventEditViewController.swift */,
@@ -239,6 +245,7 @@
 				8A0684E02CA734BB00730264 /* Assets.xcassets in Resources */,
 				B28CDBB02CC2350700D36E70 /* Launch Screen.storyboard in Resources */,
 				8A0684DE2CA734B700730264 /* Main.storyboard in Resources */,
+				786A23282CD9CE0600FBFF5A /* PetCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +282,7 @@
 				B29A64972CD31D98006102E5 /* EventCell.swift in Sources */,
 				B2294E6D2CC23F5600F0005B /* TreatmentsViewController.swift in Sources */,
 				B2294E6B2CC23F4100F0005B /* NotificationHistoryViewController.swift in Sources */,
+				786A23292CD9CE0600FBFF5A /* PetCollectionViewCell.swift in Sources */,
 				B2294E632CC23F0B00F0005B /* PetProfileSettingViewController.swift in Sources */,
 				B2294E792CC23F8E00F0005B /* UserInfoViewController.swift in Sources */,
 				78A434032CC9CB6C00F9A56A /* Pet.swift in Sources */,

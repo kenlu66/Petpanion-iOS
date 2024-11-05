@@ -19,11 +19,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     var petList: [Pet] = []
     let textCellIdentifier = "PetCell"
+    let collectionViewIdentifier = "PetCollectionViewCell"
     
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView.register(PetCollectionViewCell.nib(), forCellWithReuseIdentifier: collectionViewIdentifier)
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -80,11 +82,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: textCellIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionViewIdentifier, for: indexPath) as! PetCollectionViewCell
         let row = indexPath.row
-        cell.contentView.backgroundColor = .systemRed
+        cell.configure(with: UIImage(named: "Petpanion_iconV1")!, name: petList[row].petName)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Get the selected pet from your petList
+        let selectedPet = petList[indexPath.row]
+        
+        // Perform the segue to the next view controller (PetInfoViewController)
+        performSegue(withIdentifier: "HomeToPetInfo", sender: selectedPet)
+    }
+
     
     // Set up segues to pizza creation view controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -104,7 +115,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func updatePet(pet: Pet) {
-        self.petList.append(pet)
-        self.collectionView.reloadData()
+        let newIndex = petList.count
+        petList.append(pet)
+        
+        // Insert the new item at the end of the collection view
+        let indexPath = IndexPath(item: newIndex, section: 0)
+        collectionView.insertItems(at: [indexPath])
     }
+
 }
