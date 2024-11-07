@@ -29,6 +29,15 @@ class LoginViewController: UIViewController {
         signUpButton.layer.masksToBounds = true
         
         errorMessage.text = ""
+        
+        Auth.auth().addStateDidChangeListener() {
+            (auth,user) in
+            if user != nil {
+                self.performSegue(withIdentifier: self.toHomeSegue, sender: nil)
+                self.emailField.text = nil
+                self.passswordField.text = nil
+            }
+        }
     }
     
     
