@@ -59,7 +59,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                    let age = petData["age"] as? Int,
                    let weight = petData["weight"] as? Float,
                    let gender = petData["gender"] as? String,
-                   let petDescription = petData["petDescription"] as? String {
+                   let petDescription = petData["petDescription"] as? String,
+                   let imageData = petData["petImage"] as? String {
                     
                     let pet = Pet(petName: petName,
                                   breedName: breedName,
@@ -67,7 +68,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                   age: age,
                                   weight: weight,
                                   gender: gender,
-                                  petDescription: petDescription)
+                                  petDescription: petDescription,
+                                  imageData: imageData)
                     self.petList.append(pet)
                 }
             }
@@ -77,6 +79,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
+    func convertDataToImage(imageData: String) -> UIImage? {
+        if let data = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters) {
+            return UIImage(data: data)
+        }
+        return nil
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return petList.count
     }
@@ -84,7 +93,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionViewIdentifier, for: indexPath) as! PetCollectionViewCell
         let row = indexPath.row
-        cell.configure(with: UIImage(named: "Petpanion_iconV1")!, name: petList[row].petName)
+        
+        if let image = convertDataToImage(imageData: petList[row].imageData) {
+            cell.petImage.image = image
+        } else {
+            cell.petImage.image = UIImage(named: "Petpanion_iconV1")
+        }
+        cell.petImage.layer.cornerRadius = 30
+        cell.petName.text = petList[row].petName
         return cell
     }
     
