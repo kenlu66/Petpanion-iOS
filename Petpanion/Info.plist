@@ -27,5 +27,9 @@
 		<string>Poppins-Bold.ttf</string>
 		<string>Poppins-Regular.ttf</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Please allow us to use your camera.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Please allow us to use your Photo Library</string>
 </dict>
 </plist>

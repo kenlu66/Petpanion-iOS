@@ -892,6 +892,9 @@
                                                 <rect key="frame" x="144.66666666666666" y="276" width="104" height="35"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="tinted" title="Add Photo"/>
+                                                <connections>
+                                                    <action selector="addPhotoPressed:" destination="eup-os-fwg" eventType="touchUpInside" id="c2z-bz-Rf1"/>
+                                                </connections>
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Breed Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tvu-sR-Z7T">
                                                 <rect key="frame" x="33" y="489" width="327" height="34"/>

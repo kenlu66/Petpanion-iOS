@@ -8,9 +8,9 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import Photos
 
-class ProfileCreationViewController: UIViewController {
-
+class ProfileCreationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var petImage: UIImageView!
     @IBOutlet weak var petName: UITextField!
@@ -26,6 +26,7 @@ class ProfileCreationViewController: UIViewController {
     var datePicker: UIDatePicker!
     var delegate: UIViewController!
     let userManager = UserManager()
+    var imagePickerController = UIImagePickerController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +60,50 @@ class ProfileCreationViewController: UIViewController {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.year], from: birthDate, to: Date())
         return components.year ?? 0
+    }
+    
+    @IBAction func addPhotoPressed(_ sender: Any) {
+        checkPermissions()
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        
+        picker.sourceType = .photoLibrary
+        present(picker, animated: true)
+        
+        // TODO: user imagePickerController for camera when we can test it
+        // TODO: need to be able to switch the sourceType
+        // imagePickerController.sourceType = .camera
+        // present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // TODO: when picker is camera
+        if picker.sourceType == .photoLibrary {
+            petImage?.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+            
+            picker.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func checkPermissions() {
+        if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
+            PHPhotoLibrary.requestAuthorization({ (status: PHAuthorizationStatus) -> Void in () })
+        }
+        
+        if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
+            
+        } else {
+            PHPhotoLibrary.requestAuthorization(requestAuthorizationHandler)
+        }
+    }
+    
+    func requestAuthorizationHandler(status: PHAuthorizationStatus) {
+        if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
+            print("Access for photo library granted")
+        } else {
+            print("Access for photo library not granted")
+        }
     }
     
     @IBAction func submitted(_ sender: Any) {

@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window.overrideUserInterfaceStyle = isDarkMode ? .dark : .light
         }
         FirebaseApp.configure()
-        let db = Firestore.firestore()
         return true
     }
 
