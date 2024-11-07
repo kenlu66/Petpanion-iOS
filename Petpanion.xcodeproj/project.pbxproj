@@ -7,90 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		781CDDB92CD319C900A84315 /* UserManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781CDDB82CD319C900A84315 /* UserManger.swift */; };
-		7852F5972CC700B6002843FA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7852F5962CC700B6002843FA /* LoginViewController.swift */; };
 		7852F59F2CC70884002843FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7852F59E2CC70884002843FA /* GoogleService-Info.plist */; };
 		7852F5A22CC70929002843FA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7852F5A12CC70929002843FA /* FirebaseAuth */; };
-		786A23282CD9CE0600FBFF5A /* PetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786A23272CD9CE0600FBFF5A /* PetCollectionViewCell.xib */; };
-		786A23292CD9CE0600FBFF5A /* PetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786A23262CD9CE0600FBFF5A /* PetCollectionViewCell.swift */; };
 		78A433FD2CC9C77300F9A56A /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 78A433FC2CC9C77300F9A56A /* FirebaseCore */; };
 		78A433FF2CC9C77300F9A56A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 78A433FE2CC9C77300F9A56A /* FirebaseFirestore */; };
-		78A434032CC9CB6C00F9A56A /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A434022CC9CB6C00F9A56A /* Pet.swift */; };
 		8A0684D72CA734B700730264 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0684D62CA734B700730264 /* AppDelegate.swift */; };
 		8A0684D92CA734B700730264 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0684D82CA734B700730264 /* SceneDelegate.swift */; };
-		8A0684DB2CA734B700730264 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0684DA2CA734B700730264 /* ViewController.swift */; };
 		8A0684DE2CA734B700730264 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A0684DC2CA734B700730264 /* Main.storyboard */; };
 		8A0684E02CA734BB00730264 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A0684DF2CA734BB00730264 /* Assets.xcassets */; };
 		8A0684E32CA734BB00730264 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A0684E12CA734BB00730264 /* LaunchScreen.storyboard */; };
-		8A5709FC2CD56AE400BC8BB6 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5709FB2CD56AE400BC8BB6 /* LaunchViewController.swift */; };
-		8A9A7F5E2CC9DF6B00EE606D /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A7F5D2CC9DF6B00EE606D /* CalendarCell.swift */; };
-		8A9A7F602CC9E2D500EE606D /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A7F5F2CC9E2D500EE606D /* CalendarHelper.swift */; };
-		8A9A7F622CC9E9CE00EE606D /* WeeklyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A7F612CC9E9CE00EE606D /* WeeklyViewController.swift */; };
-		B2294E5B2CC23E8200F0005B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E5A2CC23E8200F0005B /* RegisterViewController.swift */; };
-		B2294E5D2CC23EB500F0005B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E5C2CC23EB500F0005B /* HomeViewController.swift */; };
-		B2294E5F2CC23EE800F0005B /* MedicalHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E5E2CC23EE800F0005B /* MedicalHistoryViewController.swift */; };
-		B2294E612CC23EF600F0005B /* PetInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E602CC23EF600F0005B /* PetInfoViewController.swift */; };
-		B2294E632CC23F0B00F0005B /* PetProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E622CC23F0B00F0005B /* PetProfileSettingViewController.swift */; };
-		B2294E652CC23F1B00F0005B /* ProfileCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E642CC23F1B00F0005B /* ProfileCreationViewController.swift */; };
-		B2294E672CC23F3100F0005B /* VaccinationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E662CC23F3100F0005B /* VaccinationsViewController.swift */; };
-		B2294E692CC23F3900F0005B /* AllergiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E682CC23F3900F0005B /* AllergiesViewController.swift */; };
-		B2294E6B2CC23F4100F0005B /* NotificationHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E6A2CC23F4100F0005B /* NotificationHistoryViewController.swift */; };
-		B2294E6D2CC23F5600F0005B /* TreatmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E6C2CC23F5600F0005B /* TreatmentsViewController.swift */; };
-		B2294E712CC23F6900F0005B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E702CC23F6900F0005B /* CalendarViewController.swift */; };
-		B2294E752CC23F8200F0005B /* ChangeCredentialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E742CC23F8200F0005B /* ChangeCredentialViewController.swift */; };
-		B2294E772CC23F8700F0005B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E762CC23F8700F0005B /* SettingViewController.swift */; };
-		B2294E792CC23F8E00F0005B /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E782CC23F8E00F0005B /* UserInfoViewController.swift */; };
-		B2294E7B2CC23F9400F0005B /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E7A2CC23F9400F0005B /* JournalViewController.swift */; };
-		B2294E7D2CC23F9B00F0005B /* JournalEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2294E7C2CC23F9B00F0005B /* JournalEditViewController.swift */; };
-		B28CDBB02CC2350700D36E70 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B28CDBAF2CC2350700D36E70 /* Launch Screen.storyboard */; };
-		B29A64952CD31D89006102E5 /* EventEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29A64942CD31D89006102E5 /* EventEditViewController.swift */; };
-		B29A64972CD31D98006102E5 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29A64962CD31D98006102E5 /* EventCell.swift */; };
-		B29A64992CD31EAB006102E5 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29A64982CD31EAB006102E5 /* Event.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		781CDDB82CD319C900A84315 /* UserManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManger.swift; sourceTree = "<group>"; };
-		7852F5962CC700B6002843FA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7852F59E2CC70884002843FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		786A23262CD9CE0600FBFF5A /* PetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetCollectionViewCell.swift; sourceTree = "<group>"; };
-		786A23272CD9CE0600FBFF5A /* PetCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PetCollectionViewCell.xib; sourceTree = "<group>"; };
-		78A434022CC9CB6C00F9A56A /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
 		8A0684D32CA734B700730264 /* Petpanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petpanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0684D62CA734B700730264 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A0684D82CA734B700730264 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8A0684DA2CA734B700730264 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8A0684DD2CA734B700730264 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8A0684DF2CA734BB00730264 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A0684E22CA734BB00730264 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A0684E42CA734BB00730264 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8A5709FB2CD56AE400BC8BB6 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
-		8A9A7F5D2CC9DF6B00EE606D /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
-		8A9A7F5F2CC9E2D500EE606D /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
-		8A9A7F612CC9E9CE00EE606D /* WeeklyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyViewController.swift; sourceTree = "<group>"; };
-		B2294E5A2CC23E8200F0005B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		B2294E5C2CC23EB500F0005B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		B2294E5E2CC23EE800F0005B /* MedicalHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalHistoryViewController.swift; sourceTree = "<group>"; };
-		B2294E602CC23EF600F0005B /* PetInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfoViewController.swift; sourceTree = "<group>"; };
-		B2294E622CC23F0B00F0005B /* PetProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfileSettingViewController.swift; sourceTree = "<group>"; };
-		B2294E642CC23F1B00F0005B /* ProfileCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationViewController.swift; sourceTree = "<group>"; };
-		B2294E662CC23F3100F0005B /* VaccinationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationsViewController.swift; sourceTree = "<group>"; };
-		B2294E682CC23F3900F0005B /* AllergiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergiesViewController.swift; sourceTree = "<group>"; };
-		B2294E6A2CC23F4100F0005B /* NotificationHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHistoryViewController.swift; sourceTree = "<group>"; };
-		B2294E6C2CC23F5600F0005B /* TreatmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatmentsViewController.swift; sourceTree = "<group>"; };
-		B2294E702CC23F6900F0005B /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		B2294E742CC23F8200F0005B /* ChangeCredentialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCredentialViewController.swift; sourceTree = "<group>"; };
-		B2294E762CC23F8700F0005B /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		B2294E782CC23F8E00F0005B /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
-		B2294E7A2CC23F9400F0005B /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
-		B2294E7C2CC23F9B00F0005B /* JournalEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEditViewController.swift; sourceTree = "<group>"; };
-		B28CDBAF2CC2350700D36E70 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		B29A64942CD31D89006102E5 /* EventEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEditViewController.swift; sourceTree = "<group>"; };
-		B29A64962CD31D98006102E5 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
-		B29A64982CD31EAB006102E5 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		7802FD632CC6F782001B469C /* Fonts */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Fonts; sourceTree = "<group>"; };
+		78D4D4F62CDD418200C36199 /* Firebase Auth */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Firebase Auth"; sourceTree = "<group>"; };
+		78D4D4F72CDD41CD00C36199 /* Info Display */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Info Display"; sourceTree = "<group>"; };
+		78D4D4F82CDD428000C36199 /* Firestore */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Firestore; sourceTree = "<group>"; };
+		78D4D4F92CDD430600C36199 /* Calendar */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Calendar; sourceTree = "<group>"; };
+		78D4D4FA2CDD430D00C36199 /* Journal */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Journal; sourceTree = "<group>"; };
+		78D4D4FB2CDD434100C36199 /* Notification */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Notification; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,39 +81,15 @@
 			isa = PBXGroup;
 			children = (
 				7802FD632CC6F782001B469C /* Fonts */,
+				78D4D4F62CDD418200C36199 /* Firebase Auth */,
+				78D4D4F72CDD41CD00C36199 /* Info Display */,
+				78D4D4F82CDD428000C36199 /* Firestore */,
+				78D4D4F92CDD430600C36199 /* Calendar */,
+				78D4D4FA2CDD430D00C36199 /* Journal */,
+				78D4D4FB2CDD434100C36199 /* Notification */,
 				8A0684DC2CA734B700730264 /* Main.storyboard */,
-				786A23262CD9CE0600FBFF5A /* PetCollectionViewCell.swift */,
-				786A23272CD9CE0600FBFF5A /* PetCollectionViewCell.xib */,
-				8A5709FB2CD56AE400BC8BB6 /* LaunchViewController.swift */,
-				B29A64982CD31EAB006102E5 /* Event.swift */,
-				B29A64942CD31D89006102E5 /* EventEditViewController.swift */,
-				B29A64962CD31D98006102E5 /* EventCell.swift */,
-				8A9A7F612CC9E9CE00EE606D /* WeeklyViewController.swift */,
-				8A9A7F5D2CC9DF6B00EE606D /* CalendarCell.swift */,
 				8A0684D62CA734B700730264 /* AppDelegate.swift */,
 				8A0684D82CA734B700730264 /* SceneDelegate.swift */,
-				8A0684DA2CA734B700730264 /* ViewController.swift */,
-				7852F5962CC700B6002843FA /* LoginViewController.swift */,
-				B2294E5A2CC23E8200F0005B /* RegisterViewController.swift */,
-				B2294E5C2CC23EB500F0005B /* HomeViewController.swift */,
-				78A434022CC9CB6C00F9A56A /* Pet.swift */,
-				781CDDB82CD319C900A84315 /* UserManger.swift */,
-				B2294E5E2CC23EE800F0005B /* MedicalHistoryViewController.swift */,
-				B2294E602CC23EF600F0005B /* PetInfoViewController.swift */,
-				B2294E622CC23F0B00F0005B /* PetProfileSettingViewController.swift */,
-				B2294E642CC23F1B00F0005B /* ProfileCreationViewController.swift */,
-				B2294E662CC23F3100F0005B /* VaccinationsViewController.swift */,
-				B2294E682CC23F3900F0005B /* AllergiesViewController.swift */,
-				B2294E6A2CC23F4100F0005B /* NotificationHistoryViewController.swift */,
-				B2294E6C2CC23F5600F0005B /* TreatmentsViewController.swift */,
-				B2294E702CC23F6900F0005B /* CalendarViewController.swift */,
-				8A9A7F5F2CC9E2D500EE606D /* CalendarHelper.swift */,
-				B2294E742CC23F8200F0005B /* ChangeCredentialViewController.swift */,
-				B2294E762CC23F8700F0005B /* SettingViewController.swift */,
-				B2294E782CC23F8E00F0005B /* UserInfoViewController.swift */,
-				B2294E7A2CC23F9400F0005B /* JournalViewController.swift */,
-				B2294E7C2CC23F9B00F0005B /* JournalEditViewController.swift */,
-				B28CDBAF2CC2350700D36E70 /* Launch Screen.storyboard */,
 				8A0684DF2CA734BB00730264 /* Assets.xcassets */,
 				8A0684E12CA734BB00730264 /* LaunchScreen.storyboard */,
 				8A0684E42CA734BB00730264 /* Info.plist */,
@@ -193,6 +115,12 @@
 			);
 			fileSystemSynchronizedGroups = (
 				7802FD632CC6F782001B469C /* Fonts */,
+				78D4D4F62CDD418200C36199 /* Firebase Auth */,
+				78D4D4F72CDD41CD00C36199 /* Info Display */,
+				78D4D4F82CDD428000C36199 /* Firestore */,
+				78D4D4F92CDD430600C36199 /* Calendar */,
+				78D4D4FA2CDD430D00C36199 /* Journal */,
+				78D4D4FB2CDD434100C36199 /* Notification */,
 			);
 			name = Petpanion;
 			productName = Petpanion;
@@ -243,9 +171,7 @@
 				7852F59F2CC70884002843FA /* GoogleService-Info.plist in Resources */,
 				8A0684E32CA734BB00730264 /* LaunchScreen.storyboard in Resources */,
 				8A0684E02CA734BB00730264 /* Assets.xcassets in Resources */,
-				B28CDBB02CC2350700D36E70 /* Launch Screen.storyboard in Resources */,
 				8A0684DE2CA734B700730264 /* Main.storyboard in Resources */,
-				786A23282CD9CE0600FBFF5A /* PetCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,36 +182,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2294E712CC23F6900F0005B /* CalendarViewController.swift in Sources */,
-				B2294E5D2CC23EB500F0005B /* HomeViewController.swift in Sources */,
-				8A0684DB2CA734B700730264 /* ViewController.swift in Sources */,
-				7852F5972CC700B6002843FA /* LoginViewController.swift in Sources */,
-				B2294E692CC23F3900F0005B /* AllergiesViewController.swift in Sources */,
-				B2294E7B2CC23F9400F0005B /* JournalViewController.swift in Sources */,
-				B2294E7D2CC23F9B00F0005B /* JournalEditViewController.swift in Sources */,
-				781CDDB92CD319C900A84315 /* UserManger.swift in Sources */,
-				8A9A7F602CC9E2D500EE606D /* CalendarHelper.swift in Sources */,
-				B2294E672CC23F3100F0005B /* VaccinationsViewController.swift in Sources */,
-				B2294E772CC23F8700F0005B /* SettingViewController.swift in Sources */,
-				8A5709FC2CD56AE400BC8BB6 /* LaunchViewController.swift in Sources */,
-				B29A64992CD31EAB006102E5 /* Event.swift in Sources */,
-				B2294E752CC23F8200F0005B /* ChangeCredentialViewController.swift in Sources */,
-				8A9A7F622CC9E9CE00EE606D /* WeeklyViewController.swift in Sources */,
 				8A0684D72CA734B700730264 /* AppDelegate.swift in Sources */,
 				8A0684D92CA734B700730264 /* SceneDelegate.swift in Sources */,
-				B2294E5B2CC23E8200F0005B /* RegisterViewController.swift in Sources */,
-				B2294E5F2CC23EE800F0005B /* MedicalHistoryViewController.swift in Sources */,
-				B29A64952CD31D89006102E5 /* EventEditViewController.swift in Sources */,
-				B2294E652CC23F1B00F0005B /* ProfileCreationViewController.swift in Sources */,
-				B2294E612CC23EF600F0005B /* PetInfoViewController.swift in Sources */,
-				8A9A7F5E2CC9DF6B00EE606D /* CalendarCell.swift in Sources */,
-				B29A64972CD31D98006102E5 /* EventCell.swift in Sources */,
-				B2294E6D2CC23F5600F0005B /* TreatmentsViewController.swift in Sources */,
-				B2294E6B2CC23F4100F0005B /* NotificationHistoryViewController.swift in Sources */,
-				786A23292CD9CE0600FBFF5A /* PetCollectionViewCell.swift in Sources */,
-				B2294E632CC23F0B00F0005B /* PetProfileSettingViewController.swift in Sources */,
-				B2294E792CC23F8E00F0005B /* UserInfoViewController.swift in Sources */,
-				78A434032CC9CB6C00F9A56A /* Pet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
