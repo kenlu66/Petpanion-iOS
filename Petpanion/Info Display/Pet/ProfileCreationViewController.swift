@@ -107,6 +107,7 @@ class ProfileCreationViewController: UIViewController, UIImagePickerControllerDe
     }
     
     @IBAction func submitted(_ sender: Any) {
+        
         guard let petNameText = petName.text, !petNameText.isEmpty,
                      let breedNameText = breedName.text, !breedNameText.isEmpty,
                      let neuteredText = neutered.text,
@@ -117,17 +118,19 @@ class ProfileCreationViewController: UIViewController, UIImagePickerControllerDe
                    print("Please fill in all fields correctly.")
                    return
                }
-
-       let age = ageCalculation(birthDate: datePicker.date)
-       let newPet = Pet(
+        
+        let imageData = convertImage(image: petImage.image ?? UIImage())
+        let age = ageCalculation(birthDate: datePicker.date)
+        let newPet = Pet(
            petName: petNameText,
            breedName: breedNameText,
            neutered: neuteredText,
            age: age,
            weight: weightValue,
            gender: genderText,
-           petDescription: petDescriptionText
-       )
+           petDescription: petDescriptionText,
+           imageData: imageData ?? ""
+        )
         
         // Ensure the user is authenticated
         guard let userId = Auth.auth().currentUser?.uid else {
@@ -149,5 +152,10 @@ class ProfileCreationViewController: UIViewController, UIImagePickerControllerDe
                 submissionStatus.text = "Error adding pet: \(error.localizedDescription)"
             }
         }
+    }
+    
+    func convertImage(image: UIImage) -> String? {
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else { return nil}
+        return imageData.base64EncodedString(options: .lineLength64Characters)
     }
 }

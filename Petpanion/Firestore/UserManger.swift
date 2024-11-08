@@ -38,7 +38,8 @@ final class UserManager {
             "age": pet.age,
             "weight": pet.weight,
             "gender": pet.gender,
-            "petDescription": pet.petDescription
+            "petDescription": pet.petDescription,
+            "petImage": pet.imageData
         ]
         
         do {
