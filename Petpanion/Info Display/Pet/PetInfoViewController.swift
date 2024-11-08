@@ -36,7 +36,19 @@ class PetInfoViewController: UIViewController {
         age.text = "\(selectedPet.age)"
         weight.text = "\(selectedPet.weight)"
         descriptionField.text = selectedPet.petDescription
+        
+        if let image = convertDataToImage(imageData: selectedPet.imageData) {
+            petImage.image = image
+        } else {
+            petImage.image = UIImage(named: "Petpanion_iconV1")
+        }
     }
     
-
+    func convertDataToImage(imageData: String) -> UIImage? {
+        if let data = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters) {
+            return UIImage(data: data)
+        }
+        return nil
+    }
+    
 }

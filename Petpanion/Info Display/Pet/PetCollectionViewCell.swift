@@ -11,7 +11,7 @@ class PetCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var petImage: UIImageView!
     @IBOutlet weak var petName: UILabel!
-    @IBOutlet weak var viewBox: UIView!
+    @IBOutlet weak var viewBox: UIView! // For future design use
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +26,7 @@ class PetCollectionViewCell: UICollectionViewCell {
         viewBox.layer.cornerRadius = 25
     }
     
+    // Get the layout from xib file
     static func nib() -> UINib {
         return UINib(nibName: "PetCollectionViewCell", bundle: nil)
     }
