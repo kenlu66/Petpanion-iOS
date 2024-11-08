@@ -43,23 +43,57 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
     }
     
     @IBAction func didTapAdd() {
-        // show add vc
+        // Show add view controller
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "add") as? AddReminderViewController else {
+            return
+        }
+        
+        vc.title = "New Reminder"
+        vc.navigationItem.largeTitleDisplayMode = .never
+        vc.completion = { title, body, date in
+            // Handle the reminder creation
+        }
+        
+        navigationController?.pushViewController(vc, animated: true)
+        
     }
     
     @IBAction func didTapTest(_ sender: Any) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { success, error in
             if success {
                 // schedule test
-                self.scheduletest()
+                self.scheduleTest()
             } else if let error = error {
                 print("Error occurred")
             }
         })
     }
     
-    func scheduletest() {
+    func scheduleTest() {
+        let content = UNMutableNotificationContent()
+        content.title = "Hello Petpanion"
+        content.sound = .default
+        content.body = "My first notification in Petpanion!"
         
+        let targetDate = Date().addingTimeInterval(10)
+        let trigger = UNCalendarNotificationTrigger(
+            dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: targetDate),
+            repeats: false
+        )
+        
+        let request = UNNotificationRequest(
+            identifier: "some_long_id",
+            content: content,
+            trigger: trigger
+        )
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+            if error != nil {
+                print("something went wrong")
+            }
+        })
     }
+
     
    
 }
