@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class AddReminderViewController: UIViewController {
+class AddReminderViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var titleField:UITextField!
     @IBOutlet var bodyField: UITextField!
@@ -18,14 +18,23 @@ class AddReminderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        titleField.delegate = self
+        bodyField.delegate = self
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSaveButton))
     }
     
-    @IBAction func didTapSaveButton() {
+    @objc func didTapSaveButton() {
         if let titleText = titleField.text, !titleText.isEmpty,
         let bodyText = bodyField.text, !bodyText.isEmpty {
             let targetDate = datePicker.date
+            
+            completion?(titleText, bodyText, targetDate)
+            
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

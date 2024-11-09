@@ -1,4 +1,4 @@
-For Alpha release README grading, please check README.pdf, thank you!
+For Beta release README grading, please check README.pdf, thank you!
 
 # Petpanion-iOS
 
