@@ -16,6 +16,7 @@
 		8A0684DE2CA734B700730264 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A0684DC2CA734B700730264 /* Main.storyboard */; };
 		8A0684E02CA734BB00730264 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A0684DF2CA734BB00730264 /* Assets.xcassets */; };
 		8A0684E32CA734BB00730264 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A0684E12CA734BB00730264 /* LaunchScreen.storyboard */; };
+		B2EAEC9C2CDF203800291EFB /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B2EAEC9B2CDF203800291EFB /* FirebaseStorage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78A433FD2CC9C77300F9A56A /* FirebaseCore in Frameworks */,
+				B2EAEC9C2CDF203800291EFB /* FirebaseStorage in Frameworks */,
 				7852F5A22CC70929002843FA /* FirebaseAuth in Frameworks */,
 				78A433FF2CC9C77300F9A56A /* FirebaseFirestore in Frameworks */,
 			);
@@ -430,6 +432,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7852F5A02CC70929002843FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		B2EAEC9B2CDF203800291EFB /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7852F5A02CC70929002843FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
