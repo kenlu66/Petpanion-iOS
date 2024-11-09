@@ -884,7 +884,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8yi-5z-92k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4176.3358778625952" y="1836.6197183098593"/>
+            <point key="canvasLocation" x="3249.6183206106871" y="1836.6197183098593"/>
         </scene>
         <!--Allergies View Controller-->
         <scene sceneID="I9r-g9-5oj">
