@@ -53,6 +53,25 @@ final class UserManager {
         }
     }
     
+    // Method to add a post for a user
+    func addPost(for userId: String, post: Post) async throws {
+        let postData: [String: Any] = [
+            "title": post.title,
+            "body": post.body,
+            "imageDatas": post.imageDatas
+        ]
+        
+        do {
+            // Create a unique ID for each post document
+            let postID = UUID().uuidString
+            
+            // Add the post data to the "posts" subcollection
+            let _ = try await db.collection("users").document(userId).collection("posts").document(postID).setData(postData)
+        } catch {
+            throw error
+        }
+    }
+    
     
     
     
