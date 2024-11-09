@@ -37,8 +37,20 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = models[indexPath.row].title // Assuming `MyReminder` has a `title` property
         
+        let reminder = models[indexPath.row]
+        
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM-dd-yyyy HH:mm"
+        let dateString = formatter.string(from: reminder.date)
+        
+        cell.textLabel?.text = """
+        \(reminder.title)
+        \(reminder.body)
+        \(dateString)
+        """
+        cell.textLabel?.numberOfLines = 0
         return cell
     }
     
@@ -52,6 +64,36 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         vc.navigationItem.largeTitleDisplayMode = .never
         vc.completion = { title, body, date in
             // Handle the reminder creation
+            DispatchQueue.main.async {
+                self.navigationController?.popToRootViewController(animated: true)
+                let new = MyReminder(identifier: "id_\(title)", title: title, date: date, body: body)
+                self.models.append(new)
+                self.table.reloadData()
+                
+                let content = UNMutableNotificationContent()
+                content.title = title
+                content.sound = .default
+                content.body = body
+                
+                let targetDate = date
+                let trigger = UNCalendarNotificationTrigger(
+                    dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: targetDate),
+                    repeats: false
+                )
+                
+                let request = UNNotificationRequest(
+                    identifier: "some_long_id",
+                    content: content,
+                    trigger: trigger
+                )
+                
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+                    if error != nil {
+                        print("something went wrong")
+                    }
+                })
+                
+            }
         }
         
         navigationController?.pushViewController(vc, animated: true)
