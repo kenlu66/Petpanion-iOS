@@ -26,7 +26,6 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.register(PostCollectionViewCell.nib(), forCellWithReuseIdentifier: collectionViewCellIdentifier)
         collectionView.delegate = self
         collectionView.dataSource = self
         
