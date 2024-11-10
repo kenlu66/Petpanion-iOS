@@ -20,6 +20,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var petList: [Pet] = []
     let textCellIdentifier = "PetCell"
     let collectionViewIdentifier = "PetCollectionViewCell"
+    let profileCreationSegue = "HomeToProfileCreation"
+    let petStatusSegue = "HomeToPetStatus"
     
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
@@ -109,24 +111,24 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let selectedPet = petList[indexPath.row]
         
         // Perform the segue to the next view controller (PetInfoViewController)
-        performSegue(withIdentifier: "HomeToPetInfo", sender: selectedPet)
+        performSegue(withIdentifier: petStatusSegue, sender: selectedPet)
     }
 
     
     // Set up segues to pizza creation view controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "HomeToProfileCreation",
+        if segue.identifier == profileCreationSegue,
            let petCreationVC = segue.destination as? ProfileCreationViewController {
             petCreationVC.delegate = self // pointer back to main VC
         }
         
-        if segue.identifier == "HomeToPetInfo",
-           let destination = segue.destination as? PetInfoViewController,
-        // Pass the operator type selected into next VC
-            let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
-            let selectedPet = petList[selectedIndexPath.row]
-            destination.selectedPet = selectedPet
-        }
+//        if segue.identifier == "HomeToPetInfo",
+//           let destination = segue.destination as? PetInfoViewController,
+//        // Pass the operator type selected into next VC
+//            let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
+//            let selectedPet = petList[selectedIndexPath.row]
+//            destination.selectedPet = selectedPet
+//        }
         
     }
     
