@@ -115,7 +115,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
 
     
-    // Set up segues to pizza creation view controller
+    // Set up segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == profileCreationSegue,
            let petCreationVC = segue.destination as? ProfileCreationViewController {
