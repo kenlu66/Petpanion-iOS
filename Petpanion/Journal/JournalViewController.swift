@@ -93,6 +93,23 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         return cell
     }
     
+    // Set up segues to pizza creation view controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PostSegueIdentifier",
+           let postVC = segue.destination as? JournalEditViewController {
+            postVC.delegate = self // pointer back to main VC
+        }
+        
+//        if segue.identifier == "HomeToPetInfo",
+//           let destination = segue.destination as? PetInfoViewController,
+//        // Pass the operator type selected into next VC
+//            let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
+//            let selectedPet = postList[selectedIndexPath.row]
+//            destination.selectedPet = selectedPet
+//        }
+        
+    }
+    
     func updatePosts(post: Post) {
         let newIndex = postList.count
         postList.append(post)
@@ -100,6 +117,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         // Insert the new item at the end of the collection view
         let indexPath = IndexPath(item: newIndex, section: 0)
         collectionView.insertItems(at: [indexPath])
+        collectionView.reloadData()
     }
     
 

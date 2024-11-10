@@ -75,8 +75,8 @@ class JournalEditViewController: UIViewController, UICollectionViewDelegate, UIC
                 print("New post submitted successfully!")
                 
                 // Notify delegate if needed
-                if let mainVC = delegate as? updatePostList {
-                    mainVC.updatePosts(post: newPost)
+                if let otherVC = delegate as? updatePostList {
+                    otherVC.updatePosts(post: newPost)
                 }
             } catch {
                 print("Error adding post: \(error.localizedDescription)")

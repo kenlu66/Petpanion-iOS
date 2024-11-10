@@ -30,19 +30,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xcx-yp-Gfp">
-                                <rect key="frame" x="47" y="200" width="50.666666666666657" height="22.666666666666657"/>
+                                <rect key="frame" x="47" y="206.66666666666666" width="43.666666666666657" height="18.666666666666657"/>
                                 <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Few-TQ-8Ng">
-                                <rect key="frame" x="46.999999999999993" y="298.66666666666669" width="85.333333333333314" height="22.666666666666686"/>
+                                <rect key="frame" x="46.999999999999993" y="301.33333333333331" width="75.333333333333314" height="18.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fGN-DQ-bgu">
-                                <rect key="frame" x="46.666666666666657" y="232.66666666666666" width="300" height="40.999999999999972"/>
+                                <rect key="frame" x="46.666666666666657" y="235.33333333333334" width="300" height="41.000000000000028"/>
                                 <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="6Jh-aH-xID"/>
@@ -51,7 +51,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ly9-Zl-PdH">
-                                <rect key="frame" x="46.666666666666657" y="331.33333333333331" width="300" height="41"/>
+                                <rect key="frame" x="46.666666666666657" y="330" width="300" height="41"/>
                                 <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="JOc-W4-3kO"/>
@@ -60,13 +60,13 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not an existing user?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DM-at-jlD">
-                                <rect key="frame" x="119.33333333333333" y="539.33333333333337" width="154.66666666666669" height="21"/>
+                                <rect key="frame" x="125.66666666666669" y="538" width="142" height="17.666666666666629"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MnB-aE-i6Q">
-                                <rect key="frame" x="131.66666666666666" y="580.33333333333337" width="129.99999999999997" height="55"/>
+                                <rect key="frame" x="131.66666666666666" y="575.66666666666663" width="129.99999999999997" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="PTR-aG-OTL"/>
                                     <constraint firstAttribute="height" constant="55" id="feJ-Rd-Hwt"/>
@@ -88,13 +88,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2NP-1m-gfJ">
-                                <rect key="frame" x="143.33333333333334" y="100" width="106.66666666666666" height="40"/>
+                                <rect key="frame" x="147" y="100" width="99.333333333333314" height="46.666666666666657"/>
                                 <fontDescription key="fontDescription" name="LuckiestGuy-Regular" family="Luckiest Guy" pointSize="40"/>
                                 <color key="textColor" red="0.98027735949999995" green="0.85543745760000001" blue="0.36603155729999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNK-Dn-DPA">
-                                <rect key="frame" x="131.66666666666666" y="414.33333333333331" width="129.99999999999997" height="55"/>
+                                <rect key="frame" x="131.66666666666666" y="413" width="129.99999999999997" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="AG0-gq-5M6"/>
                                     <constraint firstAttribute="height" constant="55" id="Qko-E5-6m8"/>
@@ -110,7 +110,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Co4-U7-R8O">
-                                <rect key="frame" x="21.666666666666657" y="494.33333333333331" width="350" height="20.999999999999943"/>
+                                <rect key="frame" x="21.666666666666657" y="493" width="350" height="17.666666666666686"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="350" id="0Cm-X9-wm2"/>
                                 </constraints>
@@ -1139,7 +1139,7 @@
                                     <color key="baseBackgroundColor" name="AccentColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="N92-6z-gQd" kind="show" id="Z6P-3Q-teA"/>
+                                    <segue destination="N92-6z-gQd" kind="show" identifier="PostSegueIdentifier" id="Z6P-3Q-teA"/>
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="JournalCollectionView" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uH9-m9-obY">
@@ -1161,7 +1161,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJN-ul-6WI">
-                                                    <rect key="frame" x="23.666666666666671" y="158" width="150" height="26"/>
+                                                    <rect key="frame" x="23.666666666666671" y="162" width="150" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="o1O-6b-6nf"/>
                                                     </constraints>
@@ -1878,9 +1878,6 @@
             <point key="canvasLocation" x="1003.8167938931298" y="1493.661971830986"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="cMZ-XE-kgf"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.backward.circle.fill" catalog="system" width="128" height="123"/>
         <image name="arrowshape.turn.up.right.circle.fill" catalog="system" width="128" height="123"/>
