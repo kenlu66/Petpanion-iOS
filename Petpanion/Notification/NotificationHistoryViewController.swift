@@ -89,7 +89,7 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
             .font: UIFont.systemFont(ofSize: 16),
             .foregroundColor: UIColor.darkGray
         ]
-        let locationString = NSAttributedString(string: "\(reminder.location)", attributes: locationAttributes)
+        let locationString = NSAttributedString(string: "\(reminder.location)\n", attributes: locationAttributes)
         attributedText.append(locationString)
         
         
@@ -98,16 +98,65 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
             .font: UIFont.italicSystemFont(ofSize: 14),
             .foregroundColor: UIColor.lightGray
         ]
-        let DateString = NSAttributedString(string: "\(dateString)\n", attributes: dateAttributes)
+        let DateString = NSAttributedString(string: "\(dateString)", attributes: dateAttributes)
         attributedText.append(DateString)
 
         // Assign the attributed string to the cell's textLabel
         cell.textLabel?.numberOfLines = 0 // Allow multiple lines
         cell.textLabel?.attributedText = attributedText
 
+        // Flag Icon - Add to the top right corner if flagged
+        let flagIcon = UIImageView(image: UIImage(systemName: "flag.fill"))
+        flagIcon.tintColor = .systemOrange
+        flagIcon.translatesAutoresizingMaskIntoConstraints = false
+        flagIcon.isHidden = !reminder.flagged // Show only if flagged
+        
+        cell.contentView.addSubview(flagIcon)
+        
+        // Set constraints to place the icon at the top right
+        NSLayoutConstraint.activate([
+            flagIcon.topAnchor.constraint(equalTo: cell.contentView.topAnchor, constant: 8),
+            flagIcon.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: -8),
+            flagIcon.widthAnchor.constraint(equalToConstant: 16),
+            flagIcon.heightAnchor.constraint(equalToConstant: 16)
+        ])
         
         return cell
     }
+    
+    // MARK: - Swipe Actions for Delete and Flag
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        // Delete Action
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
+            // Remove the reminder from data source
+            self?.models.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            completionHandler(true)
+        }
+        deleteAction.backgroundColor = .systemRed
+
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        var reminder = models[indexPath.row]
+        
+        let flagAction = UIContextualAction(style: .normal, title: reminder.flagged ? "Unflag" : "Flag") { (action, view, completionHandler) in
+            // Toggle the flagged status
+            reminder.flagged.toggle()
+            self.models[indexPath.row] = reminder
+            
+            // Reload the specific cell to update the flag icon
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+            completionHandler(true)
+        }
+        
+        flagAction.backgroundColor = .systemOrange
+
+        return UISwipeActionsConfiguration(actions: [flagAction])
+    }
+
     
     @IBAction func didTapAdd() {
         // Show add view controller

@@ -14,4 +14,5 @@ struct MyReminder {
     var date: Date
     var tag: String
     var location: String
+    var flagged: Bool = false
 }
