@@ -10,6 +10,8 @@ import Foundation
 struct MyReminder {
     var identifier: String
     var title: String
-    var date: Date
     var body: String
+    var date: Date
+    var tag: String
+    var location: String
 }

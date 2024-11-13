@@ -45,12 +45,67 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         formatter.dateFormat = "MM-dd-yyyy HH:mm"
         let dateString = formatter.string(from: reminder.date)
         
-        cell.textLabel?.text = """
-        \(reminder.title)
-        \(reminder.body)
-        \(dateString)
-        """
-        cell.textLabel?.numberOfLines = 0
+//        cell.textLabel?.text = """
+//        \(reminder.title)
+//        \(reminder.body)
+//        \(dateString)
+//        #\(reminder.tag)
+//        \(reminder.location)
+//        """
+//        cell.textLabel?.numberOfLines = 0
+        
+        // Create an NSMutableAttributedString to style the text
+        let attributedText = NSMutableAttributedString()
+
+        // Title - Bold and Larger Font
+        let titleAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.boldSystemFont(ofSize: 18),
+            .foregroundColor: UIColor.black
+        ]
+        let titleString = NSAttributedString(string: "\(reminder.title)\n", attributes: titleAttributes)
+        attributedText.append(titleString)
+
+        
+        // Body - Regular Font, Slightly Smaller
+        let bodyAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 16),
+            .foregroundColor: UIColor.darkGray
+        ]
+        let bodyString = NSAttributedString(string: "\(reminder.body)\n", attributes: bodyAttributes)
+        attributedText.append(bodyString)
+
+
+        // Tag - Bold with a Hash Symbol and Colored Tag
+        let tagAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.boldSystemFont(ofSize: 16),
+            .foregroundColor: UIColor.systemBlue
+        ]
+        let tagString = NSAttributedString(string: "#\(reminder.tag)\n", attributes: tagAttributes)
+        attributedText.append(tagString)
+
+        
+        // Location - Regular Font, Dark Gray Color
+        let locationAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 16),
+            .foregroundColor: UIColor.darkGray
+        ]
+        let locationString = NSAttributedString(string: "\(reminder.location)", attributes: locationAttributes)
+        attributedText.append(locationString)
+        
+        
+        // Date - Italic Font, Light Gray Color
+        let dateAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.italicSystemFont(ofSize: 14),
+            .foregroundColor: UIColor.lightGray
+        ]
+        let DateString = NSAttributedString(string: "\(dateString)\n", attributes: dateAttributes)
+        attributedText.append(DateString)
+
+        // Assign the attributed string to the cell's textLabel
+        cell.textLabel?.numberOfLines = 0 // Allow multiple lines
+        cell.textLabel?.attributedText = attributedText
+
+        
         return cell
     }
     
@@ -62,11 +117,11 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         
         vc.title = "New Reminder"
         vc.navigationItem.largeTitleDisplayMode = .never
-        vc.completion = { title, body, date in
+        vc.completion = { title, body, date, tag, location in
             // Handle the reminder creation
             DispatchQueue.main.async {
                 self.navigationController?.popToRootViewController(animated: true)
-                let new = MyReminder(identifier: "id_\(title)", title: title, date: date, body: body)
+                let new = MyReminder(identifier: "id_\(title)", title: title, body: body, date: date, tag: tag, location: location)
                 self.models.append(new)
                 self.table.reloadData()
                 
@@ -74,6 +129,7 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
                 content.title = title
                 content.sound = .default
                 content.body = body
+                
                 
                 let targetDate = date
                 let trigger = UNCalendarNotificationTrigger(
