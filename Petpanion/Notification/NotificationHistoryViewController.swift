@@ -20,12 +20,26 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         table.delegate = self
         table.dataSource = self
     }
+
+
     
     
+    // MARK: - Toggle Completion Check Mark
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Toggle the completion status
+        models[indexPath.row].completed.toggle()
+        
+        // Reload the specific cell to update the checkmark
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+        
+        // Deselect the cell to remove the highlight effect
         tableView.deselectRow(at: indexPath, animated: true)
     }
+
+
+    
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -65,6 +79,8 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         let titleString = NSAttributedString(string: "\(reminder.title)\n", attributes: titleAttributes)
         attributedText.append(titleString)
 
+        // Configure the checkmark
+        cell.accessoryType = reminder.completed ? .checkmark : .none
         
         // Body - Regular Font, Slightly Smaller
         let bodyAttributes: [NSAttributedString.Key: Any] = [
@@ -130,6 +146,7 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
     
     
     
+    
     // MARK: - Swipe Actions for Delete and Flag
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -141,8 +158,15 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
             completionHandler(true)
         }
         deleteAction.backgroundColor = .systemRed
+        
+        // Edit Action
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (action, view, completionHandler) in
+            self?.showEditScreen(for: indexPath.row)
+            completionHandler(true)
+        }
+        editAction.backgroundColor = .systemBlue
 
-        return UISwipeActionsConfiguration(actions: [deleteAction])
+        return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
     }
 
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -163,7 +187,27 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         return UISwipeActionsConfiguration(actions: [flagAction])
     }
 
-    
+    // MARK: - Show Edit Screen
+        
+    func showEditScreen(for index: Int) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "add") as? AddReminderViewController else {
+            return
+        }
+        
+        let reminder = models[index]
+        
+        vc.title = "Edit Reminder"
+        vc.navigationItem.largeTitleDisplayMode = .never
+        vc.existingReminder = reminder
+        vc.completion = { [weak self] title, body, date, tag, location in
+            DispatchQueue.main.async {
+                self?.models[index] = MyReminder(identifier: reminder.identifier, title: title, body: body, date: date, tag: tag, location: location, flagged: reminder.flagged, completed: reminder.completed)
+                self?.table.reloadData()
+            }
+        }
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
     // MARK: - + New Reminder Btn tapped
     

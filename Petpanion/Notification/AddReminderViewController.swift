@@ -19,6 +19,8 @@ class AddReminderViewController: UIViewController, UITextFieldDelegate {
     
     public var completion: ((String, String, Date, String, String) -> Void)?
     
+    public var existingReminder: MyReminder? // New property to hold existing data
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         titleField.delegate = self
@@ -26,6 +28,15 @@ class AddReminderViewController: UIViewController, UITextFieldDelegate {
         tagField.delegate = self
         locationField.delegate = self
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSaveButton))
+        
+        // Pre-fill fields with existing data if available (editing mode)
+        if let reminder = existingReminder {
+            titleField.text = reminder.title
+            bodyField.text = reminder.body
+            // date is updated with new edit
+            tagField.text = reminder.tag
+            locationField.text = reminder.location
+        }
     }
     
     @objc func didTapSaveButton() {

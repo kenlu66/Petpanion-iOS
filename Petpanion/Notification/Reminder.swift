@@ -15,4 +15,5 @@ struct MyReminder {
     var tag: String
     var location: String
     var flagged: Bool = false
+    var completed: Bool = false // New property to track completion
 }
