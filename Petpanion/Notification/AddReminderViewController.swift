@@ -29,17 +29,30 @@ class AddReminderViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func didTapSaveButton() {
-        if let titleText = titleField.text, !titleText.isEmpty,
-           let bodyText = bodyField.text, !bodyText.isEmpty,
-           let tagText = tagField.text, !tagText.isEmpty,
-           let locationText = locationField.text, !locationText.isEmpty
-        {
-            let targetDate = datePicker.date
-            
-            
-            completion?(titleText, bodyText, targetDate, tagText, locationText)
-            
+        // Check if title and body fields are filled
+        guard let titleText = titleField.text, !titleText.isEmpty,
+              let bodyText = bodyField.text, !bodyText.isEmpty else {
+            showAlert()
+            return
         }
+        
+        // Get values for optional fields (tag and location) - allow empty strings
+        let tagText = tagField.text ?? ""
+        let locationText = locationField.text ?? ""
+        let targetDate = datePicker.date
+        
+        // Call the completion handler with the filled values
+        completion?(titleText, bodyText, targetDate, tagText, locationText)
+        
+        // Optionally, pop or dismiss the view controller after saving
+        navigationController?.popViewController(animated: true)
+    }
+    
+    // Show an alert if title or body is empty
+    private func showAlert() {
+        let alert = UIAlertController(title: "Missing Information", message: "Please enter both a title and a body for the reminder.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -76,21 +76,25 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
 
 
         // Tag - Bold with a Hash Symbol and Colored Tag
-        let tagAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.boldSystemFont(ofSize: 16),
-            .foregroundColor: UIColor.systemBlue
-        ]
-        let tagString = NSAttributedString(string: "#\(reminder.tag)\n", attributes: tagAttributes)
-        attributedText.append(tagString)
+        if !reminder.tag.isEmpty {
+            let tagAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.boldSystemFont(ofSize: 16),
+                .foregroundColor: UIColor.systemBlue
+            ]
+            let tagString = NSAttributedString(string: "#\(reminder.tag)\n", attributes: tagAttributes)
+            attributedText.append(tagString)
+        }
 
         
         // Location - Regular Font, Dark Gray Color
-        let locationAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 16),
-            .foregroundColor: UIColor.darkGray
-        ]
-        let locationString = NSAttributedString(string: "\(reminder.location)\n", attributes: locationAttributes)
-        attributedText.append(locationString)
+        if !reminder.location.isEmpty {
+            let locationAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 16),
+                .foregroundColor: UIColor.darkGray
+            ]
+            let locationString = NSAttributedString(string: "\(reminder.location)\n", attributes: locationAttributes)
+            attributedText.append(locationString)
+        }
         
         
         // Date - Italic Font, Light Gray Color
