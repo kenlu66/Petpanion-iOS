@@ -110,7 +110,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // Get the selected pet from your petList
         let selectedPet = petList[indexPath.row]
         
-        // Perform the segue to the next view controller (PetInfoViewController)
+        // Perform the segue to the next view controller (PetStatusViewController)
         performSegue(withIdentifier: petStatusSegue, sender: selectedPet)
     }
 
@@ -122,14 +122,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             petCreationVC.delegate = self // pointer back to main VC
         }
         
-//        if segue.identifier == "HomeToPetInfo",
-//           let destination = segue.destination as? PetInfoViewController,
-//        // Pass the operator type selected into next VC
-//            let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
-//            let selectedPet = petList[selectedIndexPath.row]
-//            destination.selectedPet = selectedPet
-//        }
-        
+        if segue.identifier == petStatusSegue,
+           let destination = segue.destination as? PetStatusViewController,
+        // Pass the operator type selected into next VC
+            let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
+            let selectedPet = petList[selectedIndexPath.row]
+            destination.selectedPet = selectedPet
+        }
     }
     
     func updatePet(pet: Pet) {

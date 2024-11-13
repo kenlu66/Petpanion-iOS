@@ -34,7 +34,7 @@
 		7802FD632CC6F782001B469C /* Fonts */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Fonts; sourceTree = "<group>"; };
 		78D4D4F62CDD418200C36199 /* Firebase Auth */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Firebase Auth"; sourceTree = "<group>"; };
 		78D4D4F72CDD41CD00C36199 /* Info Display */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Info Display"; sourceTree = "<group>"; };
-		78D4D4F82CDD428000C36199 /* Firestore */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Firestore; sourceTree = "<group>"; };
+		78D4D4F82CDD428000C36199 /* Firesbase */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Firesbase; sourceTree = "<group>"; };
 		78D4D4F92CDD430600C36199 /* Calendar */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Calendar; sourceTree = "<group>"; };
 		78D4D4FA2CDD430D00C36199 /* Journal */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Journal; sourceTree = "<group>"; };
 		78D4D4FB2CDD434100C36199 /* Notification */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Notification; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 				7802FD632CC6F782001B469C /* Fonts */,
 				78D4D4F62CDD418200C36199 /* Firebase Auth */,
 				78D4D4F72CDD41CD00C36199 /* Info Display */,
-				78D4D4F82CDD428000C36199 /* Firestore */,
+				78D4D4F82CDD428000C36199 /* Firesbase */,
 				78D4D4F92CDD430600C36199 /* Calendar */,
 				78D4D4FA2CDD430D00C36199 /* Journal */,
 				78D4D4FB2CDD434100C36199 /* Notification */,
@@ -119,7 +119,7 @@
 				7802FD632CC6F782001B469C /* Fonts */,
 				78D4D4F62CDD418200C36199 /* Firebase Auth */,
 				78D4D4F72CDD41CD00C36199 /* Info Display */,
-				78D4D4F82CDD428000C36199 /* Firestore */,
+				78D4D4F82CDD428000C36199 /* Firesbase */,
 				78D4D4F92CDD430600C36199 /* Calendar */,
 				78D4D4FA2CDD430D00C36199 /* Journal */,
 				78D4D4FB2CDD434100C36199 /* Notification */,
