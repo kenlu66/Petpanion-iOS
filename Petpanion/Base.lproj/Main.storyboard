@@ -1191,17 +1191,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2eW-2g-AvO">
-                                <rect key="frame" x="269" y="740" width="108" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Permission">
-                                    <color key="baseForegroundColor" name="PetpanionBase"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="didTapTest:" destination="mRZ-pU-Zv7" eventType="touchUpInside" id="EEF-uz-vqi"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Gse-JQ-csP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

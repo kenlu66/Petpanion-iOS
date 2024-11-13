@@ -128,6 +128,8 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         return cell
     }
     
+    
+    
     // MARK: - Swipe Actions for Delete and Flag
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -162,7 +164,12 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
     }
 
     
+    
+    // MARK: - + New Reminder Btn tapped
+    
     @IBAction func didTapAdd() {
+        
+        
         // Show add view controller
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "add") as? AddReminderViewController else {
             return
@@ -177,6 +184,15 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
                 let new = MyReminder(identifier: "id_\(title)", title: title, body: body, date: date, tag: tag, location: location)
                 self.models.append(new)
                 self.table.reloadData()
+                
+                UNUserNotificationCenter.current().requestAuthorization(
+                    options: [.alert, .badge, .sound]) { (granted, error) in
+                        if granted {
+                            print("All set!")
+                        } else if let error = error {
+                            print(error.localizedDescription)
+                        }
+                }
                 
                 let content = UNMutableNotificationContent()
                 content.title = title
@@ -209,41 +225,41 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         
     }
     
-    @IBAction func didTapTest(_ sender: Any) {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { success, error in
-            if success {
-                // schedule test
-                self.scheduleTest()
-            } else if let error = error {
-                print("Error occurred")
-            }
-        })
-    }
-    
-    func scheduleTest() {
-        let content = UNMutableNotificationContent()
-        content.title = "Hello Petpanion"
-        content.sound = .default
-        content.body = "My first notification in Petpanion!"
-        
-        let targetDate = Date().addingTimeInterval(10)
-        let trigger = UNCalendarNotificationTrigger(
-            dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: targetDate),
-            repeats: false
-        )
-        
-        let request = UNNotificationRequest(
-            identifier: "some_long_id",
-            content: content,
-            trigger: trigger
-        )
-        
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
-            if error != nil {
-                print("something went wrong")
-            }
-        })
-    }
+//    @IBAction func didTapTest(_ sender: Any) {
+//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { success, error in
+//            if success {
+//                // schedule test
+//                self.scheduleTest()
+//            } else if let error = error {
+//                print("Error occurred")
+//            }
+//        })
+//    }
+//    
+//    func scheduleTest() {
+//        let content = UNMutableNotificationContent()
+//        content.title = "Hello Petpanion"
+//        content.sound = .default
+//        content.body = "My first notification in Petpanion!"
+//        
+//        let targetDate = Date().addingTimeInterval(10)
+//        let trigger = UNCalendarNotificationTrigger(
+//            dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: targetDate),
+//            repeats: false
+//        )
+//        
+//        let request = UNNotificationRequest(
+//            identifier: "some_long_id",
+//            content: content,
+//            trigger: trigger
+//        )
+//        
+//        UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+//            if error != nil {
+//                print("something went wrong")
+//            }
+//        })
+//    }
 
     
    
