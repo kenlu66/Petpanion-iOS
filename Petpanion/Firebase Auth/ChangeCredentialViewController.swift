@@ -19,6 +19,18 @@ class ChangeCredentialViewController: UIViewController {
         super.viewDidLoad()
     }
 
+    // MARK: - Keyboard Dismiss
+    // Called when 'return' key pressed
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Called when the user clicks on the view outside of the UITextField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @IBAction func changePasswordTapped(_ sender: UIButton) {
         guard let currentPassword = currentPasswordTextField.text, !currentPassword.isEmpty,
               let newPassword = newPasswordTextField.text, !newPassword.isEmpty,

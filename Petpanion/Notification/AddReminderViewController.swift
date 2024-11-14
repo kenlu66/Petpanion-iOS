@@ -40,6 +40,18 @@ class AddReminderViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // MARK: - Keyboard Dismiss
+    // Called when 'return' key pressed
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Called when the user clicks on the view outside of the UITextField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @objc func didTapSaveButton() {
         // Check if title and body fields are filled
         guard let titleText = titleField.text, !titleText.isEmpty,
@@ -96,8 +108,5 @@ class AddReminderViewController: UIViewController, UITextFieldDelegate {
         present(alert, animated: true)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
+    
 }

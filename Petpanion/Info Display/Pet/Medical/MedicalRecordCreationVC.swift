@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MedicalRecordCreationVC: UIViewController {
+class MedicalRecordCreationVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var dateField: UITextField!
     @IBOutlet weak var descriptionField: UITextField!
@@ -20,7 +20,23 @@ class MedicalRecordCreationVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateField.delegate = self
+        descriptionField.delegate = self
+        locationField.delegate = self
+        
 
+    }
+    
+    // MARK: - Keyboard Dismiss
+    // Called when 'return' key pressed
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Called when the user clicks on the view outside of the UITextField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
  
     @IBAction func submitPressed(_ sender: Any) {
