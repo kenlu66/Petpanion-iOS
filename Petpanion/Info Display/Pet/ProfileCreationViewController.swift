@@ -61,6 +61,11 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
         
         birthdate.inputView = datePicker
         birthdate.text = ""
+        
+        petName.delegate = self
+        breedName.delegate = self
+        weight.delegate = self
+        petDescription.delegate = self
     }
     
     // MARK: - Keyboard Dismiss
