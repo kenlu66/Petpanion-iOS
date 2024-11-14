@@ -7,23 +7,49 @@
 
 import UIKit
 
-class TreatmentsViewController: UIViewController {
+protocol addTreatment {
+    func addRecord(newRecord: MedicalInfo.Record)
+}
 
+class TreatmentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, addTreatment {
+    
+    var treatmentList: [MedicalInfo.Record] = []
+
+    @IBOutlet weak var tableView: UITableView!
+    let recordCreationSegue = "TreatmentToCreation"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return treatmentList.count
     }
-    */
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TreatmentCell", for: indexPath)
+        let row = indexPath.row // Index
+        // Put string name into cell
+        cell.textLabel?.text = treatmentList[row].description
+        
+        return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == recordCreationSegue,
+           let creationVC = segue.destination as? MedicalRecordCreationVC {
+            // Pass the current type
+            creationVC.currentType = "Treatment"
+            creationVC.delegate = self // pointer back to mainVC
+        }
+    }
+    
+    func addRecord(newRecord: MedicalInfo.Record) {
+        treatmentList.append(newRecord)
+        tableView.reloadData()
+    }
 
 }

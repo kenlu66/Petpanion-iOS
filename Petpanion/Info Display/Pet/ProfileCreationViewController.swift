@@ -171,7 +171,6 @@ class ProfileCreationViewController: UIViewController, UIImagePickerControllerDe
                 if let mainVC = delegate as? updatePetList {
                     mainVC.updatePet(pet: newPet)
                 }
-                dismiss(animated: true)
             } catch {
                 submissionStatus.text = "Error adding pet: \(error.localizedDescription)"
             }
