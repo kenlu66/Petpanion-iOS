@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -2008,6 +2008,7 @@
                     <connections>
                         <outlet property="collectionView" destination="6eH-9G-9aN" id="aKn-Jn-YPT"/>
                         <outlet property="monthLabel" destination="fzT-M8-L54" id="M9M-Y2-qYI"/>
+                        <segue destination="l0v-Uj-lZL" kind="show" identifier="showWeeklyView" id="z48-sY-XpQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7HH-Mr-PI8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2720,6 +2721,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="z48-sY-XpQ"/>
         <segue reference="ToZ-QW-XrJ"/>
     </inferredMetricsTieBreakers>
     <resources>
