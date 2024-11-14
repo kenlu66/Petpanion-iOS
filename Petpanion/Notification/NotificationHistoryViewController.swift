@@ -221,6 +221,7 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         
         vc.title = "New Reminder"
         vc.navigationItem.largeTitleDisplayMode = .never
+        
         vc.completion = { title, body, date, tag, location in
             // Handle the reminder creation
             DispatchQueue.main.async {
