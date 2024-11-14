@@ -10,13 +10,12 @@ import Foundation
 class Post {
     var title: String
     var body: String
-    // list of imageData
-    var imageDatas = [String]()
+    var imageData: String
     
-    init(title: String, body: String, imageDatas: [String] = [String]()) {
+    init(title: String, body: String, imageData: String) {
         self.title = title
         self.body = body
-        self.imageDatas = imageDatas
+        self.imageData = imageData
     }
     
 }

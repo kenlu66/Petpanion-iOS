@@ -55,9 +55,9 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
                 let postData = document.data()
                 if let postTitle = postData["title"] as? String,
                    let postBody = postData["body"] as? String,
-                   let imageData = postData["imageDatas"] as? [String] {
+                   let imageData = postData["imageData"] as? String {
                     
-                    let post = Post(title:postTitle, body: postBody, imageDatas: imageData)
+                    let post = Post(title:postTitle, body: postBody, imageData: imageData)
                     self.postList.append(post)
                 }
             }
@@ -83,13 +83,12 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         let row = indexPath.row
         cell.postTitleLabel.text = postList[row].title
         
-//        if let image = convertDataToImage(imageData: postList[row].imageDatas[0]) {
-////            cell.petImage.image = image
-//        } else {
-//            //cell.petImage.image = UIImage(named: "Petpanion_iconV1")
-//        }
-////        cell.petImage.layer.cornerRadius = 30
-////        cell.petName.text = petList[row].petName
+        if let image = convertDataToImage(imageData: postList[row].imageData) {
+            cell.postImage.image = image
+        } else {
+            cell.postImage.image = UIImage(named: "Petpanion_iconV1")
+        }
+        cell.postImage.layer.cornerRadius = 30
         return cell
     }
     

@@ -63,7 +63,7 @@ final class UserManager {
         let postData: [String: Any] = [
             "title": post.title,
             "body": post.body,
-            "imageDatas": post.imageDatas
+            "imageData": post.imageData
         ]
         
         do {
