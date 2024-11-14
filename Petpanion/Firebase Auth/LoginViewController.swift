@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passswordField: UITextField!
@@ -22,6 +22,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailField.delegate = self
+        passswordField.delegate = self
+        
         
         loginButton.layer.cornerRadius = 27
         loginButton.layer.masksToBounds = true
@@ -40,6 +43,17 @@ class LoginViewController: UIViewController {
         }
     }
     
+    // MARK: - Keyboard Dismiss
+    // Called when 'return' key pressed
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Called when the user clicks on the view outside of the UITextField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
     @IBAction func loginPressed(_ sender: Any) {
         guard let userEmail = emailField.text else { return }
