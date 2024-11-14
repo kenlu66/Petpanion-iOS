@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
@@ -21,6 +21,8 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailField.delegate = self
+        passwordField.delegate = self
 
         loginButton.layer.cornerRadius = 27
         loginButton.layer.masksToBounds = true
@@ -29,6 +31,20 @@ class RegisterViewController: UIViewController {
         
         errorMessage.text = ""
     }
+    
+    // MARK: - Keyboard Dismiss
+    // Called when 'return' key pressed
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Called when the user clicks on the view outside of the UITextField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    
     
     @IBAction func signUpPressed(_ sender: Any) {
         guard let userEmail = emailField.text else { return }

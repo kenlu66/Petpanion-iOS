@@ -9,7 +9,7 @@ import UIKit
 import PhotosUI
 import FirebaseAuth
 
-class JournalEditViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, PHPickerViewControllerDelegate {
+class JournalEditViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, PHPickerViewControllerDelegate, UITextFieldDelegate {
     
 
     // variables
@@ -24,11 +24,24 @@ class JournalEditViewController: UIViewController, UICollectionViewDelegate, UIC
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleTextField.delegate = self
 
         collectionView.dataSource = self
         collectionView.delegate = self
         
         bodyTextView.isEditable = true
+    }
+    
+    // MARK: - Keyboard Dismiss
+    // Called when 'return' key pressed
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Called when the user clicks on the view outside of the UITextField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     override func viewDidLayoutSubviews() {

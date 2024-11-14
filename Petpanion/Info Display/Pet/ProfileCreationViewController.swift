@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import Photos
 
-class ProfileCreationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var petImage: UIImageView!
     @IBOutlet weak var petName: UITextField!
@@ -35,6 +35,18 @@ class ProfileCreationViewController: UIViewController, UIImagePickerControllerDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        petName.delegate = self
+        breedName.delegate = self
+        birthdate.delegate = self
+        weight.delegate = self
+        petDescription.delegate = self
+        mealsPerDay.delegate = self
+        amountPerMeal.delegate = self
+        waterInput.delegate = self
+        playtimeInput.delegate = self
+        
+        
+        
         
         petImage.layer.cornerRadius = petImage.frame.height / 2
         petImage.layer.masksToBounds = true
@@ -55,6 +67,20 @@ class ProfileCreationViewController: UIViewController, UIImagePickerControllerDe
         weight.delegate = self
         petDescription.delegate = self
     }
+    
+    // MARK: - Keyboard Dismiss
+    // Called when 'return' key pressed
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Called when the user clicks on the view outside of the UITextField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    
     
     @objc func dateChange(datePicker: UIDatePicker) {
         birthdate.text = dateFormat(date: datePicker.date)
@@ -187,16 +213,5 @@ class ProfileCreationViewController: UIViewController, UIImagePickerControllerDe
         return imageData.base64EncodedString(options: .lineLength64Characters)
     }
     
-    // Called when 'return' key pressed
-
-    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    // Called when the user clicks on the view outside of the UITextField
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
+ 
 }
