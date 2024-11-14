@@ -151,7 +151,8 @@ class ProfileCreationViewController: UIViewController, UIImagePickerControllerDe
            mealsPerDay: mealNum,
            amountPerMeal: amountNum,
            waterNeeded: waterNum,
-           playtimeNeeded: playtimeNum
+           playtimeNeeded: playtimeNum,
+           petID: ""
         )
         
         // Ensure the user is authenticated
