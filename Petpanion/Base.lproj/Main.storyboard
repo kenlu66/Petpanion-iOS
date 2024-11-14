@@ -692,6 +692,7 @@
                     <connections>
                         <outlet property="foodOption" destination="Y9d-PB-gF5" id="WnU-2f-LVG"/>
                         <outlet property="moodOption" destination="fMB-aM-5o7" id="3Dc-JI-bzl"/>
+                        <outlet property="myHealthButton" destination="TkK-Gd-Qqd" id="RIP-V4-q10"/>
                         <outlet property="myProfileButton" destination="rkY-if-hkC" id="fWc-Fn-h4E"/>
                         <outlet property="optionStackView" destination="gaH-Pu-oGk" id="4dy-Mg-5zR"/>
                         <outlet property="playtimeOption" destination="9Cb-YQ-b5F" id="6SV-Fz-HP5"/>
