@@ -40,6 +40,14 @@ class PetInfoViewController: UIViewController {
         weight.text = "\(selectedPet.weight)"
         descriptionField.text = selectedPet.petDescription
         
+        if selectedPet.gender == "Male" {
+            genderImage.image = UIImage(named: "Male Icon")
+        } else if selectedPet.gender == "Female" {
+            genderImage.image = UIImage(named: "Female icon")
+        } else if selectedPet.gender == "Other" {
+            genderImage.image = UIImage(named: "Other Icon")
+        }
+        
         if let image = convertDataToImage(imageData: selectedPet.imageData) {
             petImage.image = image
         } else {
