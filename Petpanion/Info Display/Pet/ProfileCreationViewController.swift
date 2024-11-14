@@ -15,13 +15,18 @@ class ProfileCreationViewController: UIViewController, UIImagePickerControllerDe
     @IBOutlet weak var petImage: UIImageView!
     @IBOutlet weak var petName: UITextField!
     @IBOutlet weak var breedName: UITextField!
-    @IBOutlet weak var neutered: UITextField!
     @IBOutlet weak var birthdate: UITextField!
     @IBOutlet weak var weight: UITextField!
-    @IBOutlet weak var gender: UITextField!
     @IBOutlet weak var petDescription: UITextField!
     @IBOutlet weak var submit: UIButton!
     @IBOutlet weak var submissionStatus: UILabel!
+    @IBOutlet weak var sterilizationSelection: UIButton!
+    @IBOutlet weak var genderSelection: UIButton!
+    
+    @IBOutlet weak var mealsPerDay: UITextField!
+    @IBOutlet weak var amountPerMeal: UITextField!
+    @IBOutlet weak var waterInput: UITextField!
+    @IBOutlet weak var playtimeInput: UITextField!
     
     var datePicker: UIDatePicker!
     var delegate: UIViewController!
@@ -106,18 +111,31 @@ class ProfileCreationViewController: UIViewController, UIImagePickerControllerDe
         }
     }
     
+    @IBAction func sterilizationStatusPressed(_ sender: UIAction) {
+        sterilizationSelection.setTitle(sender.title, for: .normal)
+    }
+    
+    @IBAction func genderSelectionPressed(_ sender: UIAction) {
+        genderSelection.setTitle(sender.title, for: .normal)
+    }
+    
     @IBAction func submitted(_ sender: Any) {
         
         guard let petNameText = petName.text, !petNameText.isEmpty,
-                     let breedNameText = breedName.text, !breedNameText.isEmpty,
-                     let neuteredText = neutered.text,
-                     let weightText = weight.text, let weightValue = Float(weightText),
-                     let genderText = gender.text,
-                     let petDescriptionText = petDescription.text else {
-                   // Handle empty fields or invalid input here
-                   print("Please fill in all fields correctly.")
-                   return
-               }
+              let breedNameText = breedName.text, !breedNameText.isEmpty,
+              let neuteredText = sterilizationSelection.titleLabel?.text,
+              let weightText = weight.text, let weightValue = Float(weightText),
+              let genderText = genderSelection.titleLabel?.text,
+              let petDescriptionText = petDescription.text,
+              let meals = mealsPerDay.text, let mealNum = Float(meals),
+              let amount = amountPerMeal.text, let amountNum = Float(amount),
+              let water = waterInput.text, let waterNum = Float(water),
+              let playtime = playtimeInput.text, let playtimeNum = Float(playtime)
+        else {
+            // Handle empty fields or invalid input here
+            submissionStatus.text = ("Please fill in all fields correctly.")
+            return
+        }
         
         let imageData = convertImage(image: petImage.image ?? UIImage())
         let age = ageCalculation(birthDate: datePicker.date)
@@ -129,7 +147,11 @@ class ProfileCreationViewController: UIViewController, UIImagePickerControllerDe
            weight: weightValue,
            gender: genderText,
            petDescription: petDescriptionText,
-           imageData: imageData ?? ""
+           imageData: imageData ?? "",
+           mealsPerDay: mealNum,
+           amountPerMeal: amountNum,
+           waterNeeded: waterNum,
+           playtimeNeeded: playtimeNum
         )
         
         // Ensure the user is authenticated
@@ -148,6 +170,7 @@ class ProfileCreationViewController: UIViewController, UIImagePickerControllerDe
                 if let mainVC = delegate as? updatePetList {
                     mainVC.updatePet(pet: newPet)
                 }
+                dismiss(animated: true)
             } catch {
                 submissionStatus.text = "Error adding pet: \(error.localizedDescription)"
             }

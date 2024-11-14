@@ -19,6 +19,9 @@ class PetStatusViewController: UIViewController {
     var currentPosition = 0
     
     var selectedPet: Pet!
+    var medicalRecord: MedicalInfo!
+    var DailyRecord: DailyReportHistory!
+    
     let petInfoSegue = "PetStatusToPetInfo"
     let medicalSegue = "PetStatusToMedical"
     
@@ -83,6 +86,11 @@ class PetStatusViewController: UIViewController {
             }
             
             petInfoVC.selectedPet = selectedPet
+        }
+        
+        if segue.identifier == medicalSegue,
+           let medicalVC = segue.destination as? MedicalHistoryViewController {
+            
         }
     }
 }

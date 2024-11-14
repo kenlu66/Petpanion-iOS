@@ -16,8 +16,13 @@ class Pet {
     var gender: String
     var petDescription: String
     var imageData: String
+    var mealsPerDay: Float
+    var amountPerMeal: Float
+    var waterNeeded: Float
+    var playtimeNeeded: Float
+    var petID: String
     
-    init(petName: String, breedName: String, neutered: String, age: Int, weight: Float, gender: String, petDescription: String, imageData: String) {
+    init(petName: String, breedName: String, neutered: String, age: Int, weight: Float, gender: String, petDescription: String, imageData: String, mealsPerDay: Float, amountPerMeal: Float, waterNeeded: Float, playtimeNeeded: Float, petID: String) {
         self.petName = petName
         self.breedName = breedName
         self.neutered = neutered
@@ -26,5 +31,10 @@ class Pet {
         self.gender = gender
         self.petDescription = petDescription
         self.imageData = imageData
+        self.mealsPerDay = mealsPerDay
+        self.amountPerMeal = amountPerMeal
+        self.waterNeeded = waterNeeded
+        self.playtimeNeeded = playtimeNeeded
+        self.petID = petID
     }
 }

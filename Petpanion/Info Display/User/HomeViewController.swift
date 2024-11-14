@@ -62,7 +62,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                    let weight = petData["weight"] as? Float,
                    let gender = petData["gender"] as? String,
                    let petDescription = petData["petDescription"] as? String,
-                   let imageData = petData["petImage"] as? String {
+                   let imageData = petData["petImage"] as? String,
+                   let meals = petData["meals"] as? Float,
+                   let amount = petData["mealAmount"] as? Float,
+                   let water = petData["water"] as? Float,
+                   let playtime = petData["playtime"] as? Float,
+                   let petID = petData["petID"] as? String {
                     
                     let pet = Pet(petName: petName,
                                   breedName: breedName,
@@ -71,7 +76,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                   weight: weight,
                                   gender: gender,
                                   petDescription: petDescription,
-                                  imageData: imageData)
+                                  imageData: imageData,
+                                  mealsPerDay: meals,
+                                  amountPerMeal: amount,
+                                  waterNeeded: water,
+                                  playtimeNeeded: playtime,
+                                  petID: petID)
                     self.petList.append(pet)
                 }
             }
