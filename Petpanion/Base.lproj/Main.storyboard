@@ -1363,13 +1363,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Playtime" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESk-h1-vQw">
-                                                <rect key="frame" x="33.000000000000007" y="1259.6666666666667" width="94.666666666666686" height="18"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                <rect key="frame" x="33.000000000000007" y="1259.6666666666667" width="105.66666666666669" height="21"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ey2-p5-I0A">
-                                                <rect key="frame" x="128.66666666666666" y="1399.6666666666667" width="135.99999999999997" height="60"/>
+                                                <rect key="frame" x="128.66666666666666" y="1402.6666666666667" width="135.99999999999997" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="136" id="0ue-PZ-ZkF"/>
                                                     <constraint firstAttribute="height" constant="60" id="fSa-IK-MeT"/>
@@ -1474,7 +1474,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter daily playtime in mins (e.g., 60)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hoe-jX-g79">
-                                                <rect key="frame" x="33" y="1284.6666666666667" width="327" height="34"/>
+                                                <rect key="frame" x="33" y="1287.6666666666667" width="327" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -1503,7 +1503,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="submitted" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arJ-eJ-PqG">
-                                                <rect key="frame" x="46.666666666666657" y="1368.6666666666667" width="300" height="21"/>
+                                                <rect key="frame" x="46.666666666666657" y="1371.6666666666667" width="300" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="300" id="or9-7X-yR1"/>
                                                 </constraints>
