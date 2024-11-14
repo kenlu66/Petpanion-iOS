@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import Photos
 
-class ProfileCreationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileCreationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var petImage: UIImageView!
     @IBOutlet weak var petName: UITextField!
@@ -49,6 +49,11 @@ class ProfileCreationViewController: UIViewController, UIImagePickerControllerDe
         
         birthdate.inputView = datePicker
         birthdate.text = ""
+        
+        petName.delegate = self
+        breedName.delegate = self
+        weight.delegate = self
+        petDescription.delegate = self
     }
     
     @objc func dateChange(datePicker: UIDatePicker) {
@@ -180,5 +185,18 @@ class ProfileCreationViewController: UIViewController, UIImagePickerControllerDe
     func convertImage(image: UIImage) -> String? {
         guard let imageData = image.jpegData(compressionQuality: 0.5) else { return nil}
         return imageData.base64EncodedString(options: .lineLength64Characters)
+    }
+    
+    // Called when 'return' key pressed
+
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Called when the user clicks on the view outside of the UITextField
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
