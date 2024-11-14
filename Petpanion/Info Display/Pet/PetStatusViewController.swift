@@ -14,6 +14,7 @@ class PetStatusViewController: UIViewController {
     @IBOutlet weak var moodOption: UIButton!
     @IBOutlet weak var playtimeOption: UIButton!
     @IBOutlet weak var myProfileButton: UIButton!
+    @IBOutlet weak var myHealthButton: UIButton!
     
     @IBOutlet weak var optionStackView: UIStackView!
     var currentPosition = 0
@@ -42,6 +43,9 @@ class PetStatusViewController: UIViewController {
         
         myProfileButton.layer.shadowOpacity = 0.25
         myProfileButton.layer.shadowOffset = CGSize(width: 2, height: 2)
+        
+        myHealthButton.layer.shadowOpacity = 0.25
+        myHealthButton.layer.shadowOffset = CGSize(width: 2, height: 2)
     }
     
     @IBAction func foodPressed(_ sender: Any) {

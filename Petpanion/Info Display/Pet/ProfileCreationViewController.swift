@@ -151,7 +151,8 @@ class ProfileCreationViewController: UIViewController, UIImagePickerControllerDe
            mealsPerDay: mealNum,
            amountPerMeal: amountNum,
            waterNeeded: waterNum,
-           playtimeNeeded: playtimeNum
+           playtimeNeeded: playtimeNum,
+           petID: ""
         )
         
         // Ensure the user is authenticated
@@ -170,7 +171,6 @@ class ProfileCreationViewController: UIViewController, UIImagePickerControllerDe
                 if let mainVC = delegate as? updatePetList {
                     mainVC.updatePet(pet: newPet)
                 }
-                dismiss(animated: true)
             } catch {
                 submissionStatus.text = "Error adding pet: \(error.localizedDescription)"
             }

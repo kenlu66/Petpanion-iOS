@@ -16,6 +16,7 @@ class AddReminderViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tagField: UITextField!
     @IBOutlet weak var locationField: UITextField!
     
+    var userManager = UserManager()
     
     public var completion: ((String, String, Date, String, String) -> Void)?
     
@@ -52,8 +53,37 @@ class AddReminderViewController: UIViewController, UITextFieldDelegate {
         let locationText = locationField.text ?? ""
         let targetDate = datePicker.date
         
+        let newReminder = MyReminder(
+            identifier: UUID().uuidString,
+            title: titleText,
+            body: bodyText,
+            date: targetDate,
+            tag: tagText,
+            location: locationText,
+            flagged: existingReminder?.flagged ?? false,
+            completed: existingReminder?.completed ?? false
+        )
+        
         // Call the completion handler with the filled values
         completion?(titleText, bodyText, targetDate, tagText, locationText)
+        
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("User not authenticated.")
+            return
+        }
+        
+        // Add the reminder to Firestore
+        Task {
+            do {
+                try await userManager.addReminder(for: userId, reminder: newReminder)
+            
+                dismiss(animated: true)
+            } catch {
+                print("Error")
+            }
+        }
+        
+        
         
         // Optionally, pop or dismiss the view controller after saving
         navigationController?.popViewController(animated: true)

@@ -77,57 +77,49 @@ final class UserManager {
         }
     }
     
+    // Method to add a reminder for a user
+    func addReminder(for userId: String, reminder: MyReminder) async throws {
+        let reminderID = UUID().uuidString
+        let reminderData: [String: Any] = [
+            "title": reminder.title,
+            "body": reminder.body,
+            "date": reminder.date ?? Date(), // Store the date or a default
+            "tag": reminder.tag,
+            "location": reminder.location,
+            "flagged": reminder.flagged,
+            "completed": reminder.completed,
+            "reminderID": reminderID
+        ]
+        
+        do {
+            let _ = try await db.collection("users").document(userId).collection("reminders").document(reminderID).setData(reminderData)
+        } catch {
+            throw error
+        }
+    }
     
+    // Method to fetch reminders for a user
+    func fetchReminders(for userId: String) async throws -> [MyReminder] {
+        var reminders = [MyReminder]()
+        
+        let snapshot = try await db.collection("users").document(userId).collection("reminders").getDocuments()
+        
+        for document in snapshot.documents {
+            let data = document.data()
+            let reminder = MyReminder(
+                identifier: data["reminderID"] as? String ?? "",
+                title: data["title"] as? String ?? "",
+                body: data["body"] as? String ?? "",
+                date: ((data["date"] as? Timestamp)?.dateValue())!,
+                tag: data["tag"] as? String ?? "",
+                location: data["location"] as? String ?? "",
+                flagged: data["flagged"] as? Bool ?? false,
+                completed: data["completed"] as? Bool ?? false
+            )
+            reminders.append(reminder)
+        }
+        
+        return reminders
+    }
     
-    
-//    // Method to add a reminder for a specific pet by pet name
-//    func addReminder(for userId: String, petName: String, reminder: Reminder) async throws {
-//        let reminderData: [String: Any] = [
-//            "title": reminder.title,
-//            "time": reminder.time,
-//            "isCompleted": reminder.isCompleted,
-//            "petName": petName
-//        ]
-//        
-//        do {
-//            let reminderId = UUID().uuidString // Unique ID for each reminder
-//            let _ = try await db.collection("users").document(userId).collection("pets").document(petName).collection("reminders").document(reminderId).setData(reminderData)
-//        } catch {
-//            throw error
-//        }
-//    }
-//    
-//    // Method to fetch reminders for a specific pet
-//    func fetchReminders(for userId: String, petId: String) async throws -> [Reminder] {
-//        let snapshot = try await db.collection("users").document(userId).collection("pets").document(petId).collection("reminders").getDocuments()
-//        return snapshot.documents.compactMap { doc -> Reminder? in
-//            let data = doc.data()
-//            guard let title = data["title"] as? String,
-//                  let time = (data["time"] as? Timestamp)?.dateValue(),
-//                  let isCompleted = data["isCompleted"] as? Bool else { return nil }
-//            
-//            return Reminder(id: doc.documentID, title: title, time: time, isCompleted: isCompleted, petId: petId, petName: data["petName"] as? String)
-//        }
-//    }
-//    
-//    // Fetch pets for a user
-//    func fetchPets(for userId: String) async throws -> [Pet] {
-//        let snapshot = try await db.collection("users").document(userId).collection("pets").getDocuments()
-//        return snapshot.documents.compactMap { doc -> Pet? in
-//            let data = doc.data()
-//            guard let petName = data["petName"] as? String else { return nil }
-//            return Pet(id: doc.documentID, name: petName)
-//        }
-//    }
-//
-//    
-//    // Method to toggle reminder completion status
-//    func toggleReminderCompletion(for userId: String, petId: String, reminder: Reminder) async throws {
-//        do {
-//            let reminderRef = db.collection("users").document(userId).collection("pets").document(petId).collection("reminders").document(reminder.id)
-//            try await reminderRef.updateData(["isCompleted": !reminder.isCompleted])
-//        } catch {
-//            throw error
-//        }
-//    }
 }
