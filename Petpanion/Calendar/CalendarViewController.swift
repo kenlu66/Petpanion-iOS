@@ -62,6 +62,25 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let dayString = totalSquares[indexPath.item]
+        if !dayString.isEmpty, let day = Int(dayString) {
+            // Update selectedDate to the date corresponding to the selected cell
+            let components = Calendar.current.dateComponents([.year, .month], from: selectedDate)
+            selectedDate = Calendar.current.date(from: DateComponents(year: components.year, month: components.month, day: day))!
+            
+            // Perform segue to weekly view
+            performSegue(withIdentifier: "showWeeklyView", sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showWeeklyView" {
+            if let weeklyVC = segue.destination as? WeeklyViewController {
+                weeklyVC.selectedDate = selectedDate // Pass the selected date to the weekly calendar
+            }
+        }
+    }
     
     @IBAction func nextMonth(_ sender: Any) {
         selectedDate = CalendarHelper().plusMonth(date: selectedDate)

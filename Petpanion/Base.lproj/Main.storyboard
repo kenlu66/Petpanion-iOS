@@ -1959,6 +1959,7 @@
                     <connections>
                         <outlet property="collectionView" destination="6eH-9G-9aN" id="aKn-Jn-YPT"/>
                         <outlet property="monthLabel" destination="fzT-M8-L54" id="M9M-Y2-qYI"/>
+                        <segue destination="l0v-Uj-lZL" kind="show" identifier="showWeeklyView" id="8IH-no-TOT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7HH-Mr-PI8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2671,6 +2672,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="8IH-no-TOT"/>
         <segue reference="a0B-8z-QX4"/>
     </inferredMetricsTieBreakers>
     <resources>
