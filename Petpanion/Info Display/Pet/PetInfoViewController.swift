@@ -19,6 +19,9 @@ class PetInfoViewController: UIViewController {
     @IBOutlet weak var age: UILabel!
     
     @IBOutlet weak var designBox1: UIView!
+    @IBOutlet weak var designBoxAge: UIView!
+    @IBOutlet weak var designerBoxWeight: UIView!
+    
     var selectedPet: Pet!
     
     override func viewDidLoad() {
@@ -27,6 +30,14 @@ class PetInfoViewController: UIViewController {
         designBox1.layer.cornerRadius = 10
         designBox1.layer.shadowOpacity = 0.25
         designBox1.layer.shadowOffset = CGSize(width: 2, height: 2)
+        
+        designBoxAge.layer.cornerRadius = 10
+        designBoxAge.layer.shadowOpacity = 0.25
+        designBoxAge.layer.shadowOffset = CGSize(width: 2, height: 2)
+        
+        designerBoxWeight.layer.cornerRadius = 10
+        designerBoxWeight.layer.shadowOpacity = 0.25
+        designerBoxWeight.layer.shadowOffset = CGSize(width: 2, height: 2)
         
         petImage.layer.masksToBounds = true
         petImage.layer.cornerRadius = petImage.frame.height / 2
