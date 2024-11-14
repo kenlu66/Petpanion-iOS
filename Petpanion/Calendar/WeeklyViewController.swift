@@ -19,6 +19,7 @@ class WeeklyViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var collectionView: UICollectionView!
     
     var totalSquares = [Date]()
+    var selectedDate: Date = Date() // Receive this from Monthly Calendar
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,11 +59,13 @@ class WeeklyViewController: UIViewController, UICollectionViewDelegate, UICollec
         let date = totalSquares[indexPath.item]
         cell.dayOfMonth.text = String(CalendarHelper().dayOfMonth(date: date))
         
-        if (date == selectedDate){
-            cell.backgroundColor = UIColor(named: "PetpanionBase")
+        // Highlight the selected date
+        if Calendar.current.isDate(date, inSameDayAs: selectedDate) {
+            cell.backgroundColor = UIColor(named: "PetpanionBase") // Highlight color
         } else {
             cell.backgroundColor = UIColor.systemBackground
         }
+        
         return cell
     }
     
