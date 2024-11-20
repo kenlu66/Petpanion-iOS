@@ -32,9 +32,17 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
     var delegate: UIViewController!
     let userManager = UserManager()
     var imagePickerController = UIImagePickerController()
+    
+    var status: String!
+    var selectedPet: Pet!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if (status == "update") {
+            fillInFields()
+        }
+        
         petName.delegate = self
         breedName.delegate = self
         birthdate.delegate = self
@@ -44,9 +52,6 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
         amountPerMeal.delegate = self
         waterInput.delegate = self
         playtimeInput.delegate = self
-        
-        
-        
         
         petImage.layer.cornerRadius = petImage.frame.height / 2
         petImage.layer.masksToBounds = true
@@ -61,11 +66,26 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
         
         birthdate.inputView = datePicker
         birthdate.text = ""
-        
-        petName.delegate = self
-        breedName.delegate = self
-        weight.delegate = self
-        petDescription.delegate = self
+    }
+    
+    func fillInFields() {
+        if let pet = selectedPet {
+                // Populate the fields with the pet's existing data
+                petName.text = pet.petName
+                breedName.text = pet.breedName
+                birthdate.text = pet.birthdate
+                weight.text = String(pet.weight)
+                petDescription.text = pet.petDescription
+                sterilizationSelection.setTitle(pet.neutered, for: .normal)
+                genderSelection.setTitle(pet.gender, for: .normal)
+                mealsPerDay.text = String(pet.mealsPerDay)
+                amountPerMeal.text = String(pet.amountPerMeal)
+                waterInput.text = String(pet.waterNeeded)
+                playtimeInput.text = String(pet.playtimeNeeded)
+                
+                petImage.image = UIImage(named: "Petpanion_iconV1")
+                
+            }
     }
     
     // MARK: - Keyboard Dismiss
@@ -79,8 +99,6 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-    
     
     @objc func dateChange(datePicker: UIDatePicker) {
         birthdate.text = dateFormat(date: datePicker.date)
@@ -116,7 +134,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // TODO: when picker is camera
         if picker.sourceType == .photoLibrary {
-            petImage?.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+            petImage?.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
             
             picker.dismiss(animated: true, completion: nil)
         }
@@ -161,7 +179,8 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
               let meals = mealsPerDay.text, let mealNum = Float(meals),
               let amount = amountPerMeal.text, let amountNum = Float(amount),
               let water = waterInput.text, let waterNum = Float(water),
-              let playtime = playtimeInput.text, let playtimeNum = Float(playtime)
+              let playtime = playtimeInput.text, let playtimeNum = Float(playtime),
+              let bDay = birthdate.text
         else {
             // Handle empty fields or invalid input here
             submissionStatus.text = ("Please fill in all fields correctly.")
@@ -183,7 +202,8 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
            amountPerMeal: amountNum,
            waterNeeded: waterNum,
            playtimeNeeded: playtimeNum,
-           petID: ""
+           petID: "",
+           bDay: bDay
         )
         
         // Ensure the user is authenticated
@@ -193,10 +213,17 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
         }
 
         // Add the pet to Firestore
-        Task {
+        Task {	
             do {
-                try await userManager.addPet(for: userId, pet: newPet)
-                submissionStatus.text = "Pet profile submitted successfully!"
+                if status == "update" {
+                    // Update the existing pet if editing
+                    try await userManager.updatePet(for: userId, pet: newPet)
+                    submissionStatus.text = "Pet profile updated successfully!"
+                } else {
+                    // Add new pet if this is the first time
+                    try await userManager.addPet(for: userId, pet: newPet)
+                    submissionStatus.text = "Pet profile submitted successfully!"
+                }
                 
                 // Notify delegate if needed
                 if let mainVC = delegate as? updatePetList {

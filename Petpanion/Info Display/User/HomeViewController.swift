@@ -67,7 +67,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                    let amount = petData["mealAmount"] as? Float,
                    let water = petData["water"] as? Float,
                    let playtime = petData["playtime"] as? Float,
-                   let petID = petData["petID"] as? String {
+                   let petID = petData["petID"] as? String,
+                   let bDay = petData["birthday"] as? String {
                     
                     let pet = Pet(petName: petName,
                                   breedName: breedName,
@@ -81,7 +82,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                   amountPerMeal: amount,
                                   waterNeeded: water,
                                   playtimeNeeded: playtime,
-                                  petID: petID)
+                                  petID: petID,
+                                  bDay: bDay)
                     self.petList.append(pet)
                 }
             }
@@ -129,6 +131,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == profileCreationSegue,
            let petCreationVC = segue.destination as? ProfileCreationViewController {
+            petCreationVC.status = "creation"
             petCreationVC.delegate = self // pointer back to main VC
         }
         

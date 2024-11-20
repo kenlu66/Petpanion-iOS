@@ -16,6 +16,8 @@ class PetStatusViewController: UIViewController {
     @IBOutlet weak var myProfileButton: UIButton!
     @IBOutlet weak var myHealthButton: UIButton!
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var petEventLabel: UILabel!
     @IBOutlet weak var optionStackView: UIStackView!
     var currentPosition = 0
     
@@ -29,6 +31,9 @@ class PetStatusViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        titleLabel.text = "How is \(selectedPet.petName) Doing?"
+        petEventLabel.text = "\(selectedPet.petName)'s Event"
+        
         foodOption.layer.shadowOpacity = 0.25
         foodOption.layer.shadowOffset = CGSize(width: 2, height: 2)
         

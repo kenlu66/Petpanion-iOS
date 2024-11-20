@@ -58,6 +58,33 @@ final class UserManager {
         }
     }
     
+    // Method to update a pet for a user
+    func updatePet(for userId: String, pet: Pet) async throws {
+        let petID = pet.petID // Ensure the pet has a valid petID
+        
+        let petData: [String: Any] = [
+            "petName": pet.petName,
+            "breedName": pet.breedName,
+            "neutered": pet.neutered,
+            "age": pet.age,
+            "weight": pet.weight,
+            "gender": pet.gender,
+            "petDescription": pet.petDescription,
+            "petImage": pet.imageData,
+            "meals": pet.mealsPerDay,
+            "mealAmount": pet.amountPerMeal,
+            "water": pet.waterNeeded,
+            "playtime": pet.playtimeNeeded
+        ]
+        
+        do {
+            // Update the pet data in the "pets" subcollection
+            let _ = try await db.collection("users").document(userId).collection("pets").document(petID).updateData(petData)
+        } catch {
+            throw error
+        }
+    }
+    
     // Method to add a post for a user
     func addPost(for userId: String, post: Post) async throws {
         let postData: [String: Any] = [

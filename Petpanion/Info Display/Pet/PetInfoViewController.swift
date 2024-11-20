@@ -23,6 +23,7 @@ class PetInfoViewController: UIViewController {
     @IBOutlet weak var designerBoxWeight: UIView!
     
     var selectedPet: Pet!
+    let creationSegue = "PetInfoToCreation"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +72,15 @@ class PetInfoViewController: UIViewController {
             return UIImage(data: data)
         }
         return nil
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == creationSegue,
+           let petCreationVC = segue.destination as? ProfileCreationViewController {
+            petCreationVC.status = "update"
+            petCreationVC.selectedPet = selectedPet
+            petCreationVC.delegate = self // pointer back to main VC
+        }
     }
     
 }
