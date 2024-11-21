@@ -17,6 +17,7 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
 //    var selectedImage = [UIImage]()
     let cellIdentifier = "journalImageCollectionViewCell"
     let userManager = UserManager()
+    let storageManager = StorageManager()
     var delegate: UIViewController!
     
     // for image
@@ -76,6 +77,31 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
                    return
                }
         
+        // MARK: - Example How I stored pet photos: edit version to tailor journal
+//        var path = ""
+//        
+//        if let image = imageView.image {
+//            let imageID = UUID().uuidString
+//            path = "JournalImages/\(imageID).jpeg"
+//            storageManager.storeImage(filePath: path, image: image)
+//        }
+//        let newPost = Post(
+//            title: postTitle,
+//            body: postBody,
+//            imageData: path
+//        )
+        // to retrieve, didnt edit
+        
+//        storageManager.retrieveImage(filePath: petList[row].imageData) { image in
+//            if image != nil {
+//                cell.petImage.image = image
+//                self.imageList.append(image!)
+//            } else {
+//                cell.petImage.image = UIImage(named: "Petpanion_iconV1")
+//                self.imageList.append(UIImage(named: "Petpanion_iconV1")!)
+//            }
+//        }
+        
         let imageData = convertImage(image: imageView.image ?? UIImage())
         let newPost = Post(
             title: postTitle,
@@ -86,7 +112,7 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
         // Ensure the user is authenticated
         guard let userId = Auth.auth().currentUser?.uid else {
 //            submissionStatus.text = "User not authenticated."
-            print("user ot authenticated")
+            print("user not authenticated")
             return
         }
 

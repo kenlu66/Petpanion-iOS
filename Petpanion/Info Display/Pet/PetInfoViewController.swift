@@ -44,6 +44,11 @@ class PetInfoViewController: UIViewController {
         
         petImage.layer.masksToBounds = true
         petImage.layer.cornerRadius = petImage.frame.height / 2
+        
+        fillInFields()
+    }
+    
+    func fillInFields() {
         petImage.image = image
         
         genderImage.layer.cornerRadius = 10
@@ -62,14 +67,6 @@ class PetInfoViewController: UIViewController {
         } else if selectedPet.gender == "Other" {
             genderImage.image = UIImage(named: "Other Icon")
         }
-        
-    }
-    
-    func convertDataToImage(imageData: String) -> UIImage? {
-        if let data = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters) {
-            return UIImage(data: data)
-        }
-        return nil
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -78,7 +75,7 @@ class PetInfoViewController: UIViewController {
             petCreationVC.status = "update"
             petCreationVC.selectedPet = selectedPet
             petCreationVC.image = image
-            petCreationVC.delegate = self // pointer back to main VC
+            print("going to update paet info")
         }
     }
     

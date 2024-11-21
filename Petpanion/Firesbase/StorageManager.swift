@@ -19,9 +19,8 @@ class StorageManager {
             let fileRef = storageRef.child(filePath)
             fileRef.putData(imageData, metadata: nil) {
                 (metadata, error) in
-                if error != nil {
-                    print("Error in storing image onto storage")
-                    print(error?.localizedDescription)
+                if let error = error {
+                    print("Failed to store image: \(error.localizedDescription)")
                 }
             }
         }

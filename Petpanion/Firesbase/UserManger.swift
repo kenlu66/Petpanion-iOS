@@ -62,6 +62,7 @@ final class UserManager {
     // Method to update a pet for a user
     func updatePet(for userId: String, pet: Pet) async throws {
         let petID = pet.petID // Ensure the pet has a valid petID
+        print(petID)
         
         let petData: [String: Any] = [
             "petName": pet.petName,
@@ -75,7 +76,9 @@ final class UserManager {
             "meals": pet.mealsPerDay,
             "mealAmount": pet.amountPerMeal,
             "water": pet.waterNeeded,
-            "playtime": pet.playtimeNeeded
+            "playtime": pet.playtimeNeeded,
+            "birthday": pet.birthdate,
+            "petID": petID
         ]
         
         do {

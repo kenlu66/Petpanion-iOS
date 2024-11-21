@@ -68,6 +68,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
         
         if (status == "update") {
             fillInFields()
+            print("updated fields")
         }
     }
     
@@ -204,6 +205,11 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
             submissionStatus.text = ("Please fill in all fields correctly.")
             return
         }
+        var petID = ""
+        
+        if (status == "update") {
+            petID = selectedPet.petID
+        }
         
         let imageData = path
         let age = ageCalculation(birthDate: datePicker.date)
@@ -220,7 +226,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
            amountPerMeal: amountNum,
            waterNeeded: waterNum,
            playtimeNeeded: playtimeNum,
-           petID: "",
+           petID: petID,
            bDay: bDay
         )
         
@@ -236,27 +242,28 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
                 if status == "update" {
                     // Update the existing pet if editing
                     try await userManager.updatePet(for: userId, pet: newPet)
+                    
+                    if let mainVC = delegate as? updatePetList {
+                        print("right before update pet func")
+                        mainVC.updatePet(pet: newPet)
+                    }
+
                     submissionStatus.text = "Pet profile updated successfully!"
                 } else {
                     // Add new pet if this is the first time
                     try await userManager.addPet(for: userId, pet: newPet)
+                    
+                    if let mainVC = delegate as? updatePetList {
+                        mainVC.addPet(pet: newPet)
+                    }
+
                     submissionStatus.text = "Pet profile submitted successfully!"
                 }
-                
-                // Notify delegate if needed
-                if let mainVC = delegate as? updatePetList {
-                    mainVC.updatePet(pet: newPet)
-                }
+    
             } catch {
                 submissionStatus.text = "Error adding pet: \(error.localizedDescription)"
             }
         }
     }
     
-    func convertImage(image: UIImage) -> String? {
-        guard let imageData = image.jpegData(compressionQuality: 0.5) else { return nil}
-        return imageData.base64EncodedString(options: .lineLength64Characters)
-    }
-    
- 
 }

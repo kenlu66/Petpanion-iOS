@@ -11,6 +11,7 @@ import FirebaseFirestore
 
 protocol updatePetList {
     func updatePet(pet: Pet)
+    func addPet(pet: Pet)
 }
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, updatePetList {
@@ -144,13 +145,23 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
-    func updatePet(pet: Pet) {
+    func addPet(pet: Pet) {
         let newIndex = petList.count
         petList.append(pet)
         
         // Insert the new item at the end of the collection view
         let indexPath = IndexPath(item: newIndex, section: 0)
         collectionView.insertItems(at: [indexPath])
+    }
+    
+    func updatePet(pet: Pet) {
+        // Find the pet in the list and update its information
+        print("im in update pet")
+        if let index = petList.firstIndex(where: { $0.petID == pet.petID }) {
+            print("found the pet to update")
+            petList[index] = pet  // Update the pet at the found index
+            collectionView.reloadData()
+        }
     }
 
 }
