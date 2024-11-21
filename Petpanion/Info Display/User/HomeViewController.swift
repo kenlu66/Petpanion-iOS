@@ -16,8 +16,10 @@ protocol updatePetList {
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, updatePetList {
     
     let db = Firestore.firestore()
+    let storageManager = StorageManager()
     
     var petList: [Pet] = []
+    var imageList: [UIImage] = []
     let textCellIdentifier = "PetCell"
     let collectionViewIdentifier = "PetCollectionViewCell"
     let profileCreationSegue = "HomeToProfileCreation"
@@ -93,13 +95,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
-    func convertDataToImage(imageData: String) -> UIImage? {
-        if let data = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters) {
-            return UIImage(data: data)
-        }
-        return nil
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return petList.count
     }
@@ -108,10 +103,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionViewIdentifier, for: indexPath) as! PetCollectionViewCell
         let row = indexPath.row
         
-        if let image = convertDataToImage(imageData: petList[row].imageData) {
-            cell.petImage.image = image
-        } else {
-            cell.petImage.image = UIImage(named: "Petpanion_iconV1")
+        storageManager.retrieveImage(filePath: petList[row].imageData) { image in
+            if image != nil {
+                cell.petImage.image = image
+                self.imageList.append(image!)
+            } else {
+                cell.petImage.image = UIImage(named: "Petpanion_iconV1")
+                self.imageList.append(UIImage(named: "Petpanion_iconV1")!)
+            }
         }
         cell.petImage.layer.cornerRadius = 30
         cell.petName.text = petList[row].petName
@@ -140,6 +139,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // Pass the operator type selected into next VC
             let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
             let selectedPet = petList[selectedIndexPath.row]
+            destination.petImage = imageList[selectedIndexPath.row]
             destination.selectedPet = selectedPet
         }
     }

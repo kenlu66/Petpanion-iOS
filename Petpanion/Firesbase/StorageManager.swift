@@ -11,22 +11,37 @@ import UIKit
 
 class StorageManager {
     
-    let storage = Storage.storage()
+    let storageRef = Storage.storage(url:"gs://petpanion-3d3bb.firebasestorage.app").reference()
     
     func storeImage(filePath: String, image: UIImage) {
-        let storageRef = storage.reference()
-        let imageData = image.jpegData(compressionQuality: 0.5)
         
-        guard imageData != nil else {
-            print("Error turning image into data")
-            return
-        }
-        let fileRef = storageRef.child(filePath)
-        let uploadTask = fileRef.putData(imageData!, metadata: nil) {
-            (metadata, error) in
-            if error != nil {
-                print("Error in storing image onto storage")
+        if let imageData = image.jpegData(compressionQuality: 0.5) {
+            let fileRef = storageRef.child(filePath)
+            fileRef.putData(imageData, metadata: nil) {
+                (metadata, error) in
+                if error != nil {
+                    print("Error in storing image onto storage")
+                    print(error?.localizedDescription)
+                }
             }
         }
     }
+    
+    func retrieveImage(filePath: String, completion: @escaping (UIImage?) -> Void) {
+        let imageRef = storageRef.child(filePath)
+        
+        imageRef.getData(maxSize: 5 * 1024 * 1024) { (data, error) in
+            if let error = error {
+                print("Failed to retrieve image: \(error.localizedDescription)")
+                completion(nil)  // Return nil in case of an error
+            } else if let data = data {
+                let image = UIImage(data: data)
+                completion(image)  // Return the image once it's fetched
+            } else {
+                print("No data available or failed to convert data to image.")
+                completion(nil)  // Return nil if no image data was retrieved
+            }
+        }
+    }
+
 }

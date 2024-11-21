@@ -47,7 +47,8 @@ final class UserManager {
             "mealAmount": pet.amountPerMeal,
             "water": pet.waterNeeded,
             "playtime": pet.playtimeNeeded,
-            "petID": petID
+            "petID": petID,
+            "birthday": pet.birthdate
         ]
         
         do {

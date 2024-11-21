@@ -23,6 +23,8 @@ class PetInfoViewController: UIViewController {
     @IBOutlet weak var designerBoxWeight: UIView!
     
     var selectedPet: Pet!
+    var image: UIImage!
+    var delegate: UIViewController!
     let creationSegue = "PetInfoToCreation"
     
     override func viewDidLoad() {
@@ -42,6 +44,7 @@ class PetInfoViewController: UIViewController {
         
         petImage.layer.masksToBounds = true
         petImage.layer.cornerRadius = petImage.frame.height / 2
+        petImage.image = image
         
         genderImage.layer.cornerRadius = 10
         genderImage.layer.masksToBounds = true
@@ -60,11 +63,6 @@ class PetInfoViewController: UIViewController {
             genderImage.image = UIImage(named: "Other Icon")
         }
         
-        if let image = convertDataToImage(imageData: selectedPet.imageData) {
-            petImage.image = image
-        } else {
-            petImage.image = UIImage(named: "Petpanion_iconV1")
-        }
     }
     
     func convertDataToImage(imageData: String) -> UIImage? {
@@ -79,6 +77,7 @@ class PetInfoViewController: UIViewController {
            let petCreationVC = segue.destination as? ProfileCreationViewController {
             petCreationVC.status = "update"
             petCreationVC.selectedPet = selectedPet
+            petCreationVC.image = image
             petCreationVC.delegate = self // pointer back to main VC
         }
     }

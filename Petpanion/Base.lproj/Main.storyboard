@@ -1024,13 +1024,32 @@
                     <view key="view" contentMode="scaleToFill" id="iWP-MY-eKq">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Petpanion_iconV1" translatesAutoresizingMaskIntoConstraints="NO" id="oqF-H2-RTZ">
+                                <rect key="frame" x="76" y="208" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbF-BK-X5d">
+                                <rect key="frame" x="159" y="430" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="saveImage:" destination="uW9-xD-w2Y" eventType="touchUpInside" id="Kyr-C7-dgt"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="cwi-6V-Jto"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Bgv-3o-h34"/>
+                    <connections>
+                        <outlet property="image" destination="oqF-H2-RTZ" id="7pH-Rl-KDl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0o8-aY-1Dx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1004" y="751"/>
+            <point key="canvasLocation" x="-521" y="751"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="qDP-TX-M6z">
@@ -2808,6 +2827,7 @@
         <image name="Energy Icon" width="99" height="168"/>
         <image name="Food Icon" width="56" height="61"/>
         <image name="Mood Icon" width="255" height="258"/>
+        <image name="Petpanion_iconV1" width="1024" height="1024"/>
         <image name="Playtime Icon" width="56" height="58"/>
         <image name="Snack Icon" width="39" height="44"/>
         <image name="Water Icon" width="200" height="183"/>

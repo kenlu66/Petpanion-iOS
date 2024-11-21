@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import FirebaseStorage
 import Photos
 
 class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -31,17 +32,15 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
     var datePicker: UIDatePicker!
     var delegate: UIViewController!
     let userManager = UserManager()
+    let storageManager = StorageManager()
     var imagePickerController = UIImagePickerController()
     
     var status: String!
     var selectedPet: Pet!
+    var image: UIImage!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if (status == "update") {
-            fillInFields()
-        }
         
         petName.delegate = self
         breedName.delegate = self
@@ -66,6 +65,10 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
         
         birthdate.inputView = datePicker
         birthdate.text = ""
+        
+        if (status == "update") {
+            fillInFields()
+        }
     }
     
     func fillInFields() {
@@ -83,7 +86,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
                 waterInput.text = String(pet.waterNeeded)
                 playtimeInput.text = String(pet.playtimeNeeded)
                 
-                petImage.image = UIImage(named: "Petpanion_iconV1")
+                petImage.image = image
                 
             }
     }
@@ -134,9 +137,16 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // TODO: when picker is camera
         if picker.sourceType == .photoLibrary {
-            petImage?.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+            petImage?.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+            petImage.backgroundColor = UIColor.white
             
             picker.dismiss(animated: true, completion: nil)
+        } else if picker.sourceType == .camera {
+            
+        }
+        
+        if status == "update" {
+            
         }
     }
     
@@ -170,6 +180,14 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
     
     @IBAction func submitted(_ sender: Any) {
         
+        var path = ""
+        
+        if let image = petImage.image {
+            let photoID = UUID().uuidString
+            path = "PetProfileImages/\(photoID).jpeg"
+            storageManager.storeImage(filePath: path, image: image)
+        }
+        
         guard let petNameText = petName.text, !petNameText.isEmpty,
               let breedNameText = breedName.text, !breedNameText.isEmpty,
               let neuteredText = sterilizationSelection.titleLabel?.text,
@@ -187,7 +205,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
             return
         }
         
-        let imageData = convertImage(image: petImage.image ?? UIImage())
+        let imageData = path
         let age = ageCalculation(birthDate: datePicker.date)
         let newPet = Pet(
            petName: petNameText,
@@ -197,7 +215,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
            weight: weightValue,
            gender: genderText,
            petDescription: petDescriptionText,
-           imageData: imageData ?? "",
+           imageData: imageData,
            mealsPerDay: mealNum,
            amountPerMeal: amountNum,
            waterNeeded: waterNum,

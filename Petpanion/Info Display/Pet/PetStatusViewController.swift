@@ -22,6 +22,7 @@ class PetStatusViewController: UIViewController {
     var currentPosition = 0
     
     var selectedPet: Pet!
+    var petImage: UIImage!
     var medicalRecord: MedicalInfo!
     var DailyRecord: DailyReportHistory!
     
@@ -86,15 +87,9 @@ class PetStatusViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == petInfoSegue,
            let petInfoVC = segue.destination as? PetInfoViewController {
-            
-            // Ensure selectedPet is set
-            guard let selectedPet = selectedPet else {
-                // Handle the error, maybe show an alert
-                print("Error: No pet selected")
-                return
-            }
-            
             petInfoVC.selectedPet = selectedPet
+            petInfoVC.image = petImage
+            petInfoVC.delegate = self
         }
         
         if segue.identifier == medicalSegue,
