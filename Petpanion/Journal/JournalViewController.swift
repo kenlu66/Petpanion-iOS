@@ -26,11 +26,28 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureCollectionViewLayout()
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
         fetchJournalEntries()
     }
+    
+    func configureCollectionViewLayout() {
+            let layout = UICollectionViewFlowLayout()
+            let numberOfCellsPerRow: CGFloat = 2
+            let numberOfCellsPerColumn: CGFloat = 3
+
+            // Calculate the cell width and height
+            let width = collectionView.bounds.width / numberOfCellsPerRow
+            let height = collectionView.bounds.height / numberOfCellsPerColumn
+
+            layout.itemSize = CGSize(width: width, height: height)
+            layout.minimumLineSpacing = 0 // No spacing between rows
+            layout.minimumInteritemSpacing = 0 // No spacing between columns
+            collectionView.collectionViewLayout = layout
+        }
     
     func fetchJournalEntries() {
         // Ensure the user is authenticated
@@ -98,15 +115,6 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
            let postVC = segue.destination as? JournalEditViewController {
             postVC.delegate = self // pointer back to main VC
         }
-        
-//        if segue.identifier == "HomeToPetInfo",
-//           let destination = segue.destination as? PetInfoViewController,
-//        // Pass the operator type selected into next VC
-//            let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
-//            let selectedPet = postList[selectedIndexPath.row]
-//            destination.selectedPet = selectedPet
-//        }
-        
     }
     
     func updatePosts(post: Post) {

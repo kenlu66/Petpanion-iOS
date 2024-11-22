@@ -1862,32 +1862,35 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PostCollectionViewCell" id="4aX-kP-AZd" customClass="PostCollectionViewCell" customModule="Petpanion" customModuleProvider="target">
-                                        <rect key="frame" x="98" y="0.0" width="197" height="400"/>
+                                        <rect key="frame" x="94.666666666666671" y="0.0" width="204" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qXX-oA-vbm">
-                                            <rect key="frame" x="0.0" y="0.0" width="197" height="400"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="204" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJN-ul-6WI">
-                                                    <rect key="frame" x="23.666666666666671" y="361" width="150" height="22"/>
+                                                    <rect key="frame" x="27" y="167" width="150" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="o1O-6b-6nf"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="LuckiestGuy-Regular" family="Luckiest Guy" pointSize="22"/>
+                                                    <fontDescription key="fontDescription" name="LuckiestGuy-Regular" family="Luckiest Guy" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MqJ-xj-33M">
-                                                    <rect key="frame" x="23" y="17" width="150" height="133"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MqJ-xj-33M">
+                                                    <rect key="frame" x="20" y="15" width="164" height="141"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="VJN-ul-6WI" secondAttribute="bottom" constant="17" id="L66-bW-y6s"/>
+                                                <constraint firstItem="MqJ-xj-33M" firstAttribute="leading" secondItem="qXX-oA-vbm" secondAttribute="leading" constant="20" id="3dC-jc-7gd"/>
+                                                <constraint firstAttribute="bottom" secondItem="VJN-ul-6WI" secondAttribute="bottom" constant="15" id="L66-bW-y6s"/>
+                                                <constraint firstItem="MqJ-xj-33M" firstAttribute="centerX" secondItem="qXX-oA-vbm" secondAttribute="centerX" id="Pve-IG-jni"/>
                                                 <constraint firstItem="VJN-ul-6WI" firstAttribute="centerX" secondItem="qXX-oA-vbm" secondAttribute="centerX" id="Q5x-ny-NZy"/>
+                                                <constraint firstItem="VJN-ul-6WI" firstAttribute="top" secondItem="MqJ-xj-33M" secondAttribute="bottom" constant="11" id="mTg-NF-6RJ"/>
+                                                <constraint firstItem="MqJ-xj-33M" firstAttribute="top" secondItem="qXX-oA-vbm" secondAttribute="top" constant="15" id="vou-Iw-lLJ"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="197" height="400"/>
+                                        <size key="customSize" width="204" height="200"/>
                                         <connections>
                                             <outlet property="postImage" destination="MqJ-xj-33M" id="DLp-Wh-OE6"/>
                                             <outlet property="postTitleLabel" destination="VJN-ul-6WI" id="xpI-Wy-R7T"/>
