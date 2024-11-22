@@ -75,7 +75,7 @@ class PetInfoViewController: UIViewController {
             petCreationVC.status = "update"
             petCreationVC.selectedPet = selectedPet
             petCreationVC.image = image
-            print("going to update paet info")
+            print("going to update pet info")
         }
     }
     
