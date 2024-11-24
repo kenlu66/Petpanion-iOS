@@ -7,7 +7,11 @@
 
 import UIKit
 
-class PetInfoViewController: UIViewController {
+protocol updatePet {
+    func updatePet(pet: Pet, petInd: Int, pList: [Pet], iList: [UIImage])
+}
+
+class PetInfoViewController: UIViewController, updatePet {
 
     @IBOutlet weak var petImage: UIImageView!
     @IBOutlet weak var genderImage: UIImageView!
@@ -23,7 +27,10 @@ class PetInfoViewController: UIViewController {
     @IBOutlet weak var designerBoxWeight: UIView!
     
     var selectedPet: Pet!
+    var petList: [Pet]!
+    var imageList: [UIImage]!
     var image: UIImage!
+    var petIndex: Int!
     var delegate: UIViewController!
     let creationSegue = "PetInfoToCreation"
     
@@ -59,6 +66,7 @@ class PetInfoViewController: UIViewController {
         age.text = "\(selectedPet.age)"
         weight.text = "\(selectedPet.weight)"
         descriptionField.text = selectedPet.petDescription
+        petImage.image = image
         
         if selectedPet.gender == "Male" {
             genderImage.image = UIImage(named: "Male Icon")
@@ -75,8 +83,25 @@ class PetInfoViewController: UIViewController {
             petCreationVC.status = "update"
             petCreationVC.selectedPet = selectedPet
             petCreationVC.image = image
+            petCreationVC.petIndex = petIndex
+            petCreationVC.petList = petList
+            petCreationVC.imageList = imageList
+            petCreationVC.delegate = self
             print("going to update pet info")
         }
     }
-    
+    // TODO: fix image
+    func updatePet(pet: Pet, petInd: Int, pList: [Pet], iList: [UIImage]) {
+        // Find the pet in the list and update its information
+        print("im in info update pet")
+        self.selectedPet = pet
+        self.image = iList[petInd]
+        fillInFields()
+        self.petList = pList
+        self.imageList = iList
+        
+        if let statusVC = delegate as? updatePetList {
+            statusVC.updatePet(pet: selectedPet, petInd: petIndex, pList: petList, iList: imageList)
+        }
+    }
 }

@@ -37,7 +37,11 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
     
     var status: String!
     var selectedPet: Pet!
+    var petList: [Pet]!
+    var imageList: [UIImage]!
     var image: UIImage!
+    var petIndex: Int!
+    var imageChanged = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +81,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
                 // Populate the fields with the pet's existing data
                 petName.text = pet.petName
                 breedName.text = pet.breedName
-                birthdate.text = pet.birthdate
+                birthdate.text = dateFormat(date: pet.birthdate)
                 weight.text = String(pet.weight)
                 petDescription.text = pet.petDescription
                 sterilizationSelection.setTitle(pet.neutered, for: .normal)
@@ -90,6 +94,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
                 petImage.image = image
                 
             }
+        datePicker.date = selectedPet.birthdate
     }
     
     // MARK: - Keyboard Dismiss
@@ -122,32 +127,43 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
     
     @IBAction func addPhotoPressed(_ sender: Any) {
         checkPermissions()
+        
         let picker = UIImagePickerController()
         picker.allowsEditing = true
         picker.delegate = self
         
-        picker.sourceType = .photoLibrary
-        present(picker, animated: true)
-        
-        // TODO: user imagePickerController for camera when we can test it
-        // TODO: need to be able to switch the sourceType
-        // imagePickerController.sourceType = .camera
-        // present(imagePickerController, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            // You can allow the user to switch between library and camera
+            let alertController = UIAlertController(title: "Choose Source", message: nil, preferredStyle: .actionSheet)
+            
+            alertController.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { _ in
+                picker.sourceType = .photoLibrary
+                self.present(picker, animated: true, completion: nil)
+            }))
+            
+            alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+                picker.sourceType = .camera
+                self.present(picker, animated: true, completion: nil)
+            }))
+            
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            present(alertController, animated: true, completion: nil)
+        } else {
+            // No camera available, fall back to photo library
+            picker.sourceType = .photoLibrary
+            present(picker, animated: true, completion: nil)
+        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        // TODO: when picker is camera
-        if picker.sourceType == .photoLibrary {
+        if picker.sourceType == .photoLibrary || picker.sourceType == .camera {
+            petImage.contentMode = .scaleAspectFit
             petImage?.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
-            petImage.backgroundColor = UIColor.white
             
             picker.dismiss(animated: true, completion: nil)
-        } else if picker.sourceType == .camera {
-            
-        }
-        
-        if status == "update" {
-            
+            print("image changed")
+            imageChanged = 1
         }
     }
     
@@ -160,6 +176,19 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
             
         } else {
             PHPhotoLibrary.requestAuthorization(requestAuthorizationHandler)
+        }
+        
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) {
+                (accessGranted) in
+                guard accessGranted == true else { return }
+            }
+        case .authorized:
+            break
+        default:
+            print("Access denied")
+            return
         }
     }
     
@@ -182,11 +211,26 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
     @IBAction func submitted(_ sender: Any) {
         
         var path = ""
+        var petID = ""
         
-        if let image = petImage.image {
-            let photoID = UUID().uuidString
-            path = "PetProfileImages/\(photoID).jpeg"
-            storageManager.storeImage(filePath: path, image: image)
+        if (status == "update") {
+            petID = selectedPet.petID
+            if (imageChanged == 1) {
+                storageManager.deleteImage(filePath: selectedPet.imageData)
+                if let image = petImage.image {
+                    let photoID = UUID().uuidString
+                    path = "PetProfileImages/\(photoID).jpeg"
+                    storageManager.storeImage(filePath: path, image: image)
+                }
+            } else {
+                path = selectedPet.imageData
+            }
+        } else if (status == "creation") {
+            if let image = petImage.image {
+                let photoID = UUID().uuidString
+                path = "PetProfileImages/\(photoID).jpeg"
+                storageManager.storeImage(filePath: path, image: image)
+            }
         }
         
         guard let petNameText = petName.text, !petNameText.isEmpty,
@@ -198,17 +242,11 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
               let meals = mealsPerDay.text, let mealNum = Float(meals),
               let amount = amountPerMeal.text, let amountNum = Float(amount),
               let water = waterInput.text, let waterNum = Float(water),
-              let playtime = playtimeInput.text, let playtimeNum = Float(playtime),
-              let bDay = birthdate.text
+              let playtime = playtimeInput.text, let playtimeNum = Float(playtime)
         else {
             // Handle empty fields or invalid input here
             submissionStatus.text = ("Please fill in all fields correctly.")
             return
-        }
-        var petID = ""
-        
-        if (status == "update") {
-            petID = selectedPet.petID
         }
         
         let imageData = path
@@ -227,7 +265,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
            waterNeeded: waterNum,
            playtimeNeeded: playtimeNum,
            petID: petID,
-           bDay: bDay
+           bDay: datePicker.date
         )
         
         // Ensure the user is authenticated
@@ -243,9 +281,12 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
                     // Update the existing pet if editing
                     try await userManager.updatePet(for: userId, pet: newPet)
                     
-                    if let mainVC = delegate as? updatePetList {
+                    if let infoVC = delegate as? updatePet {
                         print("right before update pet func")
-                        mainVC.updatePet(pet: newPet)
+                        print(newPet.petID)
+                        self.petList[self.petIndex] = newPet
+                        self.imageList[self.petIndex] = self.image
+                        infoVC.updatePet(pet: newPet, petInd: petIndex, pList: petList, iList: imageList)
                     }
 
                     submissionStatus.text = "Pet profile updated successfully!"
@@ -253,7 +294,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
                     // Add new pet if this is the first time
                     try await userManager.addPet(for: userId, pet: newPet)
                     
-                    if let mainVC = delegate as? updatePetList {
+                    if let mainVC = delegate as? changePetList {
                         mainVC.addPet(pet: newPet)
                     }
 

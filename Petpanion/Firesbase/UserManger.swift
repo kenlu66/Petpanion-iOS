@@ -62,7 +62,14 @@ final class UserManager {
     // Method to update a pet for a user
     func updatePet(for userId: String, pet: Pet) async throws {
         let petID = pet.petID // Ensure the pet has a valid petID
-        print(petID)
+        
+        if petID == "" {
+            
+                print(pet.petName)
+                print(petID)
+                print(pet.petName)
+            
+        }
         
         let petData: [String: Any] = [
             "petName": pet.petName,

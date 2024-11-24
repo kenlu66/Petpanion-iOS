@@ -9,18 +9,20 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-protocol updatePetList {
-    func updatePet(pet: Pet)
+protocol changePetList {
+    func updatePet(pet: Pet, petInd: Int, pList: [Pet], iList: [UIImage])
     func addPet(pet: Pet)
 }
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, updatePetList {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, changePetList {
     
     let db = Firestore.firestore()
     let storageManager = StorageManager()
     
     var petList: [Pet] = []
     var imageList: [UIImage] = []
+    var pList: [Pet]!
+    var iList: [UIImage]!
     let textCellIdentifier = "PetCell"
     let collectionViewIdentifier = "PetCollectionViewCell"
     let profileCreationSegue = "HomeToProfileCreation"
@@ -38,6 +40,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func fetchPets() {
+        print("in fetch pet")
         // Ensure the user is authenticated
         guard let userId = Auth.auth().currentUser?.uid else {
             print("User not authenticated.")
@@ -71,7 +74,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                    let water = petData["water"] as? Float,
                    let playtime = petData["playtime"] as? Float,
                    let petID = petData["petID"] as? String,
-                   let bDay = petData["birthday"] as? String {
+                   let birthdayTimestamp = petData["birthday"] as? Timestamp {
+                    
+                    let bDay = birthdayTimestamp.dateValue()
                     
                     let pet = Pet(petName: petName,
                                   breedName: breedName,
@@ -88,6 +93,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                   petID: petID,
                                   bDay: bDay)
                     self.petList.append(pet)
+                    print("pet added")
                 }
             }
 
@@ -139,9 +145,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
            let destination = segue.destination as? PetStatusViewController,
         // Pass the operator type selected into next VC
             let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
-            let selectedPet = petList[selectedIndexPath.row]
-            destination.petImage = imageList[selectedIndexPath.row]
-            destination.selectedPet = selectedPet
+            destination.petIndex = selectedIndexPath.row
+            destination.petList = petList
+            destination.imageList = imageList
+            destination.delegate = self
         }
     }
     
@@ -154,14 +161,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         collectionView.insertItems(at: [indexPath])
     }
     
-    func updatePet(pet: Pet) {
+    func updatePet(pet: Pet, petInd: Int,pList: [Pet], iList: [UIImage]) {
         // Find the pet in the list and update its information
-        print("im in update pet")
-        if let index = petList.firstIndex(where: { $0.petID == pet.petID }) {
-            print("found the pet to update")
-            petList[index] = pet  // Update the pet at the found index
-            collectionView.reloadData()
-        }
+        print("im in main update pet")
+        self.petList = pList
+        self.imageList = iList
+        collectionView.reloadData()
     }
 
 }

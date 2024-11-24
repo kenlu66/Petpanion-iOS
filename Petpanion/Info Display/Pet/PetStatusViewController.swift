@@ -7,7 +7,11 @@
 
 import UIKit
 
-class PetStatusViewController: UIViewController {
+protocol updatePetList {
+    func updatePet(pet: Pet, petInd: Int, pList: [Pet], iList: [UIImage])
+}
+
+class PetStatusViewController: UIViewController, updatePetList {
 
     @IBOutlet weak var foodOption: UIButton!
     @IBOutlet weak var waterOption: UIButton!
@@ -20,9 +24,13 @@ class PetStatusViewController: UIViewController {
     @IBOutlet weak var petEventLabel: UILabel!
     @IBOutlet weak var optionStackView: UIStackView!
     var currentPosition = 0
+    var delegate: UIViewController!
     
     var selectedPet: Pet!
+    var petList: [Pet]!
+    var imageList: [UIImage]!
     var petImage: UIImage!
+    var petIndex: Int!
     var medicalRecord: MedicalInfo!
     var DailyRecord: DailyReportHistory!
     
@@ -31,6 +39,8 @@ class PetStatusViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        selectedPet = petList[petIndex]
+        petImage = imageList[petIndex]
 
         titleLabel.text = "How is \(selectedPet.petName) Doing?"
         petEventLabel.text = "\(selectedPet.petName)'s Event"
@@ -89,12 +99,26 @@ class PetStatusViewController: UIViewController {
            let petInfoVC = segue.destination as? PetInfoViewController {
             petInfoVC.selectedPet = selectedPet
             petInfoVC.image = petImage
+            petInfoVC.petIndex = petIndex
+            petInfoVC.petList = petList
+            petInfoVC.imageList = imageList
             petInfoVC.delegate = self
         }
         
         if segue.identifier == medicalSegue,
            let medicalVC = segue.destination as? MedicalHistoryViewController {
             
+        }
+    }
+    
+    func updatePet(pet: Pet, petInd: Int, pList: [Pet], iList: [UIImage]) {
+        // Find the pet in the list and update its information
+        print("im in status update pet")
+        self.petList = pList
+        self.imageList = iList
+        self.selectedPet = pet
+        if let mainVC = delegate as? changePetList {
+            mainVC.updatePet(pet: selectedPet, petInd: petIndex, pList: petList, iList: imageList)
         }
     }
 }

@@ -42,5 +42,19 @@ class StorageManager {
             }
         }
     }
-
+    
+    func deleteImage(filePath: String) {
+        let fileRef = storageRef.child(filePath)
+        
+        fileRef.delete { error in
+            if let error = error {
+                // Handle error if deletion fails
+                print("Error deleting file: \(error.localizedDescription)")
+            } else {
+                // Success
+                print("File successfully deleted")
+            }
+        }
+    }
+ 
 }

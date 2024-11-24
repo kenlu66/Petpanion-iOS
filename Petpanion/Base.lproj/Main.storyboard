@@ -54,22 +54,22 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ly9-Zl-PdH">
-                                <rect key="frame" x="46.666666666666657" y="331.33333333333331" width="300" height="41"/>
+                                <rect key="frame" x="46.666666666666657" y="331.33333333333331" width="300" height="40"/>
                                 <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="JOc-W4-3kO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not an existing user?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DM-at-jlD">
-                                <rect key="frame" x="119.33333333333333" y="539.33333333333337" width="154.66666666666669" height="21"/>
+                                <rect key="frame" x="119.33333333333333" y="538.33333333333337" width="154.66666666666669" height="21"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MnB-aE-i6Q">
-                                <rect key="frame" x="131.66666666666666" y="580.33333333333337" width="129.99999999999997" height="55"/>
+                                <rect key="frame" x="131.66666666666666" y="579.33333333333337" width="129.99999999999997" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="PTR-aG-OTL"/>
                                     <constraint firstAttribute="height" constant="55" id="feJ-Rd-Hwt"/>
@@ -97,7 +97,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNK-Dn-DPA">
-                                <rect key="frame" x="131.66666666666666" y="414.33333333333331" width="129.99999999999997" height="55"/>
+                                <rect key="frame" x="131.66666666666666" y="413.33333333333331" width="129.99999999999997" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="AG0-gq-5M6"/>
                                     <constraint firstAttribute="height" constant="55" id="Qko-E5-6m8"/>
@@ -113,7 +113,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Co4-U7-R8O">
-                                <rect key="frame" x="21.666666666666657" y="494.33333333333331" width="350" height="20.999999999999943"/>
+                                <rect key="frame" x="21.666666666666657" y="493.33333333333331" width="350" height="20.999999999999943"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="350" id="0Cm-X9-wm2"/>
                                 </constraints>
@@ -175,7 +175,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Existing user?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4q-Jm-uNN">
-                                <rect key="frame" x="146.66666666666666" y="539.33333333333337" width="99.666666666666657" height="21"/>
+                                <rect key="frame" x="146.66666666666666" y="538.33333333333337" width="99.666666666666657" height="21"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -202,16 +202,16 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="caS-9A-MUp">
-                                <rect key="frame" x="46.666666666666657" y="331.33333333333331" width="300" height="41"/>
+                                <rect key="frame" x="46.666666666666657" y="331.33333333333331" width="300" height="40"/>
                                 <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="iRB-7T-Wci"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Obm-dn-Rej">
-                                <rect key="frame" x="131.66666666666666" y="414.33333333333331" width="129.99999999999997" height="55"/>
+                                <rect key="frame" x="131.66666666666666" y="413.33333333333331" width="129.99999999999997" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="DVN-3n-dIH"/>
                                     <constraint firstAttribute="width" constant="130" id="kND-SH-Rmh"/>
@@ -233,7 +233,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Wt-XO-QUc">
-                                <rect key="frame" x="131.66666666666666" y="580.33333333333337" width="129.99999999999997" height="55"/>
+                                <rect key="frame" x="131.66666666666666" y="579.33333333333337" width="129.99999999999997" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="oln-UK-RhP"/>
                                     <constraint firstAttribute="height" constant="55" id="vvn-U4-3b9"/>
@@ -250,7 +250,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vh-7f-erq">
-                                <rect key="frame" x="21.666666666666657" y="494.33333333333331" width="350" height="20.999999999999943"/>
+                                <rect key="frame" x="21.666666666666657" y="493.33333333333331" width="350" height="20.999999999999943"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="350" id="Z1W-Ts-3fM"/>
                                 </constraints>
