@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MedicalRecordCreationVC: UIViewController, UITextFieldDelegate {
 
@@ -16,6 +17,7 @@ class MedicalRecordCreationVC: UIViewController, UITextFieldDelegate {
     
     var currentType: String!
     var delegate: UIViewController!
+    var docID: String!
     var medicalInfo = MedicalInfo()
     
     override func viewDidLoad() {
@@ -57,14 +59,15 @@ class MedicalRecordCreationVC: UIViewController, UITextFieldDelegate {
             newRecord = MedicalInfo.Record(description: description, date: date, location: location, category: "Vaccine")
             let vaccineVC = delegate as! addVaccine
             vaccineVC.addRecord(newRecord: newRecord)
+            
         case "Treatment":
             newRecord = MedicalInfo.Record(description: description, date: date, location: location, category: "Treatment")
             let treatmentVC = delegate as! addTreatment
             treatmentVC.addRecord(newRecord: newRecord)
+            
         default:
             print("Invalid record type")
             return
         }
-        
     }
 }

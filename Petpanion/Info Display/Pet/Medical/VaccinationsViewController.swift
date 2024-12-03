@@ -14,6 +14,9 @@ protocol addVaccine {
 class VaccinationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, addVaccine {
     
     var vaccineList: [MedicalInfo.Record] = []
+    var docID = ""
+    var medicalInfo = MedicalInfo()
+    var delegate: UIViewController!
 
     @IBOutlet weak var tableView: UITableView!
     let recordCreationSegue = "VaccineToCreation"
@@ -43,12 +46,14 @@ class VaccinationsViewController: UIViewController, UITableViewDelegate, UITable
            let creationVC = segue.destination as? MedicalRecordCreationVC {
             // Pass the current type
             creationVC.currentType = "Vaccine"
+            creationVC.docID = docID
             creationVC.delegate = self // pointer back to mainVC
         }
     }
     
     func addRecord(newRecord: MedicalInfo.Record) {
         vaccineList.append(newRecord)
+        medicalInfo.addRecord(category: "Vaccine", record: newRecord)
         tableView.reloadData()
     }
 }

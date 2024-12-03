@@ -40,4 +40,17 @@ class MedicalInfo {
             break
         }
     }
+    
+    func updateFirebase(userID: String, record: Record, docID: String, petID: String) {
+        let userManager = UserManager()
+        // Add the pet to Firestore
+        Task {
+            do {
+                try await userManager.updateMedicalRecord(for: userID, record: record, docID: docID, petID: petID)
+                
+            } catch {
+                print("Error: adding medical record to firebase")
+            }
+        }
+    }
 }

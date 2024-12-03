@@ -12,8 +12,11 @@ protocol addRecord {
 }
 class AllergiesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, addRecord {
     
-    var allergyList: [MedicalInfo.Record] = []
     var medicalInfo = MedicalInfo()
+    
+    var allergyList: [MedicalInfo.Record] = []
+    var docID: String!
+    var delegate: UIViewController!
 
     @IBOutlet weak var tableView: UITableView!
     let recordCreationSegue = "AllergiesToCreation"
@@ -24,7 +27,6 @@ class AllergiesViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.dataSource = self
         tableView.delegate = self
         
-        allergyList = medicalInfo.getRecords(byCategory: "Allergy")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,6 +47,7 @@ class AllergiesViewController: UIViewController, UITableViewDelegate, UITableVie
            let creationVC = segue.destination as? MedicalRecordCreationVC {
             // Pass the current type
             creationVC.currentType = "Allergy"
+            creationVC.docID = docID
             creationVC.delegate = self // pointer back to mainVC
         }
     }

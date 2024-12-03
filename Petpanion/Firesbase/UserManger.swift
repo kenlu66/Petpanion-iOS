@@ -73,6 +73,7 @@ final class UserManager {
                 
                 let data: [String: Any] = [
                     "Medical type": type,
+                    "Document ID": docID,
                     "Records": records
                 ]
                 let _ = try await medicalRef.document(docID).setData(data)
@@ -84,15 +85,7 @@ final class UserManager {
     
     // Method to update a pet for a user
     func updatePet(for userId: String, pet: Pet) async throws {
-        let petID = pet.petID // Ensure the pet has a valid petID
-        
-        if petID == "" {
-            
-                print(pet.petName)
-                print(petID)
-                print(pet.petName)
-            
-        }
+        let petID = pet.petID
         
         let petData: [String: Any] = [
             "petName": pet.petName,
@@ -115,6 +108,16 @@ final class UserManager {
             // Update the pet data in the "pets" subcollection
             let _ = try await db.collection("users").document(userId).collection("pets").document(petID).updateData(petData)
         } catch {
+            throw error
+        }
+    }
+    
+    func updateMedicalRecord(for userId: String, record: MedicalInfo.Record, docID: String, petID: String) async throws {
+        
+        do {
+            try await db.collection("users").document(userId).collection("pets").document(petID).collection("medical records").document(docID).updateData(["Records": record])
+        } catch {
+            print("error in update medical record")
             throw error
         }
     }
