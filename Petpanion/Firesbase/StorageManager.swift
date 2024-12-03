@@ -51,7 +51,6 @@ class StorageManager {
                 // Handle error if deletion fails
                 print("Error deleting file: \(error.localizedDescription)")
             } else {
-                // Success
                 print("File successfully deleted")
             }
         }

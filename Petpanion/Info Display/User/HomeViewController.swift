@@ -40,7 +40,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func fetchPets() {
-        print("in fetch pet")
         // Ensure the user is authenticated
         guard let userId = Auth.auth().currentUser?.uid else {
             print("User not authenticated.")

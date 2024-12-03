@@ -34,6 +34,8 @@ final class UserManager {
         // Create a unique ID for each pet document
         let petID = UUID().uuidString
         
+        let medicalInfo = MedicalInfo()
+        
         let petData: [String: Any] = [
             "petName": pet.petName,
             "breedName": pet.breedName,
@@ -53,7 +55,28 @@ final class UserManager {
         
         do {
             // Add the pet data to the "pets" subcollection
-            let _ = try await db.collection("users").document(userId).collection("pets").document(petID).setData(petData)
+            let petRef = db.collection("users").document(userId).collection("pets").document(petID)
+            let _ = try await petRef.setData(petData)
+            
+            let medicalTypes = ["Allergy", "Treatment", "Vaccine"]
+            let medicalRef = petRef.collection("medical records")
+            
+            for type in medicalTypes {
+                let docID = UUID().uuidString
+                let records = medicalInfo.getRecords(byCategory: type).map { record in
+                    return [
+                        "description": record.description,
+                        "date": record.date,
+                        "location": record.location
+                    ]
+                }
+                
+                let data: [String: Any] = [
+                    "Medical type": type,
+                    "Records": records
+                ]
+                let _ = try await medicalRef.document(docID).setData(data)
+            }
         } catch {
             throw error
         }
