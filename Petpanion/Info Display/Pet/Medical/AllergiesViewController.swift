@@ -16,7 +16,7 @@ class AllergiesViewController: UIViewController, UITableViewDelegate, UITableVie
     var medicalInfo = MedicalInfo()
 
     @IBOutlet weak var tableView: UITableView!
-    let recordCreationSegue = "AllergyToCreation"
+    let recordCreationSegue = "AllergiesToCreation"
     
     override func viewDidLoad() {
         super.viewDidLoad()
