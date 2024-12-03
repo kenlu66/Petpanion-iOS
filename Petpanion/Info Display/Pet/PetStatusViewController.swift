@@ -107,7 +107,7 @@ class PetStatusViewController: UIViewController, updatePetList {
         
         if segue.identifier == medicalSegue,
            let medicalVC = segue.destination as? MedicalHistoryViewController {
-            
+            medicalVC.currentPet = selectedPet
         }
     }
     
