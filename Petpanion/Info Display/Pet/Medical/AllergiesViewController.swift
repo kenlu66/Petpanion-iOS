@@ -55,6 +55,10 @@ class AllergiesViewController: UIViewController, UITableViewDelegate, UITableVie
     func addRecord(newRecord: MedicalInfo.Record) {
         allergyList.append(newRecord)
         medicalInfo.addRecord(category: "Allergy", record: newRecord)
+        
+        let historyVC = delegate as! updateData
+//        historyVC.updateFirebase(record: newRecord, docID: docID)
+        
         tableView.reloadData()
     }
         

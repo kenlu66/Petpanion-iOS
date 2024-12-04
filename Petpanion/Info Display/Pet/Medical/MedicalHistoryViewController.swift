@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 protocol updateData {
-    func updateFirebase(userID: String, record: MedicalInfo.Record, docID: String)
+    func updateFirebase(record: MedicalInfo.Record, docID: String)
 }
 
 class MedicalHistoryViewController: UIViewController, updateData {
@@ -129,7 +129,7 @@ class MedicalHistoryViewController: UIViewController, updateData {
         }
     }
     
-    func updateFirebase(userID: String, record: MedicalInfo.Record, docID: String) {
+    func updateFirebase(record: MedicalInfo.Record, docID: String) {
         // Ensure the user is authenticated
         guard let userId = Auth.auth().currentUser?.uid else {
             print("User not authenticated")

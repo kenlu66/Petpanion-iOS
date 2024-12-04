@@ -12,6 +12,7 @@ import FirebaseAuth
 final class UserManager {
     
     let db = Firestore.firestore()
+    let medicalInfo = MedicalInfo()
     
     // Method to create a new user
     func createNewUser(user: User) async throws {
@@ -31,7 +32,6 @@ final class UserManager {
     
     // Method to add a pet for a user
     func addPet(for userId: String, pet: Pet) async throws {
-        let medicalInfo = MedicalInfo()
         
         let petData: [String: Any] = [
             "petName": pet.petName,
@@ -109,6 +109,12 @@ final class UserManager {
     }
     
     func updateMedicalRecord(for userId: String, record: MedicalInfo.Record, docID: String, petID: String) async throws {
+        
+        let records: [String: Any] = [
+                "description": record.description,
+                "date": record.date,
+                "location": record.location
+            ]
         
         do {
             try await db.collection("users").document(userId).collection("pets").document(petID).collection("medical records").document(docID).updateData(["Records": record])
