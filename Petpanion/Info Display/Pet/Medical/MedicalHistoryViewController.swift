@@ -34,7 +34,7 @@ class MedicalHistoryViewController: UIViewController, updateData {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        fetchRecords()
+        fetchRecords()
     }
     
     func fetchRecords() {

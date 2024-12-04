@@ -31,9 +31,6 @@ final class UserManager {
     
     // Method to add a pet for a user
     func addPet(for userId: String, pet: Pet) async throws {
-        // Create a unique ID for each pet document
-        let petID = UUID().uuidString
-        
         let medicalInfo = MedicalInfo()
         
         let petData: [String: Any] = [
@@ -49,13 +46,13 @@ final class UserManager {
             "mealAmount": pet.amountPerMeal,
             "water": pet.waterNeeded,
             "playtime": pet.playtimeNeeded,
-            "petID": petID,
+            "petID": pet.petID,
             "birthday": pet.birthdate
         ]
         
         do {
             // Add the pet data to the "pets" subcollection
-            let petRef = db.collection("users").document(userId).collection("pets").document(petID)
+            let petRef = db.collection("users").document(userId).collection("pets").document(pet.petID)
             let _ = try await petRef.setData(petData)
             
             let medicalTypes = ["Allergy", "Treatment", "Vaccine"]
@@ -85,7 +82,6 @@ final class UserManager {
     
     // Method to update a pet for a user
     func updatePet(for userId: String, pet: Pet) async throws {
-        let petID = pet.petID
         
         let petData: [String: Any] = [
             "petName": pet.petName,
@@ -101,12 +97,12 @@ final class UserManager {
             "water": pet.waterNeeded,
             "playtime": pet.playtimeNeeded,
             "birthday": pet.birthdate,
-            "petID": petID
+            "petID": pet.petID
         ]
         
         do {
             // Update the pet data in the "pets" subcollection
-            let _ = try await db.collection("users").document(userId).collection("pets").document(petID).updateData(petData)
+            let _ = try await db.collection("users").document(userId).collection("pets").document(pet.petID).updateData(petData)
         } catch {
             throw error
         }

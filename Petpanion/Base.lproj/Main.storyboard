@@ -671,7 +671,7 @@
                                                     <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <segue destination="HqH-1w-zO8" kind="show" identifier="PetStatusToMedical" id="GPJ-U5-XQ0"/>
+                                                    <segue destination="HqH-1w-zO8" kind="show" identifier="PetStatusToMedical" id="mHu-bq-Ky4"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="my8-vH-dgI">

@@ -211,10 +211,12 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
     @IBAction func submitted(_ sender: Any) {
         
         var path = ""
-        var petID = ""
+        var petID = UUID().uuidString
         
         if (status == "update") {
+            print("in update")
             petID = selectedPet.petID
+            print(petID)
             if (imageChanged == 1) {
                 storageManager.deleteImage(filePath: selectedPet.imageData)
                 if let image = petImage.image {
@@ -277,7 +279,10 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
         // Add the pet to Firestore
         Task {	
             do {
+                
                 if status == "update" {
+                    print(newPet.petID)
+                    print("a spacer i status")
                     // Update the existing pet if editing
                     try await userManager.updatePet(for: userId, pet: newPet)
                     
