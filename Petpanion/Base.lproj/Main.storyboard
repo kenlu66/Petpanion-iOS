@@ -174,13 +174,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Py8-cM-ZuN">
-                                <rect key="frame" x="99.333333333333329" y="100" width="191.33333333333337" height="44"/>
+                                <rect key="frame" x="101.00000000000001" y="100" width="191.33333333333337" height="44"/>
                                 <fontDescription key="fontDescription" name="LuckiestGuy-Regular" family="Luckiest Guy" pointSize="44"/>
                                 <color key="textColor" red="0.98027735949999995" green="0.85543745760000001" blue="0.36603155729999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Existing user?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4q-Jm-uNN">
-                                <rect key="frame" x="145.33333333333334" y="552" width="99.666666666666657" height="21"/>
+                                <rect key="frame" x="146.66666666666666" y="552" width="99.666666666666657" height="21"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -218,7 +218,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Obm-dn-Rej">
-                                <rect key="frame" x="130" y="427" width="130" height="55"/>
+                                <rect key="frame" x="131.66666666666666" y="427" width="129.99999999999997" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="DVN-3n-dIH"/>
                                     <constraint firstAttribute="width" constant="130" id="kND-SH-Rmh"/>
@@ -240,7 +240,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Wt-XO-QUc">
-                                <rect key="frame" x="130" y="583" width="130" height="55"/>
+                                <rect key="frame" x="131.66666666666666" y="583" width="129.99999999999997" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="oln-UK-RhP"/>
                                     <constraint firstAttribute="height" constant="55" id="vvn-U4-3b9"/>
@@ -257,7 +257,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vh-7f-erq">
-                                <rect key="frame" x="20" y="507" width="350" height="21"/>
+                                <rect key="frame" x="21.666666666666657" y="507" width="350" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="350" id="Z1W-Ts-3fM"/>
                                 </constraints>
@@ -475,7 +475,7 @@
                                                 <viewLayoutGuide key="frameLayoutGuide" id="HXz-zx-cRt"/>
                                             </scrollView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bella's Event" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4h-HS-qyJ">
-                                                <rect key="frame" x="15" y="508" width="103" height="24"/>
+                                                <rect key="frame" x="15" y="508" width="227" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -1886,10 +1886,10 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R65-kw-L4C">
-                                <rect key="frame" x="75" y="79" width="243" height="165"/>
+                                <rect key="frame" x="75" y="79" width="243" height="150"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PXi-4u-yVM">
-                                <rect key="frame" x="144" y="274" width="105.33333333333331" height="35"/>
+                                <rect key="frame" x="144" y="259" width="105.33333333333331" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Add image"/>
                                 <connections>
@@ -1902,7 +1902,7 @@
                         <constraints>
                             <constraint firstItem="hsJ-yc-pQA" firstAttribute="trailing" secondItem="yhg-jC-QaG" secondAttribute="trailing" constant="30" id="58E-fo-OLD"/>
                             <constraint firstItem="R65-kw-L4C" firstAttribute="leading" secondItem="hsJ-yc-pQA" secondAttribute="leading" constant="75" id="Ax3-jn-QJY"/>
-                            <constraint firstItem="nkW-EU-e4o" firstAttribute="top" secondItem="PXi-4u-yVM" secondAttribute="bottom" constant="10" id="Byj-6C-iZQ"/>
+                            <constraint firstItem="nkW-EU-e4o" firstAttribute="top" secondItem="PXi-4u-yVM" secondAttribute="bottom" constant="25" id="Byj-6C-iZQ"/>
                             <constraint firstItem="nkW-EU-e4o" firstAttribute="leading" secondItem="hsJ-yc-pQA" secondAttribute="leading" constant="30.000000000000007" id="KiA-Kk-6kj"/>
                             <constraint firstItem="yhg-jC-QaG" firstAttribute="leading" secondItem="hsJ-yc-pQA" secondAttribute="leading" constant="30" id="OKb-2l-Tdr"/>
                             <constraint firstItem="hsJ-yc-pQA" firstAttribute="trailing" secondItem="R65-kw-L4C" secondAttribute="trailing" constant="75" id="V8L-bY-gyc"/>
@@ -2817,22 +2817,22 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondarySystemFillColor">
-            <color red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
