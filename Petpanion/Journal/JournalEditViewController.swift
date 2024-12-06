@@ -151,6 +151,9 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
                 print("Error adding post: \(error.localizedDescription)")
             }
         }
+        
+        // dismiss the vc
+        navigationController?.popViewController(animated: true)
     }
     
     func requestAuthorizationHandler(status: PHAuthorizationStatus) {
