@@ -21,6 +21,12 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
     var postList: [Post] = []
     let collectionViewCellIdentifier = "PostCollectionViewCell"
     let collectionViewIdentifier = "JournalCollectionView"
+    let postSegue = "PostSegueIdentifier"
+    
+    var status = ""
+    var titleField = ""
+    var bodyParagraph = ""
+    var image = UIImage(named: "Petpanion_iconV1")
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -94,22 +100,41 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         let row = indexPath.row
         cell.postTitleLabel.text = postList[row].title
         
+        titleField = postList[row].title
+        bodyParagraph = postList[row].body
+        
         storageManager.retrieveImage(filePath: postList[row].imageData) { image in
             if image != nil {
                 cell.postImage.image = image
             } else {
                 cell.postImage.image = UIImage(named: "Petpanion_iconV1")
             }
+            self.image = image
         }
+        
+        
         
         cell.postImage.layer.cornerRadius = 30
         return cell
     }
     
-    // Set up segues to pizza creation view controller
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Get the selected pet from your petList
+        let selectedPost = postList[indexPath.row]
+        status = "update"
+        
+        // Perform the segue to the edit VC
+        performSegue(withIdentifier: postSegue, sender: selectedPost)
+    }
+    
+    // Set up segues to pass variables
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PostSegueIdentifier",
            let postVC = segue.destination as? JournalEditViewController {
+            postVC.status = status
+            postVC.titleField = titleField
+            postVC.image = image
+            postVC.bodyField = bodyParagraph
             postVC.delegate = self // pointer back to main VC
         }
     }

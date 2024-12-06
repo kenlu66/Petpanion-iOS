@@ -20,6 +20,11 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
     let storageManager = StorageManager()
     var delegate: UIViewController!
     
+    var status: String!
+    var titleField: String!
+    var bodyField: String!
+    var image: UIImage!
+    
     // for image
     var imagePickerController = UIImagePickerController()
 
@@ -29,17 +34,24 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var bodyTextView: UITextView!
     
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(status)
         titleTextField.delegate = self
         bodyTextView.isEditable = true
 
 //        collectionView.dataSource = self
 //        collectionView.delegate = self
+        
+        if status == "update" {
+            fillInFields()
+        }
+    }
+    
+    func fillInFields() {
+        imageView.image = image
+        titleTextField.text = titleField
+        bodyTextView.text = bodyField
     }
     
     // MARK: - Keyboard Dismiss
@@ -119,27 +131,6 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
         } else {
             print("Access for photo library not granted")
         }
-    }
-    
-    func convertImage(image: UIImage) -> String? {
-        guard let imageData = image.jpegData(compressionQuality: 0.5) else { return nil}
-        return imageData.base64EncodedString(options: .lineLength64Characters)
-    }
-    
-//    func convertImages(images: [UIImage]) -> [String]? {
-//        var convertedImages = [String]()
-//        for image in images {
-//            guard let imageData = image.jpegData(compressionQuality: 0.5) else { return nil }
-//            convertedImages.append(imageData.base64EncodedString(options: .lineLength64Characters))
-//        }
-//        return convertedImages
-//    }
-    
-    func convertDataToImage(imageData: String) -> UIImage? {
-        if let data = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters) {
-            return UIImage(data: data)
-        }
-        return nil
     }
     
     @IBAction func didTapAddImage(_ sender: Any) {
