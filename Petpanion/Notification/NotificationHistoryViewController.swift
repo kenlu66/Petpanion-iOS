@@ -20,7 +20,7 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         table.delegate = self
         table.dataSource = self
         
-        //
+        // Asks for permission when page is loaded
         UNUserNotificationCenter.current().requestAuthorization(
             options: [.alert, .badge, .sound]) { (granted, error) in
                 if granted {
@@ -31,11 +31,7 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         }
     }
 
-
-    
-    
-    // MARK: - Toggle Completion Check Mark
-    
+    // Toggle Completion Check Mark
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Toggle the completion status
         models[indexPath.row].completed.toggle()
@@ -47,10 +43,6 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-
-    
-    
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -153,12 +145,8 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         
         return cell
     }
-    
-    
-    
-    
-    // MARK: - Swipe Actions for Delete and Flag
 
+    // Swipe Actions for Delete and Flag
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // Delete Action
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
@@ -197,8 +185,7 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         return UISwipeActionsConfiguration(actions: [flagAction])
     }
 
-    // MARK: - Show Edit Screen
-        
+    //Show Edit Screen
     func showEditScreen(for index: Int) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "add") as? AddReminderViewController else {
             return
@@ -219,10 +206,8 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    // MARK: - + New Reminder Btn tapped
-    
+    // - + New Reminder Btn tapped
     @IBAction func didTapAdd() {
-        
         
         // Show add view controller
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "add") as? AddReminderViewController else {
@@ -268,8 +253,8 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         }
         
         navigationController?.pushViewController(vc, animated: true)
-        
     }
+    
     
 //    @IBAction func didTapTest(_ sender: Any) {
 //        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { success, error in
