@@ -60,18 +60,11 @@ final class UserManager {
             
             for type in medicalTypes {
                 let docID = UUID().uuidString
-                let records = medicalInfo.getRecords(byCategory: type).map { record in
-                    return [
-                        "description": record.description,
-                        "date": record.date,
-                        "location": record.location
-                    ]
-                }
                 
                 let data: [String: Any] = [
                     "Medical type": type,
                     "Document ID": docID,
-                    "Records": records
+                    "Records": []
                 ]
                 let _ = try await medicalRef.document(docID).setData(data)
             }
@@ -108,16 +101,21 @@ final class UserManager {
         }
     }
     
-    func updateMedicalRecord(for userId: String, record: MedicalInfo.Record, docID: String, petID: String) async throws {
-        
-        let records: [String: Any] = [
-                "description": record.description,
+    func updateMedicalRecord(for userId: String, records: [MedicalInfo.Record], docID: String, petID: String, type: String) async throws {
+        var list: [[String: Any]] = []
+            
+        for record in records {
+            let recordData: [String: Any] = [
                 "date": record.date,
+                "description": record.description,
                 "location": record.location
             ]
+            
+            list.append(recordData)
+        }
         
         do {
-            try await db.collection("users").document(userId).collection("pets").document(petID).collection("medical records").document(docID).updateData(["Records": record])
+            try await db.collection("users").document(userId).collection("pets").document(petID).collection("medical records").document(docID).updateData(["Records": list])
         } catch {
             print("error in update medical record")
             throw error

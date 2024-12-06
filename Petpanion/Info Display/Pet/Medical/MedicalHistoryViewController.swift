@@ -9,11 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-protocol updateData {
-    func updateFirebase(record: MedicalInfo.Record, docID: String)
-}
-
-class MedicalHistoryViewController: UIViewController, updateData {
+class MedicalHistoryViewController: UIViewController{
     
     var currentPet: Pet!
     
@@ -33,7 +29,11 @@ class MedicalHistoryViewController: UIViewController, updateData {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         fetchRecords()
     }
     
@@ -57,7 +57,6 @@ class MedicalHistoryViewController: UIViewController, updateData {
             self.treatments = []
             
             for document in snapshot?.documents ?? [] {
-                print("in doc")
                 let medicalData = document.data()
                 
                 guard let type = medicalData["Medical type"] as? String else {
@@ -76,18 +75,17 @@ class MedicalHistoryViewController: UIViewController, updateData {
                     default:
                         print("error fetching medical document id")
                     }
-                    
-                    print("Got doc ids")
                 }
                 print("before reading records")
                 if let records = medicalData["Records"] as? [[String: Any]] {
+                    print("got a list of records")
                     for record in records {
                         print("reading record")
                         if let date = record["date"] as? String,
                            let description = record["description"] as? String,
                            let location = record["location"] as? String {
                             
-                            let data = MedicalInfo.Record(description: description, date: date, location: location, category: type)
+                            let data = MedicalInfo.Record(description: description, date: date, location: location)
                             
                             switch type {
                             case "Allergy":
@@ -111,6 +109,7 @@ class MedicalHistoryViewController: UIViewController, updateData {
            let allergyVC = segue.destination as? AllergiesViewController {
             allergyVC.allergyList = allergies
             allergyVC.docID = docIDA
+            allergyVC.pet = currentPet
             allergyVC.delegate = self
         }
         
@@ -118,6 +117,7 @@ class MedicalHistoryViewController: UIViewController, updateData {
            let treatmentVC = segue.destination as? TreatmentsViewController {
             treatmentVC.treatmentList = treatments
             treatmentVC.docID = docIDT
+            treatmentVC.pet = currentPet
             treatmentVC.delegate = self
         }
         
@@ -125,17 +125,9 @@ class MedicalHistoryViewController: UIViewController, updateData {
            let vaccineVC = segue.destination as? VaccinationsViewController {
             vaccineVC.vaccineList = vaccines
             vaccineVC.docID = docIDV
+            vaccineVC.pet = currentPet
             vaccineVC.delegate = self
         }
     }
-    
-    func updateFirebase(record: MedicalInfo.Record, docID: String) {
-        // Ensure the user is authenticated
-        guard let userId = Auth.auth().currentUser?.uid else {
-            print("User not authenticated")
-            return
-        }
-        
-        medicalInfo.updateFirebase(userID: userId, record: record, docID: docID, petID: currentPet.petID)
-    }
+
 }
