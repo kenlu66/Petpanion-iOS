@@ -6,15 +6,18 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 protocol addRecord {
     func addRecord(newRecord: MedicalInfo.Record)
 }
 class AllergiesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, addRecord {
     
-    var medicalInfo = MedicalInfo()
+    let medicalInfo = MedicalInfo()
+    let userManager = UserManager()
     
     var allergyList: [MedicalInfo.Record] = []
+    var pet: Pet!
     var docID: String!
     var delegate: UIViewController!
 
@@ -53,12 +56,22 @@ class AllergiesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func addRecord(newRecord: MedicalInfo.Record) {
+        // Ensure the user is authenticated
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("error: allergy user not auth")
+            return
+        }
+        
         allergyList.append(newRecord)
         medicalInfo.addRecord(category: "Allergy", record: newRecord)
         
-        let historyVC = delegate as! updateData
-//        historyVC.updateFirebase(record: newRecord, docID: docID)
-        
+        Task {
+            do {
+                try await userManager.updateMedicalRecord(for: userId, records: self.allergyList, docID: docID, petID: pet.petID, type: "Allergy")
+            } catch {
+                throw error
+            }
+        }
         tableView.reloadData()
     }
         

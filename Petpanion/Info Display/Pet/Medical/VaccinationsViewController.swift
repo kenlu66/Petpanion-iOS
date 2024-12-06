@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 protocol addVaccine {
     func addRecord(newRecord: MedicalInfo.Record)
@@ -13,10 +14,12 @@ protocol addVaccine {
 
 class VaccinationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, addVaccine {
     
+    let medicalInfo = MedicalInfo()
+    let userManager = UserManager()
     var vaccineList: [MedicalInfo.Record] = []
     var docID = ""
-    var medicalInfo = MedicalInfo()
     var delegate: UIViewController!
+    var pet: Pet!
 
     @IBOutlet weak var tableView: UITableView!
     let recordCreationSegue = "VaccineToCreation"
@@ -52,8 +55,23 @@ class VaccinationsViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func addRecord(newRecord: MedicalInfo.Record) {
+        // Ensure the user is authenticated
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("error: vaccine user not auth")
+            return
+        }
+        
         vaccineList.append(newRecord)
         medicalInfo.addRecord(category: "Vaccine", record: newRecord)
+        
+        Task {
+            do {
+                try await userManager.updateMedicalRecord(for: userId, records: self.vaccineList, docID: docID, petID: pet.petID, type: "Vaccine")
+            } catch {
+                throw error
+            }
+        }
+        
         tableView.reloadData()
     }
 }

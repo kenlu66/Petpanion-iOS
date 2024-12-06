@@ -51,17 +51,17 @@ class MedicalRecordCreationVC: UIViewController, UITextFieldDelegate {
         
         switch currentType {
         case "Allergy":
-            newRecord = MedicalInfo.Record(description: description, date: date, location: location, category: "Allergy")
+            newRecord = MedicalInfo.Record(description: description, date: date, location: location)
             let allergyVC = delegate as! addRecord
             allergyVC.addRecord(newRecord: newRecord)
             
         case "Vaccine":
-            newRecord = MedicalInfo.Record(description: description, date: date, location: location, category: "Vaccine")
+            newRecord = MedicalInfo.Record(description: description, date: date, location: location)
             let vaccineVC = delegate as! addVaccine
             vaccineVC.addRecord(newRecord: newRecord)
             
         case "Treatment":
-            newRecord = MedicalInfo.Record(description: description, date: date, location: location, category: "Treatment")
+            newRecord = MedicalInfo.Record(description: description, date: date, location: location)
             let treatmentVC = delegate as! addTreatment
             treatmentVC.addRecord(newRecord: newRecord)
             
