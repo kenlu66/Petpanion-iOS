@@ -78,19 +78,18 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
                }
         
         // MARK: - Example How I stored pet photos: edit version to tailor journal
-//        var path = ""
-//        
-//        if let image = imageView.image {
-//            let imageID = UUID().uuidString
-//            path = "JournalImages/\(imageID).jpeg"
-//            storageManager.storeImage(filePath: path, image: image)
-//        }
-//        let newPost = Post(
-//            title: postTitle,
-//            body: postBody,
-//            imageData: path
-//        )
-        // to retrieve, didnt edit
+        var path = ""
+        
+        if let image = imageView.image {
+            let imageID = UUID().uuidString
+            path = "JournalImages/\(imageID).jpeg"
+            storageManager.storeImage(filePath: path, image: image)
+        }
+        let newPost = Post(
+            title: postTitle,
+            body: postBody,
+            imageData: path
+        )
         
 //        storageManager.retrieveImage(filePath: petList[row].imageData) { image in
 //            if image != nil {
@@ -101,13 +100,6 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
 //                self.imageList.append(UIImage(named: "Petpanion_iconV1")!)
 //            }
 //        }
-        
-        let imageData = convertImage(image: imageView.image ?? UIImage())
-        let newPost = Post(
-            title: postTitle,
-            body: postBody,
-            imageData: imageData ?? ""
-        )
         
         // Ensure the user is authenticated
         guard let userId = Auth.auth().currentUser?.uid else {
