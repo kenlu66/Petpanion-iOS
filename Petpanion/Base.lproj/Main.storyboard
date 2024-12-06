@@ -2293,7 +2293,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.96093255280000001" green="0.85903757810000003" blue="0.4462687373" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Save Treatment">
+                                <buttonConfiguration key="configuration" style="filled" title="Save Record">
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="baseBackgroundColor" red="0.96093255280000001" green="0.85903757810000003" blue="0.4462687373" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
@@ -2315,6 +2315,7 @@
                         <outlet property="dateField" destination="Qyh-FC-t6H" id="Qvh-SH-Hhk"/>
                         <outlet property="descriptionField" destination="bYL-qj-3o6" id="hWv-Ah-bXM"/>
                         <outlet property="locationField" destination="arQ-sV-mc2" id="J1e-t1-eUJ"/>
+                        <outlet property="mapView" destination="0N7-A1-XtD" id="heC-7r-9ic"/>
                         <outlet property="submitButton" destination="zWd-rl-Huj" id="lcI-g1-Scw"/>
                     </connections>
                 </viewController>
