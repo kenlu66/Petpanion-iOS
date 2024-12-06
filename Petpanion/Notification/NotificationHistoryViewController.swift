@@ -102,15 +102,6 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         formatter.dateFormat = "MM-dd-yyyy HH:mm"
         let dateString = formatter.string(from: reminder.date)
         
-//        cell.textLabel?.text = """
-//        \(reminder.title)
-//        \(reminder.body)
-//        \(dateString)
-//        #\(reminder.tag)
-//        \(reminder.location)
-//        """
-//        cell.textLabel?.numberOfLines = 0
-        
         // Create an NSMutableAttributedString to style the text
         let attributedText = NSMutableAttributedString()
 
@@ -155,7 +146,6 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
             attributedText.append(locationString)
         }
         
-        
         // Date - Italic Font, Light Gray Color
         let dateAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.italicSystemFont(ofSize: 14),
@@ -191,10 +181,35 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // Delete Action
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
-            // Remove the reminder from data source
-            self?.models.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            completionHandler(true)
+            
+            guard let self = self else { return }
+                    
+            // Get the reminder to delete
+            let reminderToDelete = self.models[indexPath.row]
+            
+            // Ensure the user is authenticated
+            guard let userId = Auth.auth().currentUser?.uid else {
+                print("User not authenticated.")
+                completionHandler(false)
+                return
+            }
+            
+            // Reference to the specific reminder document in Firestore
+            let reminderRef = self.db.collection("users").document(userId).collection("reminders").document(reminderToDelete.identifier)
+            
+            // Remove the reminder from Firestore
+            reminderRef.delete { error in
+                if let error = error {
+                    print("Error deleting reminder: \(error.localizedDescription)")
+                    completionHandler(false)
+                    return
+                }
+                
+                // Remove the reminder locally after successful deletion
+                self.models.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                completionHandler(true)
+            }
         }
         deleteAction.backgroundColor = .systemRed
         

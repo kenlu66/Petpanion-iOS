@@ -181,29 +181,29 @@ final class UserManager {
         }
     }
     
-    // Method to fetch reminders for a user
-    func fetchReminders(for userId: String) async throws -> [MyReminder] {
-        var reminders: [MyReminder] = []
-        
-        let snapshot = try await db.collection("users").document(userId).collection("reminders").getDocuments()
-        
-        for document in snapshot.documents {
-            let data = document.data()
-            let reminder = MyReminder(
-                identifier: data["reminderID"] as? String ?? "",
-                title: data["title"] as? String ?? "",
-                body: data["body"] as? String ?? "",
-                date: ((data["date"] as? Timestamp)?.dateValue())!,
-                tag: data["tag"] as? String ?? "",
-                location: data["location"] as? String ?? "",
-                flagged: data["flagged"] as? Bool ?? false,
-                completed: data["completed"] as? Bool ?? false
-            )
-            reminders.append(reminder)
-            print(reminder)
-        }
-        
-        return reminders
-    }
+//    // Method to fetch reminders for a user
+//    func fetchReminders(for userId: String) async throws -> [MyReminder] {
+//        var reminders: [MyReminder] = []
+//        
+//        let snapshot = try await db.collection("users").document(userId).collection("reminders").getDocuments()
+//        
+//        for document in snapshot.documents {
+//            let data = document.data()
+//            let reminder = MyReminder(
+//                identifier: data["reminderID"] as? String ?? "",
+//                title: data["title"] as? String ?? "",
+//                body: data["body"] as? String ?? "",
+//                date: ((data["date"] as? Timestamp)?.dateValue())!,
+//                tag: data["tag"] as? String ?? "",
+//                location: data["location"] as? String ?? "",
+//                flagged: data["flagged"] as? Bool ?? false,
+//                completed: data["completed"] as? Bool ?? false
+//            )
+//            reminders.append(reminder)
+//            print(reminder)
+//        }
+//        
+//        return reminders
+//    }
     
 }

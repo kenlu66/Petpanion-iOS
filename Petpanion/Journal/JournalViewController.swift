@@ -43,6 +43,10 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         collectionView.dataSource = self
         
         fetchJournalEntries()
+        
+        // Add long-press gesture recognizer
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+        collectionView.addGestureRecognizer(longPressGesture)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -168,5 +172,57 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         collectionView.reloadData()
     }
     
-
+    //Long-Press Gesture Handler
+    @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+        guard gesture.state == .began else { return }
+        
+        let point = gesture.location(in: collectionView)
+        
+        // Get the index path of the cell at the pressed location
+        if let indexPath = collectionView.indexPathForItem(at: point) {
+            showDeleteConfirmation(for: indexPath)
+        }
+    }
+    
+    // Delete Confirmation Dialog
+    func showDeleteConfirmation(for indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Delete Post", message: "Are you sure you want to delete this post?", preferredStyle: .alert)
+        
+        // Confirm delete action
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
+            self?.deletePost(at: indexPath)
+        }))
+        
+        // Cancel action
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alert, animated: true)
+    }
+    
+    // Delete Post Logic
+    func deletePost(at indexPath: IndexPath) {
+        let postToDelete = postList[indexPath.row]
+        
+        // Ensure the user is authenticated
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("User not authenticated.")
+            return
+        }
+        
+        // Reference to the specific post document in Firestore
+        let postRef = db.collection("users").document(userId).collection("posts").document(postToDelete.postID)
+        
+        // Delete the post from Firestore
+        postRef.delete { [weak self] error in
+            if let error = error {
+                print("Error deleting post: \(error.localizedDescription)")
+                return
+            }
+            
+            // Remove the post locally after successful deletion
+            self?.postList.remove(at: indexPath.row)
+            self?.collectionView.deleteItems(at: [indexPath])
+            print("Post deleted successfully.")
+        }
+    }
 }
