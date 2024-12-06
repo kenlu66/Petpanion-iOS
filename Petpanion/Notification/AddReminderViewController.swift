@@ -40,6 +40,10 @@ class AddReminderViewController: UIViewController, UITextFieldDelegate {
             tagField.text = reminder.tag
             locationField.text = reminder.location
         }
+        
+        if let locationText = locationField.text, !locationText.isEmpty {
+                    performSearch(for: locationText)
+                }
     }
     
     // Called when the user clicks on the view outside of the UITextField
