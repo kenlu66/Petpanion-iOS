@@ -19,6 +19,16 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         super.viewDidLoad()
         table.delegate = self
         table.dataSource = self
+        
+        //
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: [.alert, .badge, .sound]) { (granted, error) in
+                if granted {
+                    print("All set!")
+                } else if let error = error {
+                    print(error.localizedDescription)
+                }
+        }
     }
 
 
@@ -229,15 +239,6 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
                 let new = MyReminder(identifier: "id_\(title)", title: title, body: body, date: date, tag: tag, location: location)
                 self.models.append(new)
                 self.table.reloadData()
-                
-                UNUserNotificationCenter.current().requestAuthorization(
-                    options: [.alert, .badge, .sound]) { (granted, error) in
-                        if granted {
-                            print("All set!")
-                        } else if let error = error {
-                            print(error.localizedDescription)
-                        }
-                }
                 
                 let content = UNMutableNotificationContent()
                 content.title = title
