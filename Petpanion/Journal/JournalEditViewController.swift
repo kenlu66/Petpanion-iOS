@@ -91,19 +91,8 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
             imageData: path
         )
         
-//        storageManager.retrieveImage(filePath: petList[row].imageData) { image in
-//            if image != nil {
-//                cell.petImage.image = image
-//                self.imageList.append(image!)
-//            } else {
-//                cell.petImage.image = UIImage(named: "Petpanion_iconV1")
-//                self.imageList.append(UIImage(named: "Petpanion_iconV1")!)
-//            }
-//        }
-        
         // Ensure the user is authenticated
         guard let userId = Auth.auth().currentUser?.uid else {
-//            submissionStatus.text = "User not authenticated."
             print("user not authenticated")
             return
         }

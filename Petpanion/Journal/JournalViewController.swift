@@ -17,6 +17,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     // variables
     let db = Firestore.firestore()
+    let storageManager = StorageManager()
     var postList: [Post] = []
     let collectionViewCellIdentifier = "PostCollectionViewCell"
     let collectionViewIdentifier = "JournalCollectionView"
@@ -84,13 +85,6 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
     
-    func convertDataToImage(imageData: String) -> UIImage? {
-        if let data = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters) {
-            return UIImage(data: data)
-        }
-        return nil
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return postList.count
     }
@@ -100,11 +94,14 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         let row = indexPath.row
         cell.postTitleLabel.text = postList[row].title
         
-        if let image = convertDataToImage(imageData: postList[row].imageData) {
-            cell.postImage.image = image
-        } else {
-            cell.postImage.image = UIImage(named: "Petpanion_iconV1")
+        storageManager.retrieveImage(filePath: postList[row].imageData) { image in
+            if image != nil {
+                cell.postImage.image = image
+            } else {
+                cell.postImage.image = UIImage(named: "Petpanion_iconV1")
+            }
         }
+        
         cell.postImage.layer.cornerRadius = 30
         return cell
     }
