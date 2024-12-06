@@ -19,13 +19,19 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         super.viewDidLoad()
         table.delegate = self
         table.dataSource = self
+        
+        // Asks for permission when page is loaded
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: [.alert, .badge, .sound]) { (granted, error) in
+                if granted {
+                    print("All set!")
+                } else if let error = error {
+                    print(error.localizedDescription)
+                }
+        }
     }
 
-
-    
-    
-    // MARK: - Toggle Completion Check Mark
-    
+    // Toggle Completion Check Mark
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Toggle the completion status
         models[indexPath.row].completed.toggle()
@@ -37,10 +43,6 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-
-    
-    
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -143,12 +145,8 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         
         return cell
     }
-    
-    
-    
-    
-    // MARK: - Swipe Actions for Delete and Flag
 
+    // Swipe Actions for Delete and Flag
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // Delete Action
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
@@ -187,8 +185,7 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         return UISwipeActionsConfiguration(actions: [flagAction])
     }
 
-    // MARK: - Show Edit Screen
-        
+    //Show Edit Screen
     func showEditScreen(for index: Int) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "add") as? AddReminderViewController else {
             return
@@ -209,10 +206,8 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    // MARK: - + New Reminder Btn tapped
-    
+    // - + New Reminder Btn tapped
     @IBAction func didTapAdd() {
-        
         
         // Show add view controller
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "add") as? AddReminderViewController else {
@@ -229,15 +224,6 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
                 let new = MyReminder(identifier: "id_\(title)", title: title, body: body, date: date, tag: tag, location: location)
                 self.models.append(new)
                 self.table.reloadData()
-                
-                UNUserNotificationCenter.current().requestAuthorization(
-                    options: [.alert, .badge, .sound]) { (granted, error) in
-                        if granted {
-                            print("All set!")
-                        } else if let error = error {
-                            print(error.localizedDescription)
-                        }
-                }
                 
                 let content = UNMutableNotificationContent()
                 content.title = title
@@ -262,51 +248,11 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
                         print("something went wrong")
                     }
                 })
-                
+    
             }
         }
         
         navigationController?.pushViewController(vc, animated: true)
-        
     }
-    
-//    @IBAction func didTapTest(_ sender: Any) {
-//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { success, error in
-//            if success {
-//                // schedule test
-//                self.scheduleTest()
-//            } else if let error = error {
-//                print("Error occurred")
-//            }
-//        })
-//    }
-//    
-//    func scheduleTest() {
-//        let content = UNMutableNotificationContent()
-//        content.title = "Hello Petpanion"
-//        content.sound = .default
-//        content.body = "My first notification in Petpanion!"
-//        
-//        let targetDate = Date().addingTimeInterval(10)
-//        let trigger = UNCalendarNotificationTrigger(
-//            dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: targetDate),
-//            repeats: false
-//        )
-//        
-//        let request = UNNotificationRequest(
-//            identifier: "some_long_id",
-//            content: content,
-//            trigger: trigger
-//        )
-//        
-//        UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
-//            if error != nil {
-//                print("something went wrong")
-//            }
-//        })
-//    }
-
-    
-   
 }
 
