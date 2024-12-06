@@ -11,6 +11,7 @@ import FirebaseAuth
 
 protocol updatePostList {
     func updatePosts(post: Post)
+    func editPost(posts: [Post])
 }
 
 class JournalViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, updatePostList {
@@ -23,10 +24,13 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
     let collectionViewIdentifier = "JournalCollectionView"
     let postSegue = "PostSegueIdentifier"
     
-    var status = ""
+    var status: String!
     var titleField = ""
     var bodyParagraph = ""
     var image = UIImage(named: "Petpanion_iconV1")
+    var docID = ""
+    var imagePath = ""
+    var index = 0
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -39,6 +43,11 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         collectionView.dataSource = self
         
         fetchJournalEntries()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        status = "NewPost"
     }
     
     func configureCollectionViewLayout() {
@@ -79,9 +88,10 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
                 let postData = document.data()
                 if let postTitle = postData["title"] as? String,
                    let postBody = postData["body"] as? String,
-                   let imageData = postData["imageData"] as? String {
+                   let imageData = postData["imageData"] as? String,
+                   let postID = postData["document ID"] as? String {
                     
-                    let post = Post(title:postTitle, body: postBody, imageData: imageData)
+                    let post = Post(title:postTitle, body: postBody, imageData: imageData, postID: postID)
                     self.postList.append(post)
                 }
             }
@@ -102,6 +112,9 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         titleField = postList[row].title
         bodyParagraph = postList[row].body
+        docID = postList[row].postID
+        imagePath = postList[row].imageData
+        index = row
         
         storageManager.retrieveImage(filePath: postList[row].imageData) { image in
             if image != nil {
@@ -111,9 +124,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
             }
             self.image = image
         }
-        
-        
-        
+
         cell.postImage.layer.cornerRadius = 30
         return cell
     }
@@ -134,7 +145,10 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
             postVC.status = status
             postVC.titleField = titleField
             postVC.image = image
-            postVC.bodyField = bodyParagraph
+            postVC.postID = docID
+            postVC.imagePath = imagePath
+            postVC.posts = postList
+            postVC.postIndex = index
             postVC.delegate = self // pointer back to main VC
         }
     }
@@ -146,6 +160,11 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         // Insert the new item at the end of the collection view
         let indexPath = IndexPath(item: newIndex, section: 0)
         collectionView.insertItems(at: [indexPath])
+        collectionView.reloadData()
+    }
+    
+    func editPost(posts: [Post]) {
+        self.postList = posts
         collectionView.reloadData()
     }
     

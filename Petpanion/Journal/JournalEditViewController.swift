@@ -23,25 +23,25 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
     var status: String!
     var titleField: String!
     var bodyField: String!
+    var postID: String!
+    var imagePath: String!
     var image: UIImage!
+    var posts: [Post]!
+    var postIndex: Int!
     
     // for image
     var imagePickerController = UIImagePickerController()
-
-//    @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var bodyTextView: UITextView!
     
+    var imageChanged = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(status)
         titleTextField.delegate = self
         bodyTextView.isEditable = true
-
-//        collectionView.dataSource = self
-//        collectionView.delegate = self
         
         if status == "update" {
             fillInFields()
@@ -82,6 +82,9 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
 //    }
     
     @IBAction func didTapSave(_ sender: Any) {
+        // Create a unique ID for each post document
+        let postID = UUID().uuidString
+        
         guard let postTitle = titleTextField.text, !postTitle.isEmpty,
               let postBody = bodyTextView.text, !postBody.isEmpty else {
                    // Handle empty fields or invalid input here
@@ -89,35 +92,60 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
                    return
                }
         
-        // MARK: - Example How I stored pet photos: edit version to tailor journal
         var path = ""
-        
-        if let image = imageView.image {
-            let imageID = UUID().uuidString
-            path = "JournalImages/\(imageID).jpeg"
-            storageManager.storeImage(filePath: path, image: image)
-        }
-        let newPost = Post(
-            title: postTitle,
-            body: postBody,
-            imageData: path
-        )
         
         // Ensure the user is authenticated
         guard let userId = Auth.auth().currentUser?.uid else {
             print("user not authenticated")
             return
         }
+        
+        if (status == "update") {
+            if (imageChanged == 1) {
+                storageManager.deleteImage(filePath: imagePath)
+                if let image = imageView.image {
+                    let imageID = UUID().uuidString
+                    path = "JournalImages/\(imageID).jpeg"
+                    storageManager.storeImage(filePath: path, image: image)
+                }
+            } else {
+                path = imagePath
+            }
+        } else if (status == "NewPost") {
+            if let image = imageView.image {
+                let imageID = UUID().uuidString
+                path = "JournalImages/\(imageID).jpeg"
+                storageManager.storeImage(filePath: path, image: image)
+            }
+        }
+        
+        let newPost = Post(
+            title: postTitle,
+            body: postBody,
+            imageData: path,
+            postID: postID
+        )
+        
 
         // Add the post to Firestore
         Task {
             do {
-                try await userManager.addPost(for: userId, post: newPost)
-                print("New post submitted successfully!")
                 
-                // Notify delegate if needed
-                if let otherVC = delegate as? updatePostList {
-                    otherVC.updatePosts(post: newPost)
+                if status == "NewPost" {
+                    try await userManager.addPost(for: userId, post: newPost, docID: postID)
+                    print("New post submitted successfully!")
+                    
+                    // Notify delegate if needed
+                    if let otherVC = delegate as? updatePostList {
+                        otherVC.updatePosts(post: newPost)
+                    }
+                } else if status == "update" {
+                    try await userManager.updatePost(for: userId, post: newPost)
+                    
+                    if let otherVC = delegate as? updatePostList {
+                        self.posts[self.postIndex] = newPost
+                        otherVC.editPost(posts: posts)
+                    }
                 }
             } catch {
                 print("Error adding post: \(error.localizedDescription)")
@@ -156,6 +184,7 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
             imageView?.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
             
             picker.dismiss(animated: true, completion: nil)
+            imageChanged = 1
         }
     }
     
