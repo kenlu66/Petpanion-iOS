@@ -41,6 +41,7 @@ class AddReminderViewController: UIViewController, UITextFieldDelegate {
             locationField.text = reminder.location
         }
         
+        // pre generate map if locationField already exists
         if let locationText = locationField.text, !locationText.isEmpty {
                     performSearch(for: locationText)
                 }
@@ -107,8 +108,7 @@ class AddReminderViewController: UIViewController, UITextFieldDelegate {
         present(alert, animated: true)
     }
     
-    // MARK: - UITextFieldDelegate Methods
-        
+    // UITextFieldDelegate Methods
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
