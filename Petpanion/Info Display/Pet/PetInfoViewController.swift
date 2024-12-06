@@ -18,7 +18,7 @@ class PetInfoViewController: UIViewController, updatePet {
     @IBOutlet weak var petName: UILabel!
     @IBOutlet weak var breedType: UILabel!
     @IBOutlet weak var aboutPet: UILabel!
-    @IBOutlet weak var descriptionField: UILabel!
+    @IBOutlet weak var descriptionField: UITextView!
     @IBOutlet weak var weight: UILabel!
     @IBOutlet weak var age: UILabel!
     
@@ -37,15 +37,15 @@ class PetInfoViewController: UIViewController, updatePet {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        designBox1.layer.cornerRadius = 10
+        designBox1.layer.cornerRadius = 20
         designBox1.layer.shadowOpacity = 0.25
-        designBox1.layer.shadowOffset = CGSize(width: 2, height: 2)
+        designBox1.layer.shadowOffset = CGSize(width: 4, height: 4)
         
-        designBoxAge.layer.cornerRadius = 10
+        designBoxAge.layer.cornerRadius = 20
         designBoxAge.layer.shadowOpacity = 0.25
         designBoxAge.layer.shadowOffset = CGSize(width: 2, height: 2)
         
-        designerBoxWeight.layer.cornerRadius = 10
+        designerBoxWeight.layer.cornerRadius = 20
         designerBoxWeight.layer.shadowOpacity = 0.25
         designerBoxWeight.layer.shadowOffset = CGSize(width: 2, height: 2)
         
