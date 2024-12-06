@@ -160,28 +160,30 @@ final class UserManager {
     
     // Method to add a reminder for a user
     func addReminder(for userId: String, reminder: MyReminder) async throws {
-        let reminderID = UUID().uuidString
+
+        let timestamp = Timestamp(date: reminder.date)
         let reminderData: [String: Any] = [
             "title": reminder.title,
             "body": reminder.body,
-            "date": reminder.date ?? Date(), // Store the date or a default
+            "date": timestamp,
             "tag": reminder.tag,
             "location": reminder.location,
             "flagged": reminder.flagged,
             "completed": reminder.completed,
-            "reminderID": reminderID
+            "reminderID": reminder.identifier
         ]
         
         do {
-            let _ = try await db.collection("users").document(userId).collection("reminders").document(reminderID).setData(reminderData)
+            let _ = try await db.collection("users").document(userId).collection("reminders").document(reminder.identifier).setData(reminderData)
         } catch {
+            print("error")
             throw error
         }
     }
     
     // Method to fetch reminders for a user
     func fetchReminders(for userId: String) async throws -> [MyReminder] {
-        var reminders = [MyReminder]()
+        var reminders: [MyReminder] = []
         
         let snapshot = try await db.collection("users").document(userId).collection("reminders").getDocuments()
         
@@ -198,6 +200,7 @@ final class UserManager {
                 completed: data["completed"] as? Bool ?? false
             )
             reminders.append(reminder)
+            print(reminder)
         }
         
         return reminders

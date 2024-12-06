@@ -8,12 +8,15 @@
 import UIKit
 import FirebaseAuth
 import UserNotifications
+import FirebaseFirestore
 
 class NotificationHistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var table: UITableView!
     
-    var models = [MyReminder]()
+    var models: [MyReminder] = []
+    let userManager = UserManager()
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,44 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
                     print(error.localizedDescription)
                 }
         }
+        
+        fetchReminders()
+        
+    }
+    
+    func fetchReminders() {
+        
+        // Ensure the user is authenticated
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("User not authenticated.")
+            return
+        }
+        let reminderRef = db.collection("users").document(userId).collection("reminders")
+        
+        reminderRef.getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error retrieving pets: \(error.localizedDescription)")
+                return
+            }
+            for document in snapshot?.documents ?? [] {
+                let data = document.data()
+                let reminder = MyReminder(
+                    identifier: data["reminderID"] as? String ?? "",
+                    title: data["title"] as? String ?? "",
+                    body: data["body"] as? String ?? "",
+                    date: ((data["date"] as? Timestamp)?.dateValue())!,
+                    tag: data["tag"] as? String ?? "",
+                    location: data["location"] as? String ?? "",
+                    flagged: data["flagged"] as? Bool ?? false,
+                    completed: data["completed"] as? Bool ?? false
+                )
+                self.models.append(reminder)
+                print(reminder)
+            }
+            
+            self.table.reloadData()
+        }
+        
     }
 
     // Toggle Completion Check Mark
@@ -221,7 +262,7 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
             // Handle the reminder creation
             DispatchQueue.main.async {
                 self.navigationController?.popToRootViewController(animated: true)
-                let new = MyReminder(identifier: "id_\(title)", title: title, body: body, date: date, tag: tag, location: location)
+                let new = MyReminder(identifier: "id_\(title)", title: title, body: body, date: date, tag: tag, location: location, flagged: false, completed: false)
                 self.models.append(new)
                 self.table.reloadData()
                 

@@ -16,4 +16,15 @@ struct MyReminder {
     var location: String
     var flagged: Bool = false
     var completed: Bool = false // New property to track completion
+    
+    init(identifier: String, title: String, body: String, date: Date, tag: String, location: String, flagged: Bool, completed: Bool) {
+        self.identifier = identifier
+        self.title = title
+        self.body = body
+        self.date = date
+        self.tag = tag
+        self.location = location
+        self.flagged = flagged
+        self.completed = completed
+    }
 }
