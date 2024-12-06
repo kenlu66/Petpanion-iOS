@@ -37,6 +37,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         collectionView.dataSource = self
         
         fetchPets()
+        
+        // Add long-press gesture recognizer
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+        collectionView.addGestureRecognizer(longPressGesture)
     }
     
     func fetchPets() {
@@ -167,4 +171,58 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         collectionView.reloadData()
     }
 
+    // Long-Press Gesture Handler
+    @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+        guard gesture.state == .began else { return }
+        
+        let point = gesture.location(in: collectionView)
+        
+        // Get the index path of the cell at the pressed location
+        if let indexPath = collectionView.indexPathForItem(at: point) {
+            showDeleteConfirmation(for: indexPath)
+        }
+    }
+    
+    // Delete Confirmation Dialog
+    func showDeleteConfirmation(for indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Delete Pet", message: "Are you sure you want to delete this pet?", preferredStyle: .alert)
+        
+        // Confirm delete action
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
+            self?.deletePet(at: indexPath)
+        }))
+        
+        // Cancel action
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alert, animated: true)
+    }
+    
+    // Delete Pet Logic
+    func deletePet(at indexPath: IndexPath) {
+        let petToDelete = petList[indexPath.row]
+        
+        // Ensure the user is authenticated
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("User not authenticated.")
+            return
+        }
+        
+        // Reference to the specific pet document in Firestore
+        let petRef = db.collection("users").document(userId).collection("pets").document(petToDelete.petID)
+        
+        // Delete the pet from Firestore
+        petRef.delete { [weak self] error in
+            if let error = error {
+                print("Error deleting pet: \(error.localizedDescription)")
+                return
+            }
+            
+            // Remove the pet locally after successful deletion
+            self?.petList.remove(at: indexPath.row)
+            self?.imageList.remove(at: indexPath.row)
+            self?.collectionView.deleteItems(at: [indexPath])
+            print("Pet deleted successfully.")
+        }
+    }
 }
