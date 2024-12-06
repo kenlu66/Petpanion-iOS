@@ -214,7 +214,6 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
         var petID = UUID().uuidString
         
         if (status == "update") {
-            print("in update")
             petID = selectedPet.petID
             print(petID)
             if (imageChanged == 1) {
@@ -281,8 +280,6 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
             do {
                 
                 if status == "update" {
-                    print(newPet.petID)
-                    print("a spacer i status")
                     // Update the existing pet if editing
                     try await userManager.updatePet(for: userId, pet: newPet)
                     

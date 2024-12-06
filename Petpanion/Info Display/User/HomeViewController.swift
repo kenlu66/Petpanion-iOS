@@ -160,9 +160,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         collectionView.insertItems(at: [indexPath])
     }
     
-    func updatePet(pet: Pet, petInd: Int,pList: [Pet], iList: [UIImage]) {
+    func updatePet(pet: Pet, petInd: Int, pList: [Pet], iList: [UIImage]) {
         // Find the pet in the list and update its information
-        print("im in main update pet")
         self.petList = pList
         self.imageList = iList
         collectionView.reloadData()
