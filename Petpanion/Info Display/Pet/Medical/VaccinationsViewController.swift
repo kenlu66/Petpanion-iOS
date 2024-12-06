@@ -39,7 +39,13 @@ class VaccinationsViewController: UIViewController, UITableViewDelegate, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "VaccineCell", for: indexPath)
         let row = indexPath.row // Index
         // Put string name into cell
-        cell.textLabel?.text = vaccineList[row].description
+        let record = """
+        \(vaccineList[row].date)
+            \(vaccineList[row].description)
+            \(vaccineList[row].location)
+        """
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.text = record
         
         return cell
     }

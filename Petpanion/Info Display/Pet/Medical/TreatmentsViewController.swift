@@ -38,7 +38,13 @@ class TreatmentsViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "TreatmentCell", for: indexPath)
         let row = indexPath.row // Index
         // Put string name into cell
-        cell.textLabel?.text = treatmentList[row].description
+        let record = """
+        \(treatmentList[row].date)
+            \(treatmentList[row].description)
+            \(treatmentList[row].location)
+        """
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.text = record
         
         return cell
     }

@@ -39,8 +39,13 @@ class AllergiesViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllergyCell", for: indexPath)
         let row = indexPath.row // Index
-        // Put string name into cell
-        cell.textLabel?.text = allergyList[row].description
+        let record = """
+        \(allergyList[row].date)
+            \(allergyList[row].description)
+            \(allergyList[row].location)
+        """
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.text = record
         
         return cell
     }
