@@ -400,7 +400,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="1000"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How is Bella Doing?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="msV-Ht-RoA">
-                                                <rect key="frame" x="20" y="15" width="258.66666666666669" height="26.999999999999993"/>
+                                                <rect key="frame" x="20" y="15" width="258.66666666666669" height="27"/>
                                                 <fontDescription key="fontDescription" name="LuckiestGuy-Regular" family="Luckiest Guy" pointSize="27"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -412,7 +412,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="475" height="50"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="nAl-dU-nkV">
-                                                                <rect key="frame" x="20" y="7" width="437.66666666666669" height="36.333333333333336"/>
+                                                                <rect key="frame" x="20" y="7" width="322" height="36.333333333333336"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9d-PB-gF5">
                                                                         <rect key="frame" x="0.0" y="0.0" width="90.666666666666671" height="36.333333333333336"/>
@@ -438,20 +438,8 @@
                                                                             <action selector="waterPressed:" destination="chb-Kv-u55" eventType="touchUpInside" id="lyT-Hx-b25"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fMB-aM-5o7">
-                                                                        <rect key="frame" x="231.33333333333329" y="0.0" width="90.666666666666657" height="36.333333333333336"/>
-                                                                        <state key="normal" title="Button"/>
-                                                                        <buttonConfiguration key="configuration" style="filled" title="Mood" cornerStyle="capsule">
-                                                                            <fontDescription key="titleFontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="17"/>
-                                                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                            <color key="baseBackgroundColor" name="PetpanionBase"/>
-                                                                        </buttonConfiguration>
-                                                                        <connections>
-                                                                            <action selector="moodPressed:" destination="chb-Kv-u55" eventType="touchUpInside" id="k3Z-2T-pbE"/>
-                                                                        </connections>
-                                                                    </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Cb-YQ-b5F">
-                                                                        <rect key="frame" x="347" y="0.0" width="90.666666666666686" height="36.333333333333336"/>
+                                                                        <rect key="frame" x="231.33333333333329" y="0.0" width="90.666666666666657" height="36.333333333333336"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="filled" title="Playtime" cornerStyle="capsule">
                                                                             <fontDescription key="titleFontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="17"/>
@@ -508,49 +496,30 @@
                                                 </prototypes>
                                             </tableView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="gaH-Pu-oGk">
-                                                <rect key="frame" x="0.0" y="103" width="1614" height="150"/>
+                                                <rect key="frame" x="0.0" y="103" width="1210" height="150"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JVU-cr-aqi" userLabel="Food View">
                                                         <rect key="frame" x="0.0" y="0.0" width="402" height="150"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Food Icon" translatesAutoresizingMaskIntoConstraints="NO" id="yEs-9t-Ezf">
-                                                                <rect key="frame" x="67" y="8" width="50" height="50"/>
+                                                                <rect key="frame" x="49" y="32" width="83" height="86"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Snack Icon" translatesAutoresizingMaskIntoConstraints="NO" id="eQ8-xB-fS9">
-                                                                <rect key="frame" x="67" y="83" width="50" height="50"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TOZ-k6-kLZ">
-                                                                <rect key="frame" x="125" y="8" width="257" height="50"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" title="Food Consumption">
-                                                                    <fontDescription key="titleFontDescription" name="Poppins-Bold" family="Poppins" pointSize="16"/>
-                                                                </buttonConfiguration>
-                                                            </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 g" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjb-YI-74W">
-                                                                <rect key="frame" x="140" y="37" width="24" height="21"/>
+                                                                <rect key="frame" x="140" y="78" width="170" height="21"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vV-51-4l7">
-                                                                <rect key="frame" x="125" y="83" width="257" height="50"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TOZ-k6-kLZ">
+                                                                <rect key="frame" x="122" y="49" width="257" height="50"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" title="Snack Consumption">
+                                                                <buttonConfiguration key="configuration" style="plain" title="Food Amount Needed">
                                                                     <fontDescription key="titleFontDescription" name="Poppins-Bold" family="Poppins" pointSize="16"/>
                                                                 </buttonConfiguration>
                                                             </button>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 g" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYr-qr-isG">
-                                                                <rect key="frame" x="140" y="112" width="24" height="21"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="150" id="API-O6-w0k"/>
@@ -568,12 +537,12 @@
                                                                 <rect key="frame" x="130" y="38" width="239" height="75"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" title="Water Consumption">
+                                                                <buttonConfiguration key="configuration" style="plain" title="Water Amount Needed">
                                                                     <fontDescription key="titleFontDescription" name="Poppins-Bold" family="Poppins" pointSize="17"/>
                                                                 </buttonConfiguration>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 mL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z64-5O-k3j">
-                                                                <rect key="frame" x="144" y="79" width="39" height="21"/>
+                                                                <rect key="frame" x="144" y="79" width="170" height="21"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -585,59 +554,8 @@
                                                             <constraint firstAttribute="width" constant="402" id="TFJ-zj-wVJ"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jPk-Er-daJ" userLabel="Mood View">
-                                                        <rect key="frame" x="808" y="0.0" width="402" height="150"/>
-                                                        <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Mood Icon" translatesAutoresizingMaskIntoConstraints="NO" id="Eu7-Qg-9Zm">
-                                                                <rect key="frame" x="50" y="8" width="50" height="50"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Energy Icon" translatesAutoresizingMaskIntoConstraints="NO" id="23Y-wO-FuF">
-                                                                <rect key="frame" x="50" y="79" width="50" height="50"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IuY-lA-OGT">
-                                                                <rect key="frame" x="108" y="8" width="257" height="50"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" title="Current Mood">
-                                                                    <fontDescription key="titleFontDescription" name="Poppins-Bold" family="Poppins" pointSize="16"/>
-                                                                    <color key="baseForegroundColor" systemColor="linkColor"/>
-                                                                </buttonConfiguration>
-                                                            </button>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Happy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYy-2z-bBw">
-                                                                <rect key="frame" x="123" y="37" width="50" height="21"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tUn-ud-Jws">
-                                                                <rect key="frame" x="108" y="79" width="257" height="50"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" title="Energy Level">
-                                                                    <fontDescription key="titleFontDescription" name="Poppins-Bold" family="Poppins" pointSize="16"/>
-                                                                    <color key="baseForegroundColor" systemColor="linkColor"/>
-                                                                </buttonConfiguration>
-                                                            </button>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="High" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Gh-5m-LCC">
-                                                                <rect key="frame" x="123" y="108" width="34" height="21"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <color key="tintColor" systemColor="systemOrangeColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="150" id="5pR-R5-E0h"/>
-                                                            <constraint firstAttribute="width" constant="402" id="aXm-6R-PHn"/>
-                                                        </constraints>
-                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ifb-77-ue5" userLabel="Playtime View">
-                                                        <rect key="frame" x="1212" y="0.0" width="402" height="150"/>
+                                                        <rect key="frame" x="808" y="0.0" width="402" height="150"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Playtime Icon" translatesAutoresizingMaskIntoConstraints="NO" id="mZf-vs-XpM">
                                                                 <rect key="frame" x="44" y="38" width="75" height="75"/>
@@ -647,12 +565,12 @@
                                                                 <rect key="frame" x="127" y="38" width="239" height="75"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" title="Playtime">
+                                                                <buttonConfiguration key="configuration" style="plain" title="Playtime Needed">
                                                                     <fontDescription key="titleFontDescription" name="Poppins-Bold" family="Poppins" pointSize="17"/>
                                                                 </buttonConfiguration>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 Minute" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ph-T8-paz">
-                                                                <rect key="frame" x="141" y="79" width="67" height="21"/>
+                                                                <rect key="frame" x="141" y="79" width="170" height="21"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -676,14 +594,16 @@
                                                     <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <segue destination="HqH-1w-zO8" kind="show" identifier="PetStatusToMedical" id="mHu-bq-Ky4"/>
+                                                    <action selector="healthPressed:" destination="chb-Kv-u55" eventType="touchUpInside" id="cYD-t2-pA2"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="my8-vH-dgI">
                                                 <rect key="frame" x="151" y="305" width="79" height="35"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="History"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="History">
+                                                    <color key="baseForegroundColor" red="0.97254902119999997" green="0.97254902119999997" blue="0.97254902119999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </buttonConfiguration>
                                                 <connections>
                                                     <segue destination="VTy-gz-leW" kind="show" identifier="PetStatusToDailyHistory" id="b16-3C-Djt"/>
                                                 </connections>
@@ -738,15 +658,20 @@
                     </view>
                     <navigationItem key="navigationItem" id="6E4-Vn-izD"/>
                     <connections>
+                        <outlet property="PlaytimeNeeded" destination="8Ph-T8-paz" id="Q7S-m2-jDg"/>
+                        <outlet property="foodAmount" destination="Rjb-YI-74W" id="jFh-Mb-CDN"/>
                         <outlet property="foodOption" destination="Y9d-PB-gF5" id="WnU-2f-LVG"/>
-                        <outlet property="moodOption" destination="fMB-aM-5o7" id="3Dc-JI-bzl"/>
                         <outlet property="myHealthButton" destination="TkK-Gd-Qqd" id="RIP-V4-q10"/>
                         <outlet property="myProfileButton" destination="rkY-if-hkC" id="fWc-Fn-h4E"/>
                         <outlet property="optionStackView" destination="gaH-Pu-oGk" id="4dy-Mg-5zR"/>
                         <outlet property="petEventLabel" destination="v4h-HS-qyJ" id="Fo0-4Q-G3T"/>
                         <outlet property="playtimeOption" destination="9Cb-YQ-b5F" id="6SV-Fz-HP5"/>
                         <outlet property="titleLabel" destination="msV-Ht-RoA" id="JOg-ZJ-jlf"/>
+                        <outlet property="waterAmount" destination="z64-5O-k3j" id="Pvn-LX-bhE"/>
                         <outlet property="waterOption" destination="wyi-yQ-8Ut" id="gYl-jL-v9z"/>
+                        <segue destination="yfT-U0-6Gy" kind="show" identifier="MedicalToAllergies" id="KcJ-Wk-MnO"/>
+                        <segue destination="JDj-7r-LTc" kind="show" identifier="MedicalToVaccine" id="HTy-re-buh"/>
+                        <segue destination="drD-vF-P9P" kind="show" identifier="MedicalToTreatment" id="SPX-gI-r1E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mUZ-JI-9y6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -911,7 +836,7 @@
                                 <rect key="frame" x="130" y="464" width="100" height="70"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="weight #" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPE-BH-Ddq">
-                                        <rect key="frame" x="17.333333333333343" y="41" width="65.666666666666671" height="15"/>
+                                        <rect key="frame" x="17" y="41" width="66" height="15"/>
                                         <fontDescription key="fontDescription" name="LuckiestGuy-Regular" family="Luckiest Guy" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -2347,9 +2272,6 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Details"/>
-                                        <connections>
-                                            <segue destination="JDj-7r-LTc" kind="show" identifier="MedicalToVaccine" id="0l4-kh-YE3"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2370,9 +2292,6 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Details"/>
-                                        <connections>
-                                            <segue destination="drD-vF-P9P" kind="show" identifier="MedicalToTreatment" id="MDR-f2-qKh"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2393,9 +2312,6 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Details"/>
-                                        <connections>
-                                            <segue destination="yfT-U0-6Gy" kind="show" identifier="MedicalToAllergies" id="bon-k1-icu"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2879,12 +2795,9 @@
         <segue reference="Wri-Iq-t8x"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Energy Icon" width="99" height="168"/>
         <image name="Food Icon" width="56" height="61"/>
-        <image name="Mood Icon" width="255" height="258"/>
         <image name="Petpanion_iconV1" width="1024" height="1024"/>
         <image name="Playtime Icon" width="56" height="58"/>
-        <image name="Snack Icon" width="39" height="44"/>
         <image name="Water Icon" width="200" height="183"/>
         <image name="arrowshape.turn.up.backward.circle.fill" catalog="system" width="128" height="123"/>
         <image name="arrowshape.turn.up.right.circle.fill" catalog="system" width="128" height="123"/>
@@ -2903,29 +2816,23 @@
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="secondarySystemFillColor">
-            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

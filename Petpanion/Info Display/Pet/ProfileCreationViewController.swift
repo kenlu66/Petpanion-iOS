@@ -133,7 +133,6 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
         picker.delegate = self
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            // You can allow the user to switch between library and camera
             let alertController = UIAlertController(title: "Choose Source", message: nil, preferredStyle: .actionSheet)
             
             alertController.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { _ in
