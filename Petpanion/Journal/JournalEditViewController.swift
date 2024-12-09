@@ -9,10 +9,8 @@ import UIKit
 import PhotosUI
 import FirebaseAuth
 
-//class JournalEditViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, PHPickerViewControllerDelegate, UITextFieldDelegate {
 class JournalEditViewController: UIViewController, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate {
     
-
     // variables
     let cellIdentifier = "journalImageCollectionViewCell"
     let userManager = UserManager()
@@ -64,22 +62,7 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-//    override func viewDidLayoutSubviews() {
-//        super .viewDidLayoutSubviews()
-//        
-////        let layout = UICollectionViewFlowLayout()
-////        let containerWidth = collectionView.bounds.width
-////        let cellSize = (containerWidth - 45) / 10
-//        
-////        layout.scrollDirection = .horizontal
-////        layout.itemSize = CGSize(width: 80, height: 80)
-////        layout.minimumInteritemSpacing = 5
-////        layout.minimumLineSpacing = 10
-////        layout.sectionInset = UIEdgeInsets/*(top: 0, left: 0, bottom: 0, right: 0)*/
-////        collectionView.collectionViewLayout = layout
-//    }
-    
+ 
     @IBAction func didTapSave(_ sender: Any) {
         // Create a unique ID for each post document
         let newID = UUID().uuidString
@@ -103,6 +86,7 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
             return
         }
         
+        // update images if needed
         if (status == "update") {
             if (imageChanged == 1) {
                 storageManager.deleteImage(filePath: imagePath)
@@ -133,31 +117,31 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
         // Add the post to Firestore
         Task {
             do {
-                
                 if status == "NewPost" {
                     try await userManager.addPost(for: userId, post: newPost, docID: postID)
                     print("New post submitted successfully!")
                     
-                    // Notify delegate if needed
+                    // add to post list
                     if let otherVC = delegate as? updatePostList {
                         otherVC.updatePosts(post: newPost)
                     }
+                    // alert user and dismiss vc
                     let alert = UIAlertController(title: "Journal Saved", message: "Navigating back now", preferredStyle: .alert)
                     
-                    // Confirm action
                     alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { _ in self.navigationController?.popViewController(animated: true) }))
                     present(alert, animated: true, completion: nil)
                     
                 } else if status == "update" {
+                    // update post list
                     try await userManager.updatePost(for: userId, post: newPost)
                     
                     if let otherVC = delegate as? updatePostList {
                         self.posts[self.postIndex] = newPost
                         otherVC.editPost(posts: posts)
                     }
+                    // alert user and dismiss vc
                     let alert = UIAlertController(title: "Journal Updated", message: "Navigating back now", preferredStyle: .alert)
                     
-                    // Confirm action and dismiss the vc
                     alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { _ in self.navigationController?.popViewController(animated: true) }))
                     
                     present(alert, animated: true, completion: nil)
@@ -167,9 +151,9 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
                 print("Error adding post: \(error.localizedDescription)")
             }
         }
-        
     }
     
+    // ask permission
     func requestAuthorizationHandler(status: PHAuthorizationStatus) {
         if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
             print("Access for photo library granted")
@@ -178,14 +162,8 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
     
+    // action for add image button
     @IBAction func didTapAddImage(_ sender: Any) {
-//        var configuration = PHPickerConfiguration()
-//        configuration.selectionLimit = 1
-//        configuration.filter = .images
-//        
-//        let picker = PHPickerViewController(configuration: configuration)
-//        picker.delegate = self
-//        present(picker, animated: true, completion: nil)
         checkPermissions()
         let picker = UIImagePickerController()
         picker.allowsEditing = true
@@ -195,6 +173,7 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
         present(picker, animated: true)
     }
     
+    // select image from photo library
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if picker.sourceType == .photoLibrary {
             imageView?.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
@@ -204,6 +183,7 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
     
+    // check user permission to use photo library
     func checkPermissions() {
         if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
             PHPhotoLibrary.requestAuthorization({ (status: PHAuthorizationStatus) -> Void in () })
@@ -215,46 +195,4 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
             PHPhotoLibrary.requestAuthorization(requestAuthorizationHandler)
         }
     }
-    
-//    // PHPickerViewController Delegate
-//    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-//        picker.dismiss(animated: true, completion: nil)
-//        
-//        for result in results {
-//            result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-//                if let image = image as? UIImage{
-//                    DispatchQueue.main.async {
-//                        self?.selectedImages.append(image)
-//                        self?.collectionView.reloadData()
-//                    }
-//                }
-//            }
-//        }
-//    }
-    
-//    // Collection View DataSource and Delegate
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return selectedImages.count
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "journalImageCollectionViewCell", for: indexPath)
-//        
-//        let imageView = UIImageView(image: selectedImages[indexPath.item])
-//        imageView.contentMode = .scaleAspectFill
-//        imageView.clipsToBounds = true
-//        imageView.layer.cornerRadius = 8
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        cell.contentView.addSubview(imageView)
-//        
-//        NSLayoutConstraint.activate([
-//            imageView.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor),
-//            imageView.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor),
-//            imageView.topAnchor.constraint(equalTo: cell.contentView.topAnchor),
-//            imageView.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor)
-//        ])
-//        
-//        return cell
-//    }
 }
