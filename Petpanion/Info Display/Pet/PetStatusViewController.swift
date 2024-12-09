@@ -151,11 +151,6 @@ class PetStatusViewController: UIViewController, updatePetList {
             petInfoVC.delegate = self
         }
         
-        if segue.identifier == medicalSegue,
-           let medicalVC = segue.destination as? MedicalHistoryViewController {
-            medicalVC.currentPet = selectedPet
-        }
-        
         if segue.identifier == allergySegue,
            let allergyVC = segue.destination as? AllergiesViewController {
             allergyVC.allergyList = allergies

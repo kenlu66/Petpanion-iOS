@@ -662,76 +662,6 @@
             </objects>
             <point key="canvasLocation" x="5554.9618320610689" y="-804.22535211267609"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="E4m-x1-sIE">
-            <objects>
-                <viewController id="VTy-gz-leW" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cNv-mG-Qbv">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category Type" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ja-9g-4td">
-                                <rect key="frame" x="20" y="74" width="179.66666666666666" height="25"/>
-                                <fontDescription key="fontDescription" name="LuckiestGuy-Regular" family="Luckiest Guy" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhh-TJ-b4q">
-                                <rect key="frame" x="20" y="119" width="36" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consumption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CT8-W1-Yln">
-                                <rect key="frame" x="136" y="119" width="102" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gY-Vv-tHQ">
-                                <rect key="frame" x="328" y="119" width="35" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="9yT-W5-fVc">
-                                <rect key="frame" x="0.0" y="160" width="393" height="658"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="PWT-OL-Swc">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PWT-OL-Swc" id="KUY-6c-UmP">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Eyg-Lm-MeM"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="CT8-W1-Yln" firstAttribute="leading" secondItem="uhh-TJ-b4q" secondAttribute="trailing" constant="80" id="4X7-mD-Wfk"/>
-                            <constraint firstItem="9yT-W5-fVc" firstAttribute="leading" secondItem="Eyg-Lm-MeM" secondAttribute="leading" id="8hH-QK-bBN"/>
-                            <constraint firstItem="9yT-W5-fVc" firstAttribute="trailing" secondItem="Eyg-Lm-MeM" secondAttribute="trailing" id="H6X-AO-fhw"/>
-                            <constraint firstItem="5ja-9g-4td" firstAttribute="top" secondItem="Eyg-Lm-MeM" secondAttribute="top" constant="15" id="JVH-hN-1m5"/>
-                            <constraint firstItem="uhh-TJ-b4q" firstAttribute="leading" secondItem="Eyg-Lm-MeM" secondAttribute="leading" constant="20" id="PHF-a1-PmC"/>
-                            <constraint firstItem="Eyg-Lm-MeM" firstAttribute="trailing" secondItem="8gY-Vv-tHQ" secondAttribute="trailing" constant="30" id="RbR-E9-W4I"/>
-                            <constraint firstItem="CT8-W1-Yln" firstAttribute="top" secondItem="5ja-9g-4td" secondAttribute="bottom" constant="20" id="Rdp-90-3nu"/>
-                            <constraint firstItem="8gY-Vv-tHQ" firstAttribute="top" secondItem="5ja-9g-4td" secondAttribute="bottom" constant="20" id="XtL-jz-mjg"/>
-                            <constraint firstItem="9yT-W5-fVc" firstAttribute="top" secondItem="CT8-W1-Yln" secondAttribute="bottom" constant="20" id="ZDr-Ok-A8J"/>
-                            <constraint firstItem="uhh-TJ-b4q" firstAttribute="top" secondItem="5ja-9g-4td" secondAttribute="bottom" constant="20" id="aci-fV-jQX"/>
-                            <constraint firstItem="9yT-W5-fVc" firstAttribute="bottom" secondItem="Eyg-Lm-MeM" secondAttribute="bottom" id="eCD-tL-V3M"/>
-                            <constraint firstItem="5ja-9g-4td" firstAttribute="leading" secondItem="Eyg-Lm-MeM" secondAttribute="leading" constant="20" id="iOi-IM-OEi"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="YC7-o3-RCe"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tWT-hY-AgC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6426.7175572519081" y="-804.22535211267609"/>
-        </scene>
         <!--Pet Info View Controller-->
         <scene sceneID="YgV-I9-HCA">
             <objects>
@@ -901,89 +831,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DsD-RP-Y02" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5554.9618320610689" y="-18.30985915492958"/>
-        </scene>
-        <!--Pet Profile Setting View Controller-->
-        <scene sceneID="afr-0c-ptU">
-            <objects>
-                <viewController id="ojd-MK-fvL" customClass="PetProfileSettingViewController" customModule="Petpanion" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="AiT-Fc-jVg">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Share my pet:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTd-Ec-XwE">
-                                <rect key="frame" x="34" y="218" width="106" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aad-YH-2dD">
-                                <rect key="frame" x="34" y="275" width="46" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NK6-Jv-Evq">
-                                <rect key="frame" x="34" y="304" width="325" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9IQ-Ap-fSL">
-                                <rect key="frame" x="136" y="393" width="121" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Share Profile"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KbV-Yr-rnd">
-                                <rect key="frame" x="143" y="466" width="106" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Edit Profile"/>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="oda-ly-7db"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4SM-EV-jLi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="7532" y="-38"/>
-        </scene>
-        <!--User Info View Controller-->
-        <scene sceneID="vWu-id-HZG">
-            <objects>
-                <viewController id="uW9-xD-w2Y" customClass="UserInfoViewController" customModule="Petpanion" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="iWP-MY-eKq">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Petpanion_iconV1" translatesAutoresizingMaskIntoConstraints="NO" id="oqF-H2-RTZ">
-                                <rect key="frame" x="76" y="208" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbF-BK-X5d">
-                                <rect key="frame" x="159" y="430" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <action selector="saveImage:" destination="uW9-xD-w2Y" eventType="touchUpInside" id="Kyr-C7-dgt"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="cwi-6V-Jto"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Bgv-3o-h34"/>
-                    <connections>
-                        <outlet property="image" destination="oqF-H2-RTZ" id="7pH-Rl-KDl"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0o8-aY-1Dx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-521" y="751"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="qDP-TX-M6z">
@@ -2190,84 +2037,6 @@
             </objects>
             <point key="canvasLocation" x="8174.8091603053435" y="750.70422535211276"/>
         </scene>
-        <!--Medical History View Controller-->
-        <scene sceneID="E4u-rh-dsU">
-            <objects>
-                <viewController id="HqH-1w-zO8" customClass="MedicalHistoryViewController" customModule="Petpanion" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kpQ-ef-xZM">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F7F-up-G1z">
-                                <rect key="frame" x="16" y="351" width="361" height="211"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vaccines" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajY-4O-1Ml">
-                                        <rect key="frame" x="8" y="8" width="146" height="26"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zpm-JJ-xfS">
-                                        <rect key="frame" x="278" y="8" width="76" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Details"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kdd-w5-jZS">
-                                <rect key="frame" x="16" y="592" width="361" height="211"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Treatments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4P7-ct-hwP">
-                                        <rect key="frame" x="8" y="8" width="120" height="26"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PIH-Ea-euc">
-                                        <rect key="frame" x="278" y="8" width="76" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Details"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avF-ZQ-Ime">
-                                <rect key="frame" x="16" y="112" width="361" height="207"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Allergies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8B5-AU-D2H">
-                                        <rect key="frame" x="8" y="8" width="88" height="23"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zxr-Ou-1LK">
-                                        <rect key="frame" x="278" y="8" width="76" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Details"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="rkv-Og-xsB"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="OvW-nU-Vb4"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="81Q-m4-OYG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6426.7175572519081" y="-18.30985915492958"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="sG7-PX-v7B">
             <objects>
@@ -2738,7 +2507,6 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Food Icon" width="56" height="61"/>
-        <image name="Petpanion_iconV1" width="1024" height="1024"/>
         <image name="Playtime Icon" width="56" height="58"/>
         <image name="Water Icon" width="200" height="183"/>
         <image name="arrowshape.turn.up.backward.circle.fill" catalog="system" width="128" height="123"/>
