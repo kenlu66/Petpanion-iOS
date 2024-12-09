@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 protocol changePetList {
-    func updatePet(pet: Pet, petInd: Int, pList: [Pet], iList: [UIImage])
+    func updatePet(pet: Pet, petInd: Int, pList: [Pet])
     func addPet(pet: Pet)
 }
 
@@ -20,7 +20,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     let storageManager = StorageManager()
     
     var petList: [Pet] = []
-    var imageList: [UIImage] = []
+    var image = UIImage(named: "Petpanion_iconV1")
     var pList: [Pet]!
     var iList: [UIImage]!
     let textCellIdentifier = "PetCell"
@@ -62,7 +62,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             // Process the retrieved documents
             self.petList = [] // Clear existing pet list
-            self.imageList = []
             for document in snapshot?.documents ?? [] {
                 let petData = document.data()
                 if let petName = petData["petName"] as? String,
@@ -117,10 +116,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         storageManager.retrieveImage(filePath: petList[row].imageData) { image in
             if image != nil {
                 cell.petImage.image = image
-                self.imageList.append(image!)
             } else {
                 cell.petImage.image = UIImage(named: "Petpanion_iconV1")
-                self.imageList.append(UIImage(named: "Petpanion_iconV1")!)
             }
         }
         cell.petImage.layer.cornerRadius = 30
@@ -131,6 +128,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Get the selected pet from your petList
         let selectedPet = petList[indexPath.row]
+        
+        if let selectedCell = collectionView.cellForItem(at: indexPath) as? PetCollectionViewCell {
+                // Access the image from the cell's imageView
+            image = selectedCell.petImage.image
+                
+        } else {
+            // In case the cell is not yet loaded or accessible, you can handle this case here
+            print("Cell not found")
+        }
         
         // Perform the segue to the next view controller (PetStatusViewController)
         performSegue(withIdentifier: petStatusSegue, sender: selectedPet)
@@ -151,7 +157,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
             destination.petIndex = selectedIndexPath.row
             destination.petList = petList
-            destination.imageList = imageList
+            destination.petImage = image
             destination.delegate = self
         }
     }
@@ -165,10 +171,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         collectionView.insertItems(at: [indexPath])
     }
     
-    func updatePet(pet: Pet, petInd: Int, pList: [Pet], iList: [UIImage]) {
+    func updatePet(pet: Pet, petInd: Int, pList: [Pet]) {
         // Find the pet in the list and update its information
         self.petList = pList
-        self.imageList = iList
         collectionView.reloadData()
     }
 
@@ -222,7 +227,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             // Remove the pet locally after successful deletion
             self?.petList.remove(at: indexPath.row)
-            self?.imageList.remove(at: indexPath.row)
             self?.collectionView.deleteItems(at: [indexPath])
             
             print("Pet deleted successfully.")

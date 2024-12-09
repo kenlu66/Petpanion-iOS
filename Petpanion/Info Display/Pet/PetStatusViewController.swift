@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 protocol updatePetList {
-    func updatePet(pet: Pet, petInd: Int, pList: [Pet], iList: [UIImage])
+    func updatePet(pet: Pet, petInd: Int, pList: [Pet])
 }
 
 class PetStatusViewController: UIViewController, updatePetList {
@@ -38,7 +38,6 @@ class PetStatusViewController: UIViewController, updatePetList {
     
     var selectedPet: Pet!
     var petList: [Pet]!
-    var imageList: [UIImage]!
     var petImage: UIImage!
     var petIndex: Int!
     var medicalRecord: MedicalInfo!
@@ -60,7 +59,6 @@ class PetStatusViewController: UIViewController, updatePetList {
     override func viewDidLoad() {
         super.viewDidLoad()
         selectedPet = petList[petIndex]
-        petImage = imageList[petIndex]
 
         titleLabel.text = "How is \(selectedPet.petName) Doing?"
         petEventLabel.text = "\(selectedPet.petName)'s Event"
@@ -149,7 +147,7 @@ class PetStatusViewController: UIViewController, updatePetList {
             petInfoVC.image = petImage
             petInfoVC.petIndex = petIndex
             petInfoVC.petList = petList
-            petInfoVC.imageList = imageList
+            petInfoVC.image = petImage
             petInfoVC.delegate = self
         }
         
@@ -183,14 +181,13 @@ class PetStatusViewController: UIViewController, updatePetList {
         }
     }
     
-    func updatePet(pet: Pet, petInd: Int, pList: [Pet], iList: [UIImage]) {
+    func updatePet(pet: Pet, petInd: Int, pList: [Pet]) {
         // Find the pet in the list and update its information
         print("im in status update pet")
         self.petList = pList
-        self.imageList = iList
         self.selectedPet = pet
         if let mainVC = delegate as? changePetList {
-            mainVC.updatePet(pet: selectedPet, petInd: petIndex, pList: petList, iList: imageList)
+            mainVC.updatePet(pet: selectedPet, petInd: petIndex, pList: petList)
         }
     }
     

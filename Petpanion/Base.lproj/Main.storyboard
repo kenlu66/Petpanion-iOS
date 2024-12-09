@@ -768,7 +768,6 @@
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SWd-Qp-RzA">
                                         <rect key="frame" x="320" y="35" width="30" height="30"/>
-                                        <color key="backgroundColor" red="0.91380667689999995" green="0.91358250379999995" blue="0.92156970500000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Bqm-yH-kNM"/>
                                             <constraint firstAttribute="width" constant="30" id="PvG-FQ-KLR"/>

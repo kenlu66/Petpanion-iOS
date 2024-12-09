@@ -137,6 +137,12 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
                     if let otherVC = delegate as? updatePostList {
                         otherVC.updatePosts(post: newPost)
                     }
+                    let alert = UIAlertController(title: "Journal Saved", message: "You may press back now", preferredStyle: .alert)
+                    
+                    // Confirm action
+                    alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                    present(alert, animated: true, completion: nil)
+                    
                 } else if status == "update" {
                     try await userManager.updatePost(for: userId, post: newPost)
                     
@@ -144,14 +150,19 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
                         self.posts[self.postIndex] = newPost
                         otherVC.editPost(posts: posts)
                     }
+                    
                 }
             } catch {
                 print("Error adding post: \(error.localizedDescription)")
             }
         }
         
-        // dismiss the vc
-//        navigationController?.popViewController(animated: true)
+        let alert = UIAlertController(title: "Journal Updated", message: "Navigating back now", preferredStyle: .alert)
+        
+        // Confirm action and dismiss the vc
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { _ in self.navigationController?.popViewController(animated: true) }))
+        
+        present(alert, animated: true, completion: nil)
         
     }
     

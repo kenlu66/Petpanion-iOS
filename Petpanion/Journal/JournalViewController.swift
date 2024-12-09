@@ -120,7 +120,6 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
             } else {
                 cell.postImage.image = UIImage(named: "Petpanion_iconV1")
             }
-            self.image = image
         }
 
         cell.postImage.layer.cornerRadius = 30
@@ -135,8 +134,18 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         bodyParagraph = postList[row].body
         docID = postList[row].postID
         imagePath = postList[row].imageData
+        
         index = row
         status = "update"
+        
+        // Get the cell for the selected indexPath
+        if let selectedCell = collectionView.cellForItem(at: indexPath) as? PostCollectionViewCell {
+            // Access the image from the cell's imageView
+            image = selectedCell.postImage.image
+        } else {
+            // In case the cell is not yet loaded or accessible, you can handle this case here
+            print("Cell not found")
+        }
         
         // Perform the segue to the edit VC
         performSegue(withIdentifier: postSegue, sender: selectedPost)
@@ -148,6 +157,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
            let postVC = segue.destination as? JournalEditViewController {
             postVC.status = status
             postVC.titleField = titleField
+            postVC.bodyField = postList[index].body
             postVC.image = image
             postVC.postID = docID
             postVC.imagePath = imagePath

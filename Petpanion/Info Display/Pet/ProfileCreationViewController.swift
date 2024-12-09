@@ -38,7 +38,6 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
     var status: String!
     var selectedPet: Pet!
     var petList: [Pet]!
-    var imageList: [UIImage]!
     var image: UIImage!
     var petIndex: Int!
     var imageChanged = 0
@@ -287,8 +286,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
                         print("right before update pet func")
                         print(newPet.petID)
                         self.petList[self.petIndex] = newPet
-                        self.imageList[self.petIndex] = self.image
-                        infoVC.updatePet(pet: newPet, petInd: petIndex, pList: petList, iList: imageList)
+                        infoVC.updatePet(pet: newPet, petInd: petIndex, pList: petList)
                     }
 
                     submissionStatus.text = "Pet profile updated successfully!"

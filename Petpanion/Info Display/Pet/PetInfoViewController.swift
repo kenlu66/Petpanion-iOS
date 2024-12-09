@@ -8,7 +8,7 @@
 import UIKit
 
 protocol updatePet {
-    func updatePet(pet: Pet, petInd: Int, pList: [Pet], iList: [UIImage])
+    func updatePet(pet: Pet, petInd: Int, pList: [Pet])
 }
 
 class PetInfoViewController: UIViewController, updatePet {
@@ -28,7 +28,6 @@ class PetInfoViewController: UIViewController, updatePet {
     
     var selectedPet: Pet!
     var petList: [Pet]!
-    var imageList: [UIImage]!
     var image: UIImage!
     var petIndex: Int!
     var delegate: UIViewController!
@@ -85,23 +84,21 @@ class PetInfoViewController: UIViewController, updatePet {
             petCreationVC.image = image
             petCreationVC.petIndex = petIndex
             petCreationVC.petList = petList
-            petCreationVC.imageList = imageList
+            petCreationVC.image = image
             petCreationVC.delegate = self
             print("going to update pet info")
         }
     }
     // TODO: fix image
-    func updatePet(pet: Pet, petInd: Int, pList: [Pet], iList: [UIImage]) {
+    func updatePet(pet: Pet, petInd: Int, pList: [Pet]) {
         // Find the pet in the list and update its information
         print("im in info update pet")
         self.selectedPet = pet
-        self.image = iList[petInd]
         fillInFields()
         self.petList = pList
-        self.imageList = iList
         
         if let statusVC = delegate as? updatePetList {
-            statusVC.updatePet(pet: selectedPet, petInd: petIndex, pList: petList, iList: imageList)
+            statusVC.updatePet(pet: selectedPet, petInd: petIndex, pList: petList)
         }
     }
 }
