@@ -149,10 +149,11 @@ final class UserManager {
             "body": post.body,
             "imageData": post.imageData
         ]
+        print(post.postID)
         
         do {
             // Update the pet data in the "pets" subcollection
-            let _ = try await db.collection("users").document(userId).collection("posts").document(post.imageData).updateData(data)
+            let _ = try await db.collection("users").document(userId).collection("posts").document(post.postID).updateData(data)
         } catch {
             throw error
         }

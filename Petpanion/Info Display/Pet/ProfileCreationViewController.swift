@@ -214,7 +214,6 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
         
         if (status == "update") {
             petID = selectedPet.petID
-            print(petID)
             if (imageChanged == 1) {
                 storageManager.deleteImage(filePath: selectedPet.imageData)
                 if let image = petImage.image {

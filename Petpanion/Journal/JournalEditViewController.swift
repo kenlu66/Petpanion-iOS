@@ -82,12 +82,16 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
     
     @IBAction func didTapSave(_ sender: Any) {
         // Create a unique ID for each post document
-        let postID = UUID().uuidString
+        let newID = UUID().uuidString
         
         guard let postTitle = titleTextField.text, !postTitle.isEmpty,
               let postBody = bodyTextView.text, !postBody.isEmpty else {
                    // Handle empty fields or invalid input here
-                   print("Please fill in all fields correctly.")
+                    let alert = UIAlertController(title: "Invalid Fields", message: "Please fill in both title and body section", preferredStyle: .alert)
+                    
+                    // Confirm action
+                    alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                    present(alert, animated: true, completion: nil)
                    return
                }
         
@@ -111,6 +115,7 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
                 path = imagePath
             }
         } else if (status == "NewPost") {
+            postID = newID
             if let image = imageView.image {
                 let imageID = UUID().uuidString
                 path = "JournalImages/\(imageID).jpeg"
@@ -137,10 +142,10 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
                     if let otherVC = delegate as? updatePostList {
                         otherVC.updatePosts(post: newPost)
                     }
-                    let alert = UIAlertController(title: "Journal Saved", message: "You may press back now", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Journal Saved", message: "Navigating back now", preferredStyle: .alert)
                     
                     // Confirm action
-                    alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                    alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { _ in self.navigationController?.popViewController(animated: true) }))
                     present(alert, animated: true, completion: nil)
                     
                 } else if status == "update" {
@@ -150,19 +155,18 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
                         self.posts[self.postIndex] = newPost
                         otherVC.editPost(posts: posts)
                     }
+                    let alert = UIAlertController(title: "Journal Updated", message: "Navigating back now", preferredStyle: .alert)
+                    
+                    // Confirm action and dismiss the vc
+                    alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { _ in self.navigationController?.popViewController(animated: true) }))
+                    
+                    present(alert, animated: true, completion: nil)
                     
                 }
             } catch {
                 print("Error adding post: \(error.localizedDescription)")
             }
         }
-        
-        let alert = UIAlertController(title: "Journal Updated", message: "Navigating back now", preferredStyle: .alert)
-        
-        // Confirm action and dismiss the vc
-        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { _ in self.navigationController?.popViewController(animated: true) }))
-        
-        present(alert, animated: true, completion: nil)
         
     }
     
