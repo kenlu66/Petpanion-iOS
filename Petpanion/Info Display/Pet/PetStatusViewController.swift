@@ -80,11 +80,11 @@ class PetStatusViewController: UIViewController, updatePetList {
         myHealthButton.layer.shadowOpacity = 0.25
         myHealthButton.layer.shadowOffset = CGSize(width: 2, height: 2)
         
-        foodAmount.text = "\(selectedPet.amountPerMeal * selectedPet.mealsPerDay) g"
+        foodAmount.text = "\(selectedPet.amountPerMeal * selectedPet.mealsPerDay) grams"
         
-        waterAmount.text = "\(selectedPet.waterNeeded) g"
+        waterAmount.text = "\(selectedPet.waterNeeded) milliliters"
         
-        PlaytimeNeeded.text = "\(selectedPet.playtimeNeeded) g"
+        PlaytimeNeeded.text = "\(selectedPet.playtimeNeeded) minutes"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -233,11 +233,8 @@ class PetStatusViewController: UIViewController, updatePetList {
                         print("error fetching medical document id")
                     }
                 }
-                print("before reading records")
                 if let records = medicalData["Records"] as? [[String: Any]] {
-                    print("got a list of records")
                     for record in records {
-                        print("reading record")
                         if let date = record["date"] as? String,
                            let description = record["description"] as? String,
                            let location = record["location"] as? String {

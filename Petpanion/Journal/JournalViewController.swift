@@ -95,7 +95,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
                    let imageData = postData["imageData"] as? String,
                    let postID = postData["document ID"] as? String {
                     
-                    let post = Post(title:postTitle, body: postBody, imageData: imageData, postID: postID)
+                    let post = Post(title: postTitle, body: postBody, imageData: imageData, postID: postID)
                     self.postList.append(post)
                 }
             }
@@ -114,12 +114,6 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         let row = indexPath.row
         cell.postTitleLabel.text = postList[row].title
         
-        titleField = postList[row].title
-        bodyParagraph = postList[row].body
-        docID = postList[row].postID
-        imagePath = postList[row].imageData
-        index = row
-        
         storageManager.retrieveImage(filePath: postList[row].imageData) { image in
             if image != nil {
                 cell.postImage.image = image
@@ -135,7 +129,13 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Get the selected pet from your petList
-        let selectedPost = postList[indexPath.row]
+        let row = indexPath.row
+        let selectedPost = postList[row]
+        titleField = postList[row].title
+        bodyParagraph = postList[row].body
+        docID = postList[row].postID
+        imagePath = postList[row].imageData
+        index = row
         status = "update"
         
         // Perform the segue to the edit VC
@@ -209,8 +209,10 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
             return
         }
         
-        // Reference to the specific post document in Firestore
+        // Reference to the specific post document in Firestore and Firebase Storage
+        storageManager.deleteImage(filePath: "\(postToDelete.imageData)")
         let postRef = db.collection("users").document(userId).collection("posts").document(postToDelete.postID)
+        
         
         // Delete the post from Firestore
         postRef.delete { [weak self] error in

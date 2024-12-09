@@ -159,6 +159,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
         if picker.sourceType == .photoLibrary || picker.sourceType == .camera {
             petImage.contentMode = .scaleAspectFit
             petImage?.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+            petImage.backgroundColor = .clear
             
             picker.dismiss(animated: true, completion: nil)
             print("image changed")

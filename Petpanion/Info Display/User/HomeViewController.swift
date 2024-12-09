@@ -62,6 +62,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             // Process the retrieved documents
             self.petList = [] // Clear existing pet list
+            self.imageList = []
             for document in snapshot?.documents ?? [] {
                 let petData = document.data()
                 if let petName = petData["petName"] as? String,
@@ -208,7 +209,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             return
         }
         
-        // Reference to the specific pet document in Firestore
+        // Reference to the specific pet document and image in Firestore
+        storageManager.deleteImage(filePath: "\(petToDelete.imageData)")
         let petRef = db.collection("users").document(userId).collection("pets").document(petToDelete.petID)
         
         // Delete the pet from Firestore
@@ -222,6 +224,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             self?.petList.remove(at: indexPath.row)
             self?.imageList.remove(at: indexPath.row)
             self?.collectionView.deleteItems(at: [indexPath])
+            
             print("Pet deleted successfully.")
         }
     }

@@ -14,7 +14,6 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
     
 
     // variables
-//    var selectedImage = [UIImage]()
     let cellIdentifier = "journalImageCollectionViewCell"
     let userManager = UserManager()
     let storageManager = StorageManager()
@@ -125,7 +124,6 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
             imageData: path,
             postID: postID
         )
-        
 
         // Add the post to Firestore
         Task {
@@ -153,7 +151,8 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
         }
         
         // dismiss the vc
-        navigationController?.popViewController(animated: true)
+//        navigationController?.popViewController(animated: true)
+        
     }
     
     func requestAuthorizationHandler(status: PHAuthorizationStatus) {
@@ -182,7 +181,6 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        // TODO: when picker is camera
         if picker.sourceType == .photoLibrary {
             imageView?.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
             
