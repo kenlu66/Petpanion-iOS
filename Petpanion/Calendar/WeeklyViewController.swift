@@ -10,10 +10,8 @@ import UIKit
 var selectedDate = Date()
 
 class WeeklyViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
-    
-//    var scrollView: UIScrollView!
-//    var imageView: UIImageView!
 
+    // variable
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -27,6 +25,7 @@ class WeeklyViewController: UIViewController, UICollectionViewDelegate, UICollec
         setWeekView()
     }
     
+    // set up calendar cell view
     func setCellsView(){
         let width = (collectionView.frame.size.width - 2) / 8
         let height = (collectionView.frame.size.height - 2) / 8
@@ -34,6 +33,7 @@ class WeeklyViewController: UIViewController, UICollectionViewDelegate, UICollec
         flowLayout.itemSize = CGSize(width: width, height: height)
     }
     
+    // set up weekly view
     func setWeekView() {
         totalSquares.removeAll()
         
@@ -89,6 +89,7 @@ class WeeklyViewController: UIViewController, UICollectionViewDelegate, UICollec
         return false
     }
     
+    // events tableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Event().eventsForDate(date: selectedDate).count
     }
@@ -100,6 +101,7 @@ class WeeklyViewController: UIViewController, UICollectionViewDelegate, UICollec
         return cell
     }
     
+    // reload tableView after event creation
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tableView.reloadData()

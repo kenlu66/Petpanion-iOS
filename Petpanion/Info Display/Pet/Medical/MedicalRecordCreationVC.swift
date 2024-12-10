@@ -106,6 +106,7 @@ class MedicalRecordCreationVC: UIViewController, UITextFieldDelegate {
         
         var newRecord: MedicalInfo.Record
         
+        // add record to specific table based on record type
         switch currentType {
         case "Allergy":
             newRecord = MedicalInfo.Record(description: description, date: date, location: location)

@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 
+// add health record protocol
 protocol addRecord {
     func addRecord(newRecord: MedicalInfo.Record)
 }

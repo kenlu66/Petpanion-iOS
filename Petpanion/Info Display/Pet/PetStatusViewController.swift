@@ -58,6 +58,7 @@ class PetStatusViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // initial set up
         tableView.dataSource = self
         tableView.delegate = self
         selectedPet = petList[petIndex]

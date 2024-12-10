@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// UIView extention for cleaner code
 extension UIView {
     var width: CGFloat {
         frame.size.width

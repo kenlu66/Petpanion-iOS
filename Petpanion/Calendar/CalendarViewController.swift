@@ -8,10 +8,8 @@
 import UIKit
 
 class CalendarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    
-//    var scrollView: UIScrollView!
-//    var imageView: UIImageView!
 
+    // variables
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -23,6 +21,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         setMonthView()
     }
     
+    // setup cell
     func setCellsView(){
         let width = (collectionView.frame.size.width - 2) / 8
         let height = (collectionView.frame.size.height - 2) / 8
@@ -30,15 +29,18 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         flowLayout.itemSize = CGSize(width: width, height: height)
     }
     
+    // set up the monthly view
     func setMonthView() {
         totalSquares.removeAll()
         
+        // calculate/fetch information
         let daysInMonth = CalendarHelper().daysInMonth(date: selectedDate)
         let firstDayOfMonth = CalendarHelper().firstOfMonth(date: selectedDate)
         let startingSpaces = CalendarHelper().weekDay(date: firstDayOfMonth)
         
         var count: Int = 1
         
+        // generate the days
         while (count <= 42) {
             if (count <= startingSpaces || count - startingSpaces > daysInMonth) {
                 totalSquares.append("")
@@ -74,6 +76,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
+    // segue to weekly view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showWeeklyView" {
             if let weeklyVC = segue.destination as? WeeklyViewController {
@@ -82,11 +85,13 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
+    // go to the next month
     @IBAction func nextMonth(_ sender: Any) {
         selectedDate = CalendarHelper().plusMonth(date: selectedDate)
         setMonthView()
     }
     
+    // go to the previous month
     @IBAction func previousMonth(_ sender: Any) {
         selectedDate = CalendarHelper().minusMonth(date: selectedDate)
         setMonthView()

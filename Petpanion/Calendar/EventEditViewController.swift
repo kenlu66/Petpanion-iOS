@@ -9,6 +9,7 @@ import UIKit
 
 class EventEditViewController: UIViewController, UITextFieldDelegate {
     
+    // variables
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     
@@ -19,7 +20,6 @@ class EventEditViewController: UIViewController, UITextFieldDelegate {
         datePicker.date = selectedDate
     }
     
-    // MARK: - Keyboard Dismiss
     // Called when 'return' key pressed
     func textFieldShouldReturn(_ textField:UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -31,6 +31,7 @@ class EventEditViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
+    // save event
     @IBAction func saveAction(_ sender: Any) {
         let newEvent = Event()
         newEvent.id = eventsList.count

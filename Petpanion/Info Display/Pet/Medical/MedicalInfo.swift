@@ -1,3 +1,10 @@
+//
+//  MedicalInfo.swift
+//  Petpanion
+//
+//  Created by Ruolin Dong on 10/18/24.
+//
+
 import Foundation
 
 // medical record class to store require info for easier data transfer

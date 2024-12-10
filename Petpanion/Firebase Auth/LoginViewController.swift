@@ -26,6 +26,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailField.delegate = self
         passswordField.delegate = self
         
+        // set up buttons
         loginButton.layer.cornerRadius = 27
         loginButton.layer.masksToBounds = true
         signUpButton.layer.cornerRadius = 27
@@ -33,6 +34,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         errorMessage.text = ""
         
+        // check if login status changed
         Auth.auth().addStateDidChangeListener() {
             (auth,user) in
             if user != nil {
@@ -43,7 +45,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    // MARK: - Keyboard Dismiss
     // Called when 'return' key pressed
     func textFieldShouldReturn(_ textField:UITextField) -> Bool {
         textField.resignFirstResponder()

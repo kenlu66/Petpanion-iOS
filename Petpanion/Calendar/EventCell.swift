@@ -7,6 +7,7 @@
 
 import UIKit
 
+// event cell in calendar
 class EventCell:UITableViewCell {
     
     @IBOutlet weak var eventLabel: UILabel!

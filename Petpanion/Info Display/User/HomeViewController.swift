@@ -87,6 +87,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     
                     let bDay = birthdayTimestamp.dateValue()
                     
+                    // create new pet
                     let pet = Pet(petName: petName,
                                   breedName: breedName,
                                   neutered: neutered,

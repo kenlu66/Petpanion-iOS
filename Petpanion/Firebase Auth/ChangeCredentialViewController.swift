@@ -10,6 +10,7 @@ import FirebaseAuth
 
 class ChangeCredentialViewController: UIViewController {
 
+    // variables
     @IBOutlet weak var currentPasswordTextField: UITextField!
     @IBOutlet weak var newPasswordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
@@ -19,7 +20,6 @@ class ChangeCredentialViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    // MARK: - Keyboard Dismiss
     // Called when 'return' key pressed
     func textFieldShouldReturn(_ textField:UITextField) -> Bool {
         textField.resignFirstResponder()

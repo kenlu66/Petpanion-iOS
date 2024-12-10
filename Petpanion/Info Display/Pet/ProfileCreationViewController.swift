@@ -45,6 +45,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // assign delegates
         petName.delegate = self
         breedName.delegate = self
         birthdate.delegate = self
@@ -55,6 +56,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
         waterInput.delegate = self
         playtimeInput.delegate = self
         
+        // initial set up
         petImage.layer.cornerRadius = petImage.frame.height / 2
         petImage.layer.masksToBounds = true
         submissionStatus.text = ""
@@ -93,7 +95,6 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
         datePicker.date = selectedPet.birthdate
     }
     
-    // MARK: - Keyboard Dismiss
     // Called when 'return' key pressed
     func textFieldShouldReturn(_ textField:UITextField) -> Bool {
         textField.resignFirstResponder()

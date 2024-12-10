@@ -9,6 +9,7 @@ import Foundation
 
 var eventsList = [Event]()
 
+// event class for calendar
 class Event {
     var id:Int!
     var name:String!

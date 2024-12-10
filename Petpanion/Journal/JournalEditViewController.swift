@@ -50,7 +50,6 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
         bodyTextView.text = bodyField
     }
     
-    // MARK: - Keyboard Dismiss
     // Called when 'return' key pressed
     func textFieldShouldReturn(_ textField:UITextField) -> Bool {
         textField.resignFirstResponder()
