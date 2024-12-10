@@ -38,7 +38,6 @@ class PetStatusViewController: UIViewController, updatePetList {
     var petImage: UIImage!
     var petIndex: Int!
     var medicalRecord: MedicalInfo!
-    var DailyRecord: DailyReportHistory!
     var allergies: [MedicalInfo.Record] = []
     var vaccines: [MedicalInfo.Record] = []
     var treatments: [MedicalInfo.Record] = []
@@ -51,7 +50,7 @@ class PetStatusViewController: UIViewController, updatePetList {
     let treatmentSegue = "MedicalToTreatment"
     let vaccineSegue = "MedicalToVaccine"
 
-    // fill in info
+    // fill in info and layout of elements
     override func viewDidLoad() {
         super.viewDidLoad()
         selectedPet = petList[petIndex]
