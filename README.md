@@ -10,7 +10,8 @@ iOS app designed to help pet owners efficiently manage the daily care of pets
 
 - Serves as a hub for tracking important records, such as medical history, vaccinations, and growth milestones. That way, owners can easily monitor routine tasks and health records. The app will help users stay organized and attentive to pets' well-being.
 
-## Dependencies: XCode16.0, Swift 6
+## Dependencies: 
+- XCode16.0, Swift 6
 
 ## Instructions:
 - Use any phone/simulator that can use iOS 18+
