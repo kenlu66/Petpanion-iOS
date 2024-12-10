@@ -108,7 +108,7 @@ class NotificationHistoryViewController: UIViewController, UITableViewDelegate, 
         // Title - Bold and Larger Font
         let titleAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.boldSystemFont(ofSize: 18),
-            .foregroundColor: UIColor.black
+            .foregroundColor: UIColor.label
         ]
         let titleString = NSAttributedString(string: "\(reminder.title)\n", attributes: titleAttributes)
         attributedText.append(titleString)
