@@ -23,7 +23,7 @@ iOS app designed to help pet owners efficiently manage the daily care of pets
 - Calendar that allows users to add important events on a specific date and show a list on that date.
 - Settings page with dark mode, change account/password, logout
 
-## Future features
+## Future Features:
   - Share posts with photos and words in the community, allow interactions between users, such as likes/comments/chat
   - AI-powered recommendation for pet care (food suggestions, active time, etc)
   - Allowing multiple users to manage the same pets and keep each other updated on their care progress.
