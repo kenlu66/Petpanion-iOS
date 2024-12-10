@@ -52,6 +52,44 @@ class TreatmentsViewController: UIViewController, UITableViewDelegate, UITableVi
         return cell
     }
     
+    // Swipe to Delete
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let removedRecord = treatmentList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            // Ensure the user is authenticated
+            guard let userId = Auth.auth().currentUser?.uid else {
+                print("Error: user not authenticated")
+                // revert local changes if needed
+                treatmentList.insert(removedRecord, at: indexPath.row)
+                tableView.reloadData()
+                return
+            }
+            
+            // Remove the record from the local medicalInfo instance
+            medicalInfo.removeRecord(category: "Treatment", record: removedRecord)
+            
+            // Update Firebase
+            Task {
+                do {
+                    try await userManager.updateMedicalRecord(for: userId,
+                                                               records: self.treatmentList,
+                                                               docID: docID,
+                                                               petID: pet.petID,
+                                                               type: "Treatment")
+                } catch {
+                    print("Failed to update backend after deletion: \(error)")
+                    // Revert local changes if backend update fails
+                    self.treatmentList.insert(removedRecord, at: indexPath.row)
+                    self.medicalInfo.addRecord(category: "Treatment", record: removedRecord)
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
     // set up segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == recordCreationSegue,

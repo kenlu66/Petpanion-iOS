@@ -53,6 +53,44 @@ class VaccinationsViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
+    // Swipe to Delete
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let removedRecord = vaccineList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            // Ensure user is authenticated
+            guard let userId = Auth.auth().currentUser?.uid else {
+                print("Error: user not authenticated")
+                // Revert local changes if needed
+                vaccineList.insert(removedRecord, at: indexPath.row)
+                tableView.reloadData()
+                return
+            }
+            
+            // Remove from local medicalInfo
+            medicalInfo.removeRecord(category: "Vaccine", record: removedRecord)
+            
+            // Update Firebase
+            Task {
+                do {
+                    try await userManager.updateMedicalRecord(for: userId,
+                                                               records: self.vaccineList,
+                                                               docID: docID,
+                                                               petID: pet.petID,
+                                                               type: "Vaccine")
+                } catch {
+                    print("Failed to update backend after deletion: \(error)")
+                    // Revert if backend fails
+                    self.vaccineList.insert(removedRecord, at: indexPath.row)
+                    self.medicalInfo.addRecord(category: "Vaccine", record: removedRecord)
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
     // set up segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == recordCreationSegue,
