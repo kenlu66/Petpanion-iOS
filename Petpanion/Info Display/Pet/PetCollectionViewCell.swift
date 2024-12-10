@@ -11,13 +11,14 @@ class PetCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var petImage: UIImageView!
     @IBOutlet weak var petName: UILabel!
-    @IBOutlet weak var viewBox: UIView! // For future design use
+    @IBOutlet weak var viewBox: UIView! // For design use
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
+    // set up cell UI
     public func configure(with image: UIImage, name: String) {
         petImage.image = image
         petName.text = name

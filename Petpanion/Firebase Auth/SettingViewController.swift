@@ -29,7 +29,6 @@ class SettingViewController: UIViewController {
         let isDarkMode = sender.isOn
         // Save the user's preference
         UserDefaults.standard.set(isDarkMode, forKey: "isDarkMode")
-        // Update the theme based on the new selection
         updateTheme(isDarkMode: isDarkMode)
     }
     
@@ -42,23 +41,20 @@ class SettingViewController: UIViewController {
         }
     }
 
-
+    // sign out action
     @IBAction func signOut(_ sender: Any) {
         do {
             // Attempt to sign out from Firebase Authentication
             try Auth.auth().signOut()
             
-            // Navigate back to the sign-in page
             navigateToSignInPage()
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
-            // Optionally, display an alert to the user about the error
         }
     }
     
     // Function to navigate to the Sign In page
     private func navigateToSignInPage() {
-        // Assuming your SignInViewController is the root view controller in the navigation stack
         if let signInVC = storyboard?.instantiateViewController(withIdentifier: "SignInViewController") {
             signInVC.modalPresentationStyle = .fullScreen
             present(signInVC, animated: true, completion: nil)

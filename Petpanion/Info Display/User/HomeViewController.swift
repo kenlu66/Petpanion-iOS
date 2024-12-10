@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
+// protocols to change pet list
 protocol changePetList {
     func updatePet(pet: Pet, petInd: Int, pList: [Pet])
     func addPet(pet: Pet)
@@ -16,6 +17,7 @@ protocol changePetList {
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, changePetList {
     
+    // variables
     let db = Firestore.firestore()
     let storageManager = StorageManager()
     
@@ -50,7 +52,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             return
         }
         
-        // Reference to the pets subcollection for the authenticated user
         let petsRef = db.collection("users").document(userId).collection("pets")
         
         // Retrieve pets associated with the user
@@ -105,10 +106,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
+    // return number of pets
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return petList.count
     }
     
+    // show the cells info on home page
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionViewIdentifier, for: indexPath) as! PetCollectionViewCell
         let row = indexPath.row
@@ -130,11 +133,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let selectedPet = petList[indexPath.row]
         
         if let selectedCell = collectionView.cellForItem(at: indexPath) as? PetCollectionViewCell {
-                // Access the image from the cell's imageView
+            // Access the image from the cell's imageView
             image = selectedCell.petImage.image
                 
         } else {
-            // In case the cell is not yet loaded or accessible, you can handle this case here
+            // In case the cell is not yet loaded or accessible
             print("Cell not found")
         }
         
@@ -153,7 +156,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         if segue.identifier == petStatusSegue,
            let destination = segue.destination as? PetStatusViewController,
-        // Pass the operator type selected into next VC
             let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
             destination.petIndex = selectedIndexPath.row
             destination.petList = petList
@@ -162,17 +164,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
+    // Insert the new item at the end of the collection view
     func addPet(pet: Pet) {
         let newIndex = petList.count
         petList.append(pet)
-        
-        // Insert the new item at the end of the collection view
         let indexPath = IndexPath(item: newIndex, section: 0)
         collectionView.insertItems(at: [indexPath])
     }
     
+    // Find the pet in the list and update its information
     func updatePet(pet: Pet, petInd: Int, pList: [Pet]) {
-        // Find the pet in the list and update its information
         self.petList = pList
         collectionView.reloadData()
     }
@@ -204,7 +205,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         present(alert, animated: true)
     }
     
-    // Delete Pet Logic
+    // Delete Pet
     func deletePet(at indexPath: IndexPath) {
         let petToDelete = petList[indexPath.row]
         

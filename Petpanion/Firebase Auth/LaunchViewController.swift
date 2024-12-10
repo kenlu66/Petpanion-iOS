@@ -11,8 +11,6 @@ class LaunchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         // Set an animation to transition to the login page
         UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseOut, animations: {

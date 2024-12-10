@@ -80,6 +80,7 @@ class ChangeCredentialViewController: UIViewController {
         }
     }
 
+    // alert user that password has been updated
     private func showAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

@@ -12,6 +12,5 @@ class PostCollectionViewCell: UICollectionViewCell {
     // variables
     @IBOutlet var postImage: UIImageView!
     @IBOutlet weak var postTitleLabel: UILabel!
-//    @IBOutlet weak var viewBox: UIView! // For future design use
     
 }

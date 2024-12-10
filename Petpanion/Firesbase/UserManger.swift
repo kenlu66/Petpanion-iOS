@@ -55,6 +55,7 @@ final class UserManager {
             let petRef = db.collection("users").document(userId).collection("pets").document(pet.petID)
             let _ = try await petRef.setData(petData)
             
+            // add medical record file when pet is created
             let medicalTypes = ["Allergy", "Treatment", "Vaccine"]
             let medicalRef = petRef.collection("medical records")
             
@@ -101,6 +102,7 @@ final class UserManager {
         }
     }
     
+    // to update medical record files
     func updateMedicalRecord(for userId: String, records: [MedicalInfo.Record], docID: String, petID: String, type: String) async throws {
         var list: [[String: Any]] = []
             
@@ -133,7 +135,6 @@ final class UserManager {
         ]
         
         do {
-            
             // Add the post data to the "posts" subcollection
             let _ = try await db.collection("users").document(userId).collection("posts").document(docID).setData(postData)
         } catch {
@@ -141,6 +142,7 @@ final class UserManager {
         }
     }
     
+    // method to update existing journal posts
     func updatePost(for userId: String, post: Post) async throws {
         
         let data: [String: Any] = [
@@ -149,7 +151,6 @@ final class UserManager {
             "body": post.body,
             "imageData": post.imageData
         ]
-        print(post.postID)
         
         do {
             // Update the pet data in the "pets" subcollection
@@ -181,30 +182,4 @@ final class UserManager {
             throw error
         }
     }
-    
-//    // Method to fetch reminders for a user
-//    func fetchReminders(for userId: String) async throws -> [MyReminder] {
-//        var reminders: [MyReminder] = []
-//        
-//        let snapshot = try await db.collection("users").document(userId).collection("reminders").getDocuments()
-//        
-//        for document in snapshot.documents {
-//            let data = document.data()
-//            let reminder = MyReminder(
-//                identifier: data["reminderID"] as? String ?? "",
-//                title: data["title"] as? String ?? "",
-//                body: data["body"] as? String ?? "",
-//                date: ((data["date"] as? Timestamp)?.dateValue())!,
-//                tag: data["tag"] as? String ?? "",
-//                location: data["location"] as? String ?? "",
-//                flagged: data["flagged"] as? Bool ?? false,
-//                completed: data["completed"] as? Bool ?? false
-//            )
-//            reminders.append(reminder)
-//            print(reminder)
-//        }
-//        
-//        return reminders
-//    }
-    
 }

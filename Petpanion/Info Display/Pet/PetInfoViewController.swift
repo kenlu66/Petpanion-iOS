@@ -13,6 +13,7 @@ protocol updatePet {
 
 class PetInfoViewController: UIViewController, updatePet {
 
+    // variables
     @IBOutlet weak var petImage: UIImageView!
     @IBOutlet weak var genderImage: UIImageView!
     @IBOutlet weak var petName: UILabel!
@@ -33,6 +34,7 @@ class PetInfoViewController: UIViewController, updatePet {
     var delegate: UIViewController!
     let creationSegue = "PetInfoToCreation"
     
+    // UI design
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,6 +56,7 @@ class PetInfoViewController: UIViewController, updatePet {
         fillInFields()
     }
     
+    // fill in pet info
     func fillInFields() {
         petImage.image = image
         
@@ -76,6 +79,7 @@ class PetInfoViewController: UIViewController, updatePet {
         }
     }
     
+    // send data through segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == creationSegue,
            let petCreationVC = segue.destination as? ProfileCreationViewController {
@@ -89,7 +93,8 @@ class PetInfoViewController: UIViewController, updatePet {
             print("going to update pet info")
         }
     }
-    // TODO: fix image
+    
+    // update pet info if it was changed
     func updatePet(pet: Pet, petInd: Int, pList: [Pet]) {
         // Find the pet in the list and update its information
         print("im in info update pet")

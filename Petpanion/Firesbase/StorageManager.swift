@@ -13,8 +13,8 @@ class StorageManager {
     
     let storageRef = Storage.storage(url:"gs://petpanion-3d3bb.firebasestorage.app").reference()
     
+    // store image into firebase storage
     func storeImage(filePath: String, image: UIImage) {
-        
         if let imageData = image.jpegData(compressionQuality: 0.5) {
             let fileRef = storageRef.child(filePath)
             fileRef.putData(imageData, metadata: nil) {
@@ -25,10 +25,11 @@ class StorageManager {
             }
         }
     }
-    
+
     func retrieveImage(filePath: String, completion: @escaping (UIImage?) -> Void) {
         let imageRef = storageRef.child(filePath)
         
+        // retrieve image
         imageRef.getData(maxSize: 5 * 1024 * 1024) { (data, error) in
             if let error = error {
                 print("Failed to retrieve image: \(error.localizedDescription)")
@@ -43,12 +44,13 @@ class StorageManager {
         }
     }
     
+    // delete from firebase storage
     func deleteImage(filePath: String) {
         let fileRef = storageRef.child(filePath)
         
         fileRef.delete { error in
             if let error = error {
-                // Handle error if deletion fails
+                // if deletion fails
                 print("Error deleting file: \(error.localizedDescription)")
             } else {
                 print("File successfully deleted")

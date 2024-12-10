@@ -13,6 +13,7 @@ import Photos
 
 class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    // variables
     @IBOutlet weak var petImage: UIImageView!
     @IBOutlet weak var petName: UITextField!
     @IBOutlet weak var breedName: UITextField!
@@ -23,7 +24,6 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
     @IBOutlet weak var submissionStatus: UILabel!
     @IBOutlet weak var sterilizationSelection: UIButton!
     @IBOutlet weak var genderSelection: UIButton!
-    
     @IBOutlet weak var mealsPerDay: UITextField!
     @IBOutlet weak var amountPerMeal: UITextField!
     @IBOutlet weak var waterInput: UITextField!
@@ -71,13 +71,12 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
         
         if (status == "update") {
             fillInFields()
-            print("updated fields")
         }
     }
     
+    // fill in field for existing pet
     func fillInFields() {
         if let pet = selectedPet {
-                // Populate the fields with the pet's existing data
                 petName.text = pet.petName
                 breedName.text = pet.breedName
                 birthdate.text = dateFormat(date: pet.birthdate)
@@ -89,9 +88,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
                 amountPerMeal.text = String(pet.amountPerMeal)
                 waterInput.text = String(pet.waterNeeded)
                 playtimeInput.text = String(pet.playtimeNeeded)
-                
                 petImage.image = image
-                
             }
         datePicker.date = selectedPet.birthdate
     }
@@ -118,12 +115,14 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
         return formatter.string(from: date)
     }
     
+    // calculate age
     func ageCalculation(birthDate: Date) -> Int {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.year], from: birthDate, to: Date())
         return components.year ?? 0
     }
     
+    // select how photo is added
     @IBAction func addPhotoPressed(_ sender: Any) {
         checkPermissions()
         
@@ -132,6 +131,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
         picker.delegate = self
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            // alert to type selection
             let alertController = UIAlertController(title: "Choose Source", message: nil, preferredStyle: .actionSheet)
             
             alertController.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { _ in
@@ -148,12 +148,13 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
             
             present(alertController, animated: true, completion: nil)
         } else {
-            // No camera available, fall back to photo library
+            // No camera available
             picker.sourceType = .photoLibrary
             present(picker, animated: true, completion: nil)
         }
     }
     
+    // edit selected image
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if picker.sourceType == .photoLibrary || picker.sourceType == .camera {
             petImage.contentMode = .scaleAspectFit
@@ -161,11 +162,11 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
             petImage.backgroundColor = .clear
             
             picker.dismiss(animated: true, completion: nil)
-            print("image changed")
             imageChanged = 1
         }
     }
     
+    // check whether user give permission for camera and photo library usuage
     func checkPermissions() {
         if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
             PHPhotoLibrary.requestAuthorization({ (status: PHAuthorizationStatus) -> Void in () })
@@ -191,6 +192,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
         }
     }
     
+    // request permission
     func requestAuthorizationHandler(status: PHAuthorizationStatus) {
         if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
             print("Access for photo library granted")
@@ -199,14 +201,17 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
         }
     }
     
+    // drop down option for sterilization status
     @IBAction func sterilizationStatusPressed(_ sender: UIAction) {
         sterilizationSelection.setTitle(sender.title, for: .normal)
     }
     
+    // drop down for gender selection
     @IBAction func genderSelectionPressed(_ sender: UIAction) {
         genderSelection.setTitle(sender.title, for: .normal)
     }
     
+    // action for submit button pressed
     @IBAction func submitted(_ sender: Any) {
         
         var path = ""
@@ -232,6 +237,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
             }
         }
         
+        // check if all fields are filled in
         guard let petNameText = petName.text, !petNameText.isEmpty,
               let breedNameText = breedName.text, !breedNameText.isEmpty,
               let neuteredText = sterilizationSelection.titleLabel?.text,
@@ -244,7 +250,7 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
               let playtime = playtimeInput.text, let playtimeNum = Float(playtime)
         else {
             // Handle empty fields or invalid input here
-            submissionStatus.text = ("Please fill in all fields correctly.")
+            submissionStatus.text = ("Please fill in all fields correctly. Some fields are numbers only")
             return
         }
         
@@ -305,5 +311,4 @@ class ProfileCreationViewController: UIViewController,UITextFieldDelegate, UIIma
             }
         }
     }
-    
 }

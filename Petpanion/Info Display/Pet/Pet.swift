@@ -7,6 +7,7 @@
 
 import Foundation
 
+// pet class for storing all the info the pet need to pass around VCs
 class Pet {
     var petName: String
     var breedName: String

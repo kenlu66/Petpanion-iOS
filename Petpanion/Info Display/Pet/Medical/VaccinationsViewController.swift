@@ -14,6 +14,7 @@ protocol addVaccine {
 
 class VaccinationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, addVaccine {
     
+    // variables
     let medicalInfo = MedicalInfo()
     let userManager = UserManager()
     var vaccineList: [MedicalInfo.Record] = []
@@ -31,10 +32,12 @@ class VaccinationsViewController: UIViewController, UITableViewDelegate, UITable
         tableView.delegate = self
     }
     
+    // return vaccine list number
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return vaccineList.count
     }
     
+    // set up cell view
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VaccineCell", for: indexPath)
         let row = indexPath.row // Index
@@ -50,6 +53,7 @@ class VaccinationsViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
+    // set up segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == recordCreationSegue,
            let creationVC = segue.destination as? MedicalRecordCreationVC {
@@ -60,6 +64,7 @@ class VaccinationsViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
+    // add record to firebase
     func addRecord(newRecord: MedicalInfo.Record) {
         // Ensure the user is authenticated
         guard let userId = Auth.auth().currentUser?.uid else {

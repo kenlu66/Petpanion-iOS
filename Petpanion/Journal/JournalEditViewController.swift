@@ -16,7 +16,6 @@ class JournalEditViewController: UIViewController, UIImagePickerControllerDelega
     let userManager = UserManager()
     let storageManager = StorageManager()
     var delegate: UIViewController!
-    
     var status: String!
     var titleField: String!
     var bodyField: String!

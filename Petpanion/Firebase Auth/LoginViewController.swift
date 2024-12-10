@@ -11,6 +11,7 @@ import FirebaseFirestore
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
+    // variables
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passswordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -24,7 +25,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         emailField.delegate = self
         passswordField.delegate = self
-        
         
         loginButton.layer.cornerRadius = 27
         loginButton.layer.masksToBounds = true
@@ -55,6 +55,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
+    // action when login is pressed
     @IBAction func loginPressed(_ sender: Any) {
         guard let userEmail = emailField.text else { return }
         guard let password = passswordField.text else { return }
@@ -68,6 +69,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // go to sign up page
     @IBAction func signUpPressed(_ sender: Any) {
         self.performSegue(withIdentifier: toRegisterSegue, sender: self)
     }

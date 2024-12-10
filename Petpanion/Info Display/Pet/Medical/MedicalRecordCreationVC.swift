@@ -11,6 +11,7 @@ import MapKit
 
 class MedicalRecordCreationVC: UIViewController, UITextFieldDelegate {
 
+    // variables
     @IBOutlet weak var dateField: UITextField!
     @IBOutlet weak var descriptionField: UITextField!
     @IBOutlet weak var locationField: UITextField!
@@ -97,12 +98,12 @@ class MedicalRecordCreationVC: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
  
+    // Create a new record based on the currentType
     @IBAction func submitPressed(_ sender: Any) {
         guard let date = dateField.text,
               let description = descriptionField.text,
               let location = locationField.text else { return }
         
-        // Create a new record based on the currentType
         var newRecord: MedicalInfo.Record
         
         switch currentType {

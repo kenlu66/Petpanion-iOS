@@ -54,6 +54,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         status = "NewPost"
     }
     
+    // set up cells layout
     func configureCollectionViewLayout() {
             let layout = UICollectionViewFlowLayout()
             let numberOfCellsPerRow: CGFloat = 2
@@ -69,6 +70,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
             collectionView.collectionViewLayout = layout
         }
     
+    // retrieve journal data from firebase
     func fetchJournalEntries() {
         // Ensure the user is authenticated
         guard let userId = Auth.auth().currentUser?.uid else {
@@ -76,7 +78,6 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
             return
         }
         
-        // Reference to the pets subcollection for the authenticated user
         let postRef = db.collection("users").document(userId).collection("posts")
         
         // Retrieve posts associated with the user
@@ -87,7 +88,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
             }
             
             // Process the retrieved documents
-            self.postList = [] // Clear existing pet list
+            self.postList = []
             for document in snapshot?.documents ?? [] {
                 let postData = document.data()
                 if let postTitle = postData["title"] as? String,
@@ -100,7 +101,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
                 }
             }
 
-            // Update the table view with the new data
+            // Update the view with the new data
             self.collectionView.reloadData()
         }
     }
@@ -109,6 +110,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         return postList.count
     }
     
+    // set up cell data
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionViewCellIdentifier, for: indexPath) as! PostCollectionViewCell
         let row = indexPath.row
@@ -126,6 +128,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         return cell
     }
     
+    // a specific cell is selected, perform segue
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Get the selected pet from your petList
         let row = indexPath.row
@@ -134,7 +137,6 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         bodyParagraph = postList[row].body
         docID = postList[row].postID
         imagePath = postList[row].imageData
-        
         index = row
         status = "update"
         
@@ -143,11 +145,10 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
             // Access the image from the cell's imageView
             image = selectedCell.postImage.image
         } else {
-            // In case the cell is not yet loaded or accessible, you can handle this case here
+            // In case the cell is not yet loaded or accessible
             print("Cell not found")
         }
-        
-        // Perform the segue to the edit VC
+    
         performSegue(withIdentifier: postSegue, sender: selectedPost)
     }
     
@@ -167,6 +168,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
     
+    // add new post to list
     func updatePosts(post: Post) {
         let newIndex = postList.count
         postList.append(post)
@@ -177,6 +179,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
         collectionView.reloadData()
     }
     
+    // reload view with updated posts
     func editPost(posts: [Post]) {
         self.postList = posts
         collectionView.reloadData()
@@ -218,8 +221,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate, UIColle
             print("User not authenticated.")
             return
         }
-        
-        // Reference to the specific post document in Firestore and Firebase Storage
+
         storageManager.deleteImage(filePath: "\(postToDelete.imageData)")
         let postRef = db.collection("users").document(userId).collection("posts").document(postToDelete.postID)
         

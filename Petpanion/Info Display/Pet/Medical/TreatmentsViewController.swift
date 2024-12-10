@@ -13,6 +13,8 @@ protocol addTreatment {
 }
 
 class TreatmentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, addTreatment {
+    
+    // variables
     let medicalInfo = MedicalInfo()
     let userManager = UserManager()
     var treatmentList: [MedicalInfo.Record] = []
@@ -34,6 +36,7 @@ class TreatmentsViewController: UIViewController, UITableViewDelegate, UITableVi
         return treatmentList.count
     }
     
+    // set up cell view
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TreatmentCell", for: indexPath)
         let row = indexPath.row // Index
@@ -49,6 +52,7 @@ class TreatmentsViewController: UIViewController, UITableViewDelegate, UITableVi
         return cell
     }
     
+    // set up segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == recordCreationSegue,
            let creationVC = segue.destination as? MedicalRecordCreationVC {
@@ -59,6 +63,7 @@ class TreatmentsViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    // update record in firebase and table view
     func addRecord(newRecord: MedicalInfo.Record) {
         // Ensure the user is authenticated
         guard let userId = Auth.auth().currentUser?.uid else {

@@ -15,6 +15,7 @@ protocol updatePetList {
 
 class PetStatusViewController: UIViewController, updatePetList {
     
+    // variables
     let db = Firestore.firestore()
 
     @IBOutlet weak var foodOption: UIButton!
@@ -22,15 +23,11 @@ class PetStatusViewController: UIViewController, updatePetList {
     @IBOutlet weak var playtimeOption: UIButton!
     @IBOutlet weak var myProfileButton: UIButton!
     @IBOutlet weak var myHealthButton: UIButton!
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var petEventLabel: UILabel!
     @IBOutlet weak var optionStackView: UIStackView!
-    
     @IBOutlet weak var foodAmount: UILabel!
-    
     @IBOutlet weak var waterAmount: UILabel!
-    
     @IBOutlet weak var PlaytimeNeeded: UILabel!
     
     var currentPosition = 0
@@ -50,12 +47,11 @@ class PetStatusViewController: UIViewController, updatePetList {
     var docIDT: String!
     
     let petInfoSegue = "PetStatusToPetInfo"
-    let medicalSegue = "PetStatusToMedical"
     let allergySegue = "MedicalToAllergies"
     let treatmentSegue = "MedicalToTreatment"
     let vaccineSegue = "MedicalToVaccine"
 
-    
+    // fill in info
     override func viewDidLoad() {
         super.viewDidLoad()
         selectedPet = petList[petIndex]
@@ -85,26 +81,32 @@ class PetStatusViewController: UIViewController, updatePetList {
         PlaytimeNeeded.text = "\(selectedPet.playtimeNeeded) minutes"
     }
     
+    // get newest medical records for pets
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         fetchRecords()
     }
     
+    // switch to food view
     @IBAction func foodPressed(_ sender: Any) {
         changeViewAnimation(position: 0)
     }
     
+    // switch to water view
     @IBAction func waterPressed(_ sender: Any) {
         changeViewAnimation(position: 1)
     }
     
+    // switch to playtime view
     @IBAction func playtimePressed(_ sender: Any) {
         changeViewAnimation(position: 2)
     }
     
+    // ask for type of medical record
     @IBAction func healthPressed(_ sender: Any) {
         
+        // send user to selected record
         let alertController = UIAlertController(title: "Choose Type", message: nil, preferredStyle: .actionSheet)
         
         alertController.addAction(UIAlertAction(title: "Allergy", style: .default, handler: { _ in
@@ -125,7 +127,7 @@ class PetStatusViewController: UIViewController, updatePetList {
         
     }
     
-    
+    // animation for switching views depending on which button is pressed
     func changeViewAnimation(position: Int) {
         let screenWidth = UIScreen.main.bounds.width
         let direction = currentPosition - position
@@ -140,6 +142,7 @@ class PetStatusViewController: UIViewController, updatePetList {
             })
     }
     
+    // send info through segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == petInfoSegue,
            let petInfoVC = segue.destination as? PetInfoViewController {
@@ -176,6 +179,7 @@ class PetStatusViewController: UIViewController, updatePetList {
         }
     }
     
+    // update pet info
     func updatePet(pet: Pet, petInd: Int, pList: [Pet]) {
         // Find the pet in the list and update its information
         print("im in status update pet")
@@ -186,6 +190,7 @@ class PetStatusViewController: UIViewController, updatePetList {
         }
     }
     
+    // get medical records
     func fetchRecords() {
         // Ensure the user is authenticated
         guard let userId = Auth.auth().currentUser?.uid else {
@@ -213,6 +218,7 @@ class PetStatusViewController: UIViewController, updatePetList {
                     continue
                 }
                 
+                // assign corresponding document id
                 if let docID = medicalData["Document ID"] as? String {
                     switch type {
                     case "Allergy":
@@ -225,6 +231,7 @@ class PetStatusViewController: UIViewController, updatePetList {
                         print("error fetching medical document id")
                     }
                 }
+                // sort the records
                 if let records = medicalData["Records"] as? [[String: Any]] {
                     for record in records {
                         if let date = record["date"] as? String,

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// class for journal post for easier data transfer
 class Post {
     var title: String
     var body: String

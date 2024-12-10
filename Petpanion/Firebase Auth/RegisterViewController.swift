@@ -10,6 +10,7 @@ import FirebaseAuth
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
 
+    // variables
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var emailField: UITextField!
@@ -44,8 +45,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
-    
-    
+    // action when sign up is pressed
     @IBAction func signUpPressed(_ sender: Any) {
         guard let userEmail = emailField.text else { return }
         guard let password = passwordField.text else { return }
@@ -64,6 +64,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // go to login page
     @IBAction func loginPressed(_ sender: Any) {
         self.performSegue(withIdentifier: toLoginSegue, sender: self)
     }

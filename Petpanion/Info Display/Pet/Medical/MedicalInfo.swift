@@ -1,5 +1,6 @@
 import Foundation
 
+// medical record class to store require info for easier data transfer
 class MedicalInfo {
     
     struct Record {
@@ -24,7 +25,5 @@ class MedicalInfo {
         default:
             break
         }
-    
     }
-    
 }

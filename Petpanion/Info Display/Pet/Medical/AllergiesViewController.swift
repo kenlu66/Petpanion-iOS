@@ -11,11 +11,12 @@ import FirebaseAuth
 protocol addRecord {
     func addRecord(newRecord: MedicalInfo.Record)
 }
+
 class AllergiesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, addRecord {
     
+    // variables
     let medicalInfo = MedicalInfo()
     let userManager = UserManager()
-    
     var allergyList: [MedicalInfo.Record] = []
     var pet: Pet!
     var docID: String!
@@ -29,13 +30,13 @@ class AllergiesViewController: UIViewController, UITableViewDelegate, UITableVie
 
         tableView.dataSource = self
         tableView.delegate = self
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allergyList.count
     }
     
+    // set up cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllergyCell", for: indexPath)
         let row = indexPath.row // Index
@@ -50,6 +51,7 @@ class AllergiesViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell
     }
     
+    // set up segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == recordCreationSegue,
            let creationVC = segue.destination as? MedicalRecordCreationVC {
@@ -60,6 +62,7 @@ class AllergiesViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    // add record to firebase and table view
     func addRecord(newRecord: MedicalInfo.Record) {
         // Ensure the user is authenticated
         guard let userId = Auth.auth().currentUser?.uid else {
