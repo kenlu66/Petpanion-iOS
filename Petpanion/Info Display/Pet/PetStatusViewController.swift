@@ -13,7 +13,7 @@ protocol updatePetList {
     func updatePet(pet: Pet, petInd: Int, pList: [Pet])
 }
 
-class PetStatusViewController: UIViewController, updatePetList {
+class PetStatusViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, updatePetList {
     
     // variables
     let db = Firestore.firestore()
@@ -29,6 +29,7 @@ class PetStatusViewController: UIViewController, updatePetList {
     @IBOutlet weak var foodAmount: UILabel!
     @IBOutlet weak var waterAmount: UILabel!
     @IBOutlet weak var PlaytimeNeeded: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     var currentPosition = 0
     var delegate: UIViewController!
@@ -41,6 +42,8 @@ class PetStatusViewController: UIViewController, updatePetList {
     var allergies: [MedicalInfo.Record] = []
     var vaccines: [MedicalInfo.Record] = []
     var treatments: [MedicalInfo.Record] = []
+    var petEvents: [MyReminder]!
+    var thisPetEvent: [MyReminder] = []
     var docIDA: String!
     var docIDV: String!
     var docIDT: String!
@@ -49,10 +52,14 @@ class PetStatusViewController: UIViewController, updatePetList {
     let allergySegue = "MedicalToAllergies"
     let treatmentSegue = "MedicalToTreatment"
     let vaccineSegue = "MedicalToVaccine"
+    let eventCell = "EventCell"
 
     // fill in info and layout of elements
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.dataSource = self
+        tableView.delegate = self
         selectedPet = petList[petIndex]
 
         titleLabel.text = "How is \(selectedPet.petName) Doing?"
@@ -85,6 +92,15 @@ class PetStatusViewController: UIViewController, updatePetList {
         super.viewWillAppear(animated)
         
         fetchRecords()
+        thisPetEvent = []
+        for event in petEvents {
+            if event.tag.lowercased() == selectedPet.petName.lowercased() && !event.completed {
+                print(event)
+                print(event.tag)
+                print(selectedPet.petName)
+                thisPetEvent.append(event)
+            }
+        }
     }
     
     // switch to food view
@@ -139,6 +155,22 @@ class PetStatusViewController: UIViewController, updatePetList {
             completion: { finish in
                 self.currentPosition = position
             })
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return thisPetEvent.count
+    }
+    
+    // set up cells
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: eventCell, for: indexPath)
+        let row = indexPath.row // Index
+        let record = """
+        \(thisPetEvent[row].title)
+        """
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.text = record
+        return cell
     }
     
     // send info through segues

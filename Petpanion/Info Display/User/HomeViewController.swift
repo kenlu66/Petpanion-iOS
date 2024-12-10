@@ -22,6 +22,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     let storageManager = StorageManager()
     
     var petList: [Pet] = []
+    var reminders: [MyReminder] = []
     var image = UIImage(named: "Petpanion_iconV1")
     var pList: [Pet]!
     var iList: [UIImage]!
@@ -43,6 +44,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // Add long-press gesture recognizer
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         collectionView.addGestureRecognizer(longPressGesture)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchReminders()
     }
     
     func fetchPets() {
@@ -97,12 +102,43 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                   petID: petID,
                                   bDay: bDay)
                     self.petList.append(pet)
-                    print("pet added")
                 }
             }
 
             // Update the table view with the new data
             self.collectionView.reloadData()
+        }
+    }
+    
+    // fetch reminders
+    func fetchReminders() {
+        self.reminders = []
+        // Ensure the user is authenticated
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("User not authenticated.")
+            return
+        }
+        let reminderRef = db.collection("users").document(userId).collection("reminders")
+        
+        reminderRef.getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error retrieving pets: \(error.localizedDescription)")
+                return
+            }
+            for document in snapshot?.documents ?? [] {
+                let data = document.data()
+                let reminder = MyReminder(
+                    identifier: data["reminderID"] as? String ?? "",
+                    title: data["title"] as? String ?? "",
+                    body: data["body"] as? String ?? "",
+                    date: ((data["date"] as? Timestamp)?.dateValue())!,
+                    tag: data["tag"] as? String ?? "",
+                    location: data["location"] as? String ?? "",
+                    flagged: data["flagged"] as? Bool ?? false,
+                    completed: data["completed"] as? Bool ?? false
+                )
+                self.reminders.append(reminder)
+            }
         }
     }
     
@@ -160,6 +196,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             destination.petIndex = selectedIndexPath.row
             destination.petList = petList
             destination.petImage = image
+            destination.petEvents = reminders
             destination.delegate = self
         }
     }
@@ -229,8 +266,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             // Remove the pet locally after successful deletion
             self?.petList.remove(at: indexPath.row)
             self?.collectionView.deleteItems(at: [indexPath])
-            
-            print("Pet deleted successfully.")
         }
     }
 }

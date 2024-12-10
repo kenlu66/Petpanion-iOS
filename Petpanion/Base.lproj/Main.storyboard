@@ -584,7 +584,7 @@
                                                 <rect key="frame" x="5" y="473.99999999999994" width="388" height="527.66666666666652"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="okt-Vb-ge5">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EventCell" id="okt-Vb-ge5">
                                                         <rect key="frame" x="0.0" y="50" width="388" height="43.666667938232422"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="okt-Vb-ge5" id="WHn-oZ-R1O">
@@ -650,6 +650,7 @@
                         <outlet property="optionStackView" destination="gaH-Pu-oGk" id="4dy-Mg-5zR"/>
                         <outlet property="petEventLabel" destination="v4h-HS-qyJ" id="Fo0-4Q-G3T"/>
                         <outlet property="playtimeOption" destination="9Cb-YQ-b5F" id="6SV-Fz-HP5"/>
+                        <outlet property="tableView" destination="k8h-Xo-brG" id="ER2-8E-2NB"/>
                         <outlet property="titleLabel" destination="msV-Ht-RoA" id="JOg-ZJ-jlf"/>
                         <outlet property="waterAmount" destination="z64-5O-k3j" id="Pvn-LX-bhE"/>
                         <outlet property="waterOption" destination="wyi-yQ-8Ut" id="gYl-jL-v9z"/>
