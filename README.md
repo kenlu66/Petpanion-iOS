@@ -1,5 +1,3 @@
-For Final release README grading, please check README.pdf, thank you!
-
 # Petpanion-iOS
 
 iOS app designed to help pet owners efficiently manage the daily care of pets
