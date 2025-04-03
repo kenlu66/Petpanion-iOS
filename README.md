@@ -1,6 +1,8 @@
 # Petpanion-iOS
 
 iOS app designed to help pet owners efficiently manage the daily care of pets
+<img width="785" alt="Screenshot 2025-04-03 at 6 12 45 PM" src="https://github.com/user-attachments/assets/506742c0-de5c-4f48-844b-f4bb82730175" />
+<img width="785" alt="Screenshot 2025-04-03 at 6 13 05 PM" src="https://github.com/user-attachments/assets/6811b554-c169-4fdc-ad58-8333d1c20d04" />
 
 ## General Description: 
 
@@ -34,9 +36,4 @@ iOS app designed to help pet owners efficiently manage the daily care of pets
   - Share posts with photos and words in the community, allow interactions between users, such as likes/comments/chat
   - AI-powered recommendation for pet care (food suggestions, active time, etc)
   - Allowing multiple users to manage the same pets and keep each other updated on their care progress.
-
-## Images
-<img width="785" alt="Screenshot 2025-04-03 at 6 12 45 PM" src="https://github.com/user-attachments/assets/506742c0-de5c-4f48-844b-f4bb82730175" />
-<img width="785" alt="Screenshot 2025-04-03 at 6 13 05 PM" src="https://github.com/user-attachments/assets/6811b554-c169-4fdc-ad58-8333d1c20d04" />
-
 
